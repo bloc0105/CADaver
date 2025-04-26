@@ -6,4 +6,5 @@ class HelloWorld
 {
   public:
     std::string message() const;
+    void        makeBottle() const;
 };

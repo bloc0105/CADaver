@@ -7,6 +7,9 @@ project(Test)
 
 find_package(glm REQUIRED)
 find_package(nlohmann_json REQUIRED)
+find_package(OpenCASCADE)
+include_directories(SYSTEM ${OpenCASCADE_INCLUDE_DIR})
+
 
 set(Source_Files
     "Source/Library/testMain.cpp"
@@ -45,6 +48,14 @@ target_include_directories(Library PUBLIC
 target_include_directories(Test PUBLIC 
 ./Source/
 )
+
+#https://www.youtube.com/watch?v=SfRFG_Pk9pk
+#https://dev.opencascade.org/content/buildcompile-application
+foreach(LIB ${OpenCASCADE_LIBRARIES})
+target_link_libraries(Executable ${OpenCASCADE_LIBRARY_DIR}/${LIB}.lib)
+target_link_libraries(Executable debug ${OpenCASCADE_LIBRARY_DIR}/${LIB}.lib)
+target_link_libraries(Executable optimized ${OpenCASCADE_LIBRARY_DIR}/${LIB}.lib)
+endforeach()
 
 set_property( TARGET Test PROPERTY COMPILE_DEFINITIONS ISTESTPROJECT=1 )
 

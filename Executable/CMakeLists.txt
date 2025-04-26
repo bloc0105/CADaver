@@ -8,6 +8,9 @@ project(Executable)
 find_package(nlohmann_json REQUIRED)
 find_package(glm REQUIRED)
 
+find_package(OpenCASCADE)
+include_directories(SYSTEM ${OpenCASCADE_INCLUDE_DIR})
+
 ############################################################################
 ############################################################################
 ############################################################################
@@ -34,6 +37,14 @@ glm::glm
 nlohmann_json::nlohmann_json
 Library
 )
+
+#https://www.youtube.com/watch?v=SfRFG_Pk9pk
+#https://dev.opencascade.org/content/buildcompile-application
+foreach(LIB ${OpenCASCADE_LIBRARIES})
+target_link_libraries(Executable ${OpenCASCADE_LIBRARY_DIR}/${LIB}.lib)
+target_link_libraries(Executable debug ${OpenCASCADE_LIBRARY_DIR}/${LIB}.lib)
+target_link_libraries(Executable optimized ${OpenCASCADE_LIBRARY_DIR}/${LIB}.lib)
+endforeach()
 
 target_include_directories(Executable PUBLIC 
 ./Source/

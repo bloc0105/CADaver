@@ -1,6 +1,0 @@
-cmake_minimum_required(VERSION 2.8...3.20)
-
-IF(CMAKE_BUILD_TYPE MATCHES DEBUG)
-    set(GODOTCPP_DEBUG_CRT TRUE)
-ENDIF(CMAKE_BUILD_TYPE MATCHES DEBUG)
-add_subdirectory(godot-cpp)

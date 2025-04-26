@@ -19,7 +19,7 @@ set_property(TARGET LibraryGD PROPERTY CXX_STANDARD 20)
 
 
 target_include_directories(LibraryGD PRIVATE 
-./../libs/godot-cpp/include
+"${CMAKE_CURRENT_SOURCE_DIR}/src"
 ./../Library/Source
 )
 

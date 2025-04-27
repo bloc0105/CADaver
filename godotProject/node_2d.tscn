@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bv7sw0sgqqnr7"]
+[gd_scene load_steps=3 format=3 uid="uid://bv7sw0sgqqnr7"]
 
 [ext_resource type="Texture2D" uid="uid://4lakq515hdud" path="res://icon.svg" id="1_rnalu"]
+[ext_resource type="Script" path="res://HelloWorlder.gd" id="2_14tjy"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -11,3 +12,10 @@ texture = ExtResource("1_rnalu")
 [node name="Icon" type="Sprite2D" parent="Icon"]
 position = Vector2(249, 144)
 texture = ExtResource("1_rnalu")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 1141.0
+offset_bottom = 387.0
+theme_override_font_sizes/font_size = 60
+text = "To be replaced by script"
+script = ExtResource("2_14tjy")

@@ -6,7 +6,7 @@ namespace godot
 {
     void HelloWorldGD::_bind_methods()
     {
-        ClassDB::bind_static_method("HelloWorldGD", D_METHOD("helloWorld"), &HelloWorldGD::call);    
+        ClassDB::bind_method(D_METHOD("getHelloWorldMessage"), &HelloWorldGD::helloWorldCall);
     }
 
     HelloWorldGD::HelloWorldGD()
@@ -19,8 +19,8 @@ namespace godot
         // Add your cleanup here.
     }
 
-    void HelloWorldGD::call()
+    godot::String HelloWorldGD::helloWorldCall()
     {
-      HelloWorld().makeBottle();
+        return godot::String(HelloWorld().message().c_str());
     }
 }

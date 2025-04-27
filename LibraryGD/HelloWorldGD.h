@@ -2,6 +2,7 @@
 
 #include <glm/glm.hpp>
 #include <godot_cpp/classes/resource.hpp>
+#include <string>
 
 namespace godot
 {
@@ -16,6 +17,6 @@ namespace godot
         HelloWorldGD();
         virtual ~HelloWorldGD();
 
-        void call();
+        godot::String helloWorldCall(); 
     };
 }

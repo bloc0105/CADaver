@@ -13,8 +13,8 @@ include_directories(SYSTEM ${OpenCASCADE_INCLUDE_DIR})
 
 set(Source_Files
     "Source/Library/testMain.cpp"
-    "Source/Library/HelloWorld.cpp"
-    "Source/Library/HelloWorld.h"
+    "Source/Library/HelloBottle.cpp"
+    "Source/Library/HelloBottle.h"
 )
 source_group("Source" FILES ${Source_Files})
 

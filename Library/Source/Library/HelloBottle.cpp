@@ -1,4 +1,4 @@
-#include "HelloWorld.h"
+#include "HelloBottle.h"
 
 // OCC
 #include <BRepAlgoAPI_Fuse.hxx>
@@ -20,6 +20,7 @@
 #include <Geom_CylindricalSurface.hxx>
 #include <Geom_Plane.hxx>
 #include <Geom_TrimmedCurve.hxx>
+#include <STEPControl_Writer.hxx>
 #include <TopExp_Explorer.hxx>
 #include <TopoDS.hxx>
 #include <TopoDS_Edge.hxx>
@@ -27,14 +28,25 @@
 #include <TopoDS_Wire.hxx>
 #include <gp_Ax1.hxx>
 #include <gp_Pnt.hxx>
-#include <STEPControl_Writer.hxx>
 
-std::string HelloWorld::message() const
+class HelloBottle::pimpl
 {
-    return "Hamlo World";
+  public:
+    TopoDS_Compound ressource;
+};
+
+HelloBottle::HelloBottle()
+{
+    p = std::make_unique<HelloBottle::pimpl>();
 }
 
-void HelloWorld::makeBottle() const
+HelloBottle::~HelloBottle() {}
+
+void HelloBottle::investigateBottle() {
+
+}
+
+void HelloBottle::makeBottle()
 {
     // https://dev.opencascade.org/doc/overview/html/occt__tutorial.html
     double myWidth     = 2;
@@ -165,16 +177,25 @@ void HelloWorld::makeBottle() const
     TopoDS_Shape myThreading = aTool.Shape();
 
     // Building the Resulting Compound
-    TopoDS_Compound aRes;
-    BRep_Builder    aBuilder;
-    aBuilder.MakeCompound(aRes);
-    aBuilder.Add(aRes, myBody);
-    aBuilder.Add(aRes, myThreading);
-
+    BRep_Builder aBuilder;
+    aBuilder.MakeCompound(p->ressource);
+    aBuilder.Add(p->ressource, myBody);
+    aBuilder.Add(p->ressource, myThreading);
     // https://dev.opencascade.org/content/export-multi-shapes-single-step-file
     //  Write resulting compound to the file.
     STEPControl_Writer    aWriter;
-    IFSelect_ReturnStatus aStat = aWriter.Transfer(aRes, STEPControl_AsIs);
+    IFSelect_ReturnStatus aStat = aWriter.Transfer(p->ressource, STEPControl_AsIs);
+    aStat                       = aWriter.Write("bottle.stp");
+    if (aStat != IFSelect_RetDone)
+        std::cout << "Writing error" << std::endl;
+}
+
+void HelloBottle::exportBottle(const std::string& filename)
+{
+    // https://dev.opencascade.org/content/export-multi-shapes-single-step-file
+    //  Write resulting compound to the file.
+    STEPControl_Writer    aWriter;
+    IFSelect_ReturnStatus aStat = aWriter.Transfer(p->ressource, STEPControl_AsIs);
     aStat                       = aWriter.Write("bottle.stp");
     if (aStat != IFSelect_RetDone)
         std::cout << "Writing error" << std::endl;

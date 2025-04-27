@@ -1,10 +1,11 @@
 #include <iostream>
 
-#include "Library/HelloWorld.h"
+#include "Library/HelloBottle.h"
 
 int main()
 {
-    HelloWorld().makeBottle();
-
-    std::cout << HelloWorld().message() << std::endl;
+    HelloBottle bottle;
+    bottle.makeBottle();
+    //bottle.exportBottle("bottle.stp");
+    bottle.investigateBottle();
 }

@@ -6,17 +6,17 @@
 
 namespace godot
 {
-    class HelloWorldGD : public Resource
+    class HelloBottleGD : public Resource
     {
-        GDCLASS(HelloWorldGD, Resource)
+        GDCLASS(HelloBottleGD, Resource)
 
       protected:
         static void _bind_methods();
 
       public:
-        HelloWorldGD();
-        virtual ~HelloWorldGD();
+        HelloBottleGD();
+        virtual ~HelloBottleGD();
 
-        godot::String helloWorldCall(); 
+        void exportBottle(const godot::String& filename); 
     };
 }

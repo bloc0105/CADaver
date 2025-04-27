@@ -4,8 +4,8 @@ project(LibraryGD)
 set(Source_Files
     "register_types.h"
     "register_types.cpp"
-    "HelloWorldGD.h"
-    "HelloWorldGD.cpp"
+    "HelloBottleGD.h"
+    "HelloBottleGD.cpp"
 )
 source_group("Source" FILES ${Source_Files})
 

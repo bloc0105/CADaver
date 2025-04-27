@@ -19,6 +19,9 @@ FetchContent_MakeAvailable(GDExtension)
 
 add_subdirectory(Executable)
 add_subdirectory(Library)
+add_subdirectory(LibraryGD)
+
+
 
 
 set_property(DIRECTORY PROPERTY VS_STARTUP_PROJECT Executable)

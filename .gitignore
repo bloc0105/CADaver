@@ -1,1 +1,5 @@
 out
+godot/bin/LibraryGD.dll
+godot/bin/LibraryGD.exp
+godot/bin/LibraryGD.lib
+godot/bin/LibraryGD.pdb

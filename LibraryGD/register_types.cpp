@@ -8,7 +8,7 @@
 
 using namespace godot;
 
-void initialize_example_module(ModuleInitializationLevel p_level)
+void initialize_module(ModuleInitializationLevel p_level)
 {
     if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE)
     {
@@ -18,7 +18,7 @@ void initialize_example_module(ModuleInitializationLevel p_level)
     ClassDB::register_class<HelloWorld>();
 }
 
-void uninitialize_example_module(ModuleInitializationLevel p_level)
+void uninitialize_module(ModuleInitializationLevel p_level)
 {
     if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE)
     {
@@ -33,8 +33,8 @@ extern "C"
     {
         godot::GDExtensionBinding::InitObject init_obj(p_get_proc_address, p_library, r_initialization);
 
-        init_obj.register_initializer(initialize_example_module);
-        init_obj.register_terminator(uninitialize_example_module);
+        init_obj.register_initializer(initialize_module);
+        init_obj.register_terminator(uninitialize_module);
         init_obj.set_minimum_library_initialization_level(MODULE_INITIALIZATION_LEVEL_SCENE);
 
         return init_obj.init();

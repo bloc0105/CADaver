@@ -29,6 +29,10 @@
 #include <gp_Ax1.hxx>
 #include <gp_Pnt.hxx>
 
+#include "BoxTriangulate.h"
+
+// https://old.opencascade.com/content/tessellate-edges-topodsshape
+
 class HelloBottle::pimpl
 {
   public:
@@ -43,7 +47,20 @@ HelloBottle::HelloBottle()
 HelloBottle::~HelloBottle() {}
 
 void HelloBottle::investigateBottle() {
+  //https://old.opencascade.com/content/tessellate-edges-topodsshape
 
+  // 4. Verwende TopoDS_Iterator, um über die direkten Shapes zu iterieren
+  TopoDS_Iterator iterator(p->ressource);
+  int             shapeCount = 0;
+  for (; iterator.More(); iterator.Next())
+  {
+      TopoDS_Shape currentShape = iterator.Value();
+      shapeCount++;
+      std::cout << "Shape " << shapeCount << std::endl;
+      BoxTriangulator::triangulate(currentShape);
+  }
+
+  std::cout << "\nAnzahl der Shapes im Compound (via Iterator): " << shapeCount << std::endl;
 }
 
 void HelloBottle::makeBottle()

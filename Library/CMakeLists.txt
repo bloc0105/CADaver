@@ -15,6 +15,10 @@ set(Source_Files
     "Source/Library/testMain.cpp"
     "Source/Library/HelloBottle.cpp"
     "Source/Library/HelloBottle.h"
+    "Source/Library/BoxTriangulate.cpp"
+    "Source/Library/BoxTriangulate.h"
+    "Source/Library/IterateShapes.cpp"
+    "Source/Library/IterateShapes.h"
 )
 source_group("Source" FILES ${Source_Files})
 

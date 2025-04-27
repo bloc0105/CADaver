@@ -1,5 +1,5 @@
 {
-  "name": "mlpacktest",
+  "name": "opencascadetests",
   "version-string": "0.0.1",
   "dependencies": [
     "nlohmann-json",

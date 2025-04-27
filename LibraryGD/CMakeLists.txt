@@ -30,4 +30,4 @@ Library)
 add_custom_command(TARGET LibraryGD POST_BUILD 
                COMMAND ${CMAKE_COMMAND} -E copy_directory 
                $<TARGET_FILE_DIR:LibraryGD>              
-                ${CMAKE_SOURCE_DIR}/godot/bin)
+                ${CMAKE_SOURCE_DIR}/godotProject/bin)

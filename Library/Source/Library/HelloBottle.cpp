@@ -50,17 +50,17 @@ void HelloBottle::investigateBottle() {
   //https://old.opencascade.com/content/tessellate-edges-topodsshape
 
   // 4. Verwende TopoDS_Iterator, um über die direkten Shapes zu iterieren
-  TopoDS_Iterator iterator(p->ressource);
-  int             shapeCount = 0;
-  for (; iterator.More(); iterator.Next())
-  {
-      TopoDS_Shape currentShape = iterator.Value();
-      shapeCount++;
-      std::cout << "Shape " << shapeCount << std::endl;
-      BoxTriangulator::triangulate(currentShape);
-  }
-
-  std::cout << "\nAnzahl der Shapes im Compound (via Iterator): " << shapeCount << std::endl;
+  //TopoDS_Iterator iterator(p->ressource);
+  //int             shapeCount = 0;
+  //for (; iterator.More(); iterator.Next())
+  //{
+  //    TopoDS_Shape currentShape = iterator.Value();
+  //    shapeCount++;
+  //    std::cout << "Shape " << shapeCount << std::endl;
+  //    BoxTriangulator::triangulate(currentShape);
+  //}
+  BoxTriangulator::triangulate(p->ressource);
+  //std::cout << "\nAnzahl der Shapes im Compound (via Iterator): " << shapeCount << std::endl;
 }
 
 void HelloBottle::makeBottle()

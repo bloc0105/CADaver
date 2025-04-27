@@ -10,7 +10,7 @@ int main()
     bottle.makeBottle();
     ////bottle.exportBottle("bottle.stp");
 
-    std::cin.get();
+    //std::cin.get();
     bottle.investigateBottle();
 
     //IterateShapes();

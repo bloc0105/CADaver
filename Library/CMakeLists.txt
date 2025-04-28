@@ -13,18 +13,24 @@ include_directories(SYSTEM ${OpenCASCADE_INCLUDE_DIR})
 
 set(Source_Files
     "Source/Library/testMain.cpp"
-    "Source/Library/HelloBottle.cpp"
-    "Source/Library/HelloBottle.h"
-    "Source/Library/BoxTriangulate.cpp"
-    "Source/Library/BoxTriangulate.h"
-    "Source/Library/IterateShapes.cpp"
-    "Source/Library/IterateShapes.h"
+    "Source/Library/CADShape.cpp"
+    "Source/Library/CADShape.h"
 )
 source_group("Source" FILES ${Source_Files})
 
+set(Experiment_Files
+    "Source/Library/Experiments/HelloBottle.cpp"
+    "Source/Library/Experiments/HelloBottle.h"
+    "Source/Library/Experiments/BoxTriangulate.cpp"
+    "Source/Library/Experiments/BoxTriangulate.h"
+    "Source/Library/Experiments/IterateShapes.cpp"
+    "Source/Library/Experiments/IterateShapes.h"
+)
+source_group("Source/Experiments" FILES ${Experiment_Files})
 
 set(ALL_FILES
     ${Source_Files}
+    ${Experiment_Files}
 )
 
 ############################################################################

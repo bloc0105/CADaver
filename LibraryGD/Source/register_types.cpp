@@ -1,6 +1,6 @@
 #include "register_types.h"
 
-#include "HelloBottleGD.h"
+#include "CADShape.h"
 
 #include <gdextension_interface.h>
 #include <godot_cpp/core/defs.hpp>
@@ -15,7 +15,7 @@ void initialize_module(ModuleInitializationLevel p_level)
         return;
     }
 
-    ClassDB::register_class<HelloBottleGD>();
+    ClassDB::register_class<CADShape>();
 }
 
 void uninitialize_module(ModuleInitializationLevel p_level)

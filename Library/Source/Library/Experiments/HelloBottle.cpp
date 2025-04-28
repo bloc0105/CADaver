@@ -217,13 +217,3 @@ void HelloBottle::exportBottle(const std::string& filename)
     if (aStat != IFSelect_RetDone)
         std::cout << "Writing error" << std::endl;
 }
-
-#ifdef ISTESTPROJECT
-#include <catch2/catch_test_macros.hpp>
-
-TEST_CASE("HelloWorld")
-{
-    REQUIRE(HelloWorld().message() == "Hello World");
-}
-
-#endif

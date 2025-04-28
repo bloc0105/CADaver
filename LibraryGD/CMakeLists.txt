@@ -2,10 +2,10 @@ cmake_minimum_required(VERSION 3.19)
 project(LibraryGD)
 
 set(Source_Files
-    "register_types.h"
-    "register_types.cpp"
-    "HelloBottleGD.h"
-    "HelloBottleGD.cpp"
+    "Source/register_types.h"
+    "Source/register_types.cpp"
+    "Source/CADShape.h"
+    "Source/CADShape.cpp"
 )
 source_group("Source" FILES ${Source_Files})
 

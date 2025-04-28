@@ -1,8 +1,8 @@
 #include <iostream>
 
-#include "Library/HelloBottle.h"
-#include "Library/BoxTriangulate.h"
-#include "Library/IterateShapes.h"
+#include "Library/Experiments/HelloBottle.h"
+#include "Library/Experiments/BoxTriangulate.h"
+#include "Library/Experiments/IterateShapes.h"
 
 int main()
 {

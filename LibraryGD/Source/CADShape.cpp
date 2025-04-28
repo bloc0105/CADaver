@@ -6,9 +6,10 @@ namespace godot
 {
     void CADShape::_bind_methods()
     {
-        ClassDB::bind_method(D_METHOD("loadCADFromFile", "filename"), &CADShape::loadFromFile);
-        ClassDB::bind_method(D_METHOD("saveCADToFile", "filename"), &CADShape::saveToFile);
+        ClassDB::bind_method(D_METHOD("loadCADFromFile", "filename"), &CADShape::loadCadFromFile);
+        ClassDB::bind_method(D_METHOD("saveCADToFile", "filename"), &CADShape::saveCadToFile);
         ClassDB::bind_method(D_METHOD("getCADChildren"), &CADShape::getCadChildren);
+        ClassDB::bind_method(D_METHOD("getCADType"), &CADShape::getCadType);
     }
 
     CADShape::CADShape()
@@ -21,13 +22,13 @@ namespace godot
 
     }
 
-    bool CADShape::loadFromFile(const godot::String& str)
+    bool CADShape::loadCadFromFile(const godot::String& str)
     {
         std::string filename = std::string(str.utf8());
         return shape->load(filename);
     }
 
-    bool CADShape::saveToFile(const godot::String& str)
+    bool CADShape::saveCadToFile(const godot::String& str)
     {
         std::string filename = std::string(str.utf8());
         return shape->save(filename);
@@ -48,5 +49,10 @@ namespace godot
     godot::String CADShape::_to_string() const
     {
         return shape->toString().c_str();
+    }
+
+    godot::String CADShape::getCadType() const
+    {
+        return shape->getType().c_str();
     }
 }

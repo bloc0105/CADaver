@@ -26,9 +26,10 @@ namespace godot
         godot::String _to_string() const;
 
       private:
-        bool                 loadFromFile(const godot::String&);
-        bool                 saveToFile(const godot::String&);
+        bool                 loadCadFromFile(const godot::String&);
+        bool                 saveCadToFile(const godot::String&);
         TypedArray<CADShape> getCadChildren() const;
+        godot::String        getCadType() const;
 
         std::unique_ptr<Library::CADShape> shape;
     };

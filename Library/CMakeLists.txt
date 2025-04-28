@@ -15,6 +15,8 @@ set(Source_Files
     "Source/Library/testMain.cpp"
     "Source/Library/CADShape.cpp"
     "Source/Library/CADShape.h"
+    "Source/Library/TopAbs2String.cpp"
+    "Source/Library/TopAbs2String.h"
 )
 source_group("Source" FILES ${Source_Files})
 

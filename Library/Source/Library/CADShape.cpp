@@ -1,5 +1,7 @@
 #include "CADShape.h"
 
+#include "TopAbs2String.h"
+
 #include <BRepGProp.hxx>
 #include <BRepTools_ShapeSet.hxx>
 #include <BRep_Builder.hxx>
@@ -55,6 +57,11 @@ namespace Library
             result.push_back(std::move(current));
         }
         return result;
+    }
+
+    std::string CADShape::getType() const
+    {
+        return TopAbs2String(data->ShapeType());
     }
 
     std::string CADShape::toString() const

@@ -6,8 +6,9 @@ namespace godot
 {
     void CADShape::_bind_methods()
     {
-        ClassDB::bind_method(D_METHOD("loadFromFile", "filename"), &CADShape::loadFromFile);
-        ClassDB::bind_method(D_METHOD("saveToFile", "filename"), &CADShape::saveToFile);
+        ClassDB::bind_method(D_METHOD("loadCADFromFile", "filename"), &CADShape::loadFromFile);
+        ClassDB::bind_method(D_METHOD("saveCADToFile", "filename"), &CADShape::saveToFile);
+        ClassDB::bind_method(D_METHOD("getCADChildren"), &CADShape::getCadChildren);
     }
 
     CADShape::CADShape()
@@ -30,5 +31,22 @@ namespace godot
     {
         std::string filename = std::string(str.utf8());
         return shape->save(filename);
+    }
+
+    TypedArray<CADShape> CADShape::getCadChildren() const {
+        TypedArray<CADShape> result;
+        for (auto& x : shape->getChildren())
+        {
+            Ref<CADShape> sub;
+            sub.instantiate();
+            sub->shape = std::move(x);
+            result.push_back(sub);
+        }
+        return result;
+    }
+    
+    godot::String CADShape::_to_string() const
+    {
+        return shape->toString().c_str();
     }
 }

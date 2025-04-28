@@ -2,8 +2,8 @@
 
 #include <glm/glm.hpp>
 #include <godot_cpp/classes/node3d.hpp>
-#include <string>
 #include <memory>
+#include <string>
 
 namespace Library
 {
@@ -12,9 +12,9 @@ namespace Library
 
 namespace godot
 {
-    class CADShape : public Node3D
+    class CADShape : public RefCounted
     {
-        GDCLASS(CADShape, Node3D)
+        GDCLASS(CADShape, RefCounted)
 
       protected:
         static void _bind_methods();
@@ -23,9 +23,12 @@ namespace godot
         CADShape();
         virtual ~CADShape();
 
+        godot::String _to_string() const;
+
       private:
-        bool loadFromFile(const godot::String&);
-        bool saveToFile(const godot::String&);
+        bool                 loadFromFile(const godot::String&);
+        bool                 saveToFile(const godot::String&);
+        TypedArray<CADShape> getCadChildren() const;
 
         std::unique_ptr<Library::CADShape> shape;
     };

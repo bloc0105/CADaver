@@ -4,5 +4,5 @@
 
 [node name="Node3D" type="Node3D"]
 
-[node name="CADShape" type="CADShape" parent="."]
+[node name="CADShape" type="Node" parent="."]
 script = ExtResource("1_rh5rf")

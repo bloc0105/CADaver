@@ -28,7 +28,7 @@ func activate() -> void:
 	
 	# Erstelle ein einfaches Punkt-Mesh (z.B. eine kleine Kugel)
 	point_mesh = SphereMesh.new()
-	point_mesh.radius = 0.05
+	point_mesh.radius = 1
 
 	# Erstelle ein MultiMesh-Objekt
 	multi_mesh = MultiMesh.new()

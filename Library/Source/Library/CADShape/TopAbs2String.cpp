@@ -61,7 +61,7 @@ std::string TopAbs2String(int type_)
         }
         case TopAbs_VERTEX:
         {
-            return "TopAbs_EDGE";
+            return "TopAbs_VERTEX";
         }
         case TopAbs_SHAPE:
             return "TopAbs_SHAPE";

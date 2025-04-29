@@ -9,7 +9,7 @@ namespace godot
     class CADShapeFactory
     {
       public:
-        static Ref<godot::CADShape> make(std::unique_ptr<Library::CADShape>);
+        static godot::Variant make(std::unique_ptr<Library::CADShape>);
 
     private:
     };

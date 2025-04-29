@@ -3,6 +3,7 @@
 #include "CADShape.h"
 #include <glm/glm.hpp>
 #include <godot_cpp/classes/node3d.hpp>
+#include <godot_cpp/variant/vector3.hpp>
 #include <memory>
 #include <string>
 

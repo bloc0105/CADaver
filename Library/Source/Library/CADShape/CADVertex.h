@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CADShape.h"
+#include <glm/glm.hpp>
 
 class TopoDS_Vertex;
 
@@ -17,6 +18,8 @@ namespace Library
 
         TopoDS_Vertex&       get();
         const TopoDS_Vertex& get() const;
+
+        glm::dvec3 getPosition() const;
 
       private:
     };

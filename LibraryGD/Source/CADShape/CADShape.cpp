@@ -39,15 +39,12 @@ namespace godot
         return shape->save(filename);
     }
 
-    TypedArray<CADShape> CADShape::getCadChildren() const
+    Array CADShape::getCadChildren() const
     {
-        TypedArray<CADShape> result;
+        Array result;
         for (auto& x : shape->getChildren())
         {
-            Ref<CADShape> sub;
-            sub.instantiate();
-            sub->shape = std::move(x);
-            result.push_back(sub);
+            result.push_back(godot::CADShapeFactory::make(std::move(x)));
         }
         return result;
     }
@@ -65,5 +62,15 @@ namespace godot
     void CADShape::setData(std::unique_ptr<Library::CADShape> data)
     {
         shape = std::move(data);
+    }
+
+    Library::CADShape& CADShape::getData()
+    {
+        return *shape;
+    }
+
+    const Library::CADShape& CADShape::getData() const
+    {
+        return *shape;
     }
 }

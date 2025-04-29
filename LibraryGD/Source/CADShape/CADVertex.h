@@ -6,6 +6,11 @@
 #include <memory>
 #include <string>
 
+namespace Library
+{
+    class CADVertex;
+}
+
 namespace godot
 {
     class CADVertex : public godot::CADShape
@@ -18,5 +23,12 @@ namespace godot
       public:
         CADVertex();
         virtual ~CADVertex();
+
+      private:
+        const Library::CADVertex& get() const;
+        Library::CADVertex& get();
+
+        Vector3 getPosition() const;
+
     };
 }

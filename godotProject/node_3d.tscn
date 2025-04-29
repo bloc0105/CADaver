@@ -6,3 +6,10 @@
 
 [node name="CADShape" type="Node" parent="."]
 script = ExtResource("1_rh5rf")
+
+[node name="Button" type="Button" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Go"
+
+[connection signal="pressed" from="Button" to="CADShape" method="_on_button_pressed"]

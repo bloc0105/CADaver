@@ -35,4 +35,10 @@ namespace Library
     {
         return (const TopoDS_Vertex&)getData();
     }
+
+    glm::dvec3 CADVertex::getPosition() const
+    {
+        gp_Pnt point = BRep_Tool::Pnt(get());
+        return glm::dvec3(point.X(),point.Y(),point.Z());
+    }
 }

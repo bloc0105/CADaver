@@ -13,12 +13,34 @@ include_directories(SYSTEM ${OpenCASCADE_INCLUDE_DIR})
 
 set(Source_Files
     "Source/Library/testMain.cpp"
-    "Source/Library/CADShape.cpp"
-    "Source/Library/CADShape.h"
-    "Source/Library/TopAbs2String.cpp"
-    "Source/Library/TopAbs2String.h"
 )
 source_group("Source" FILES ${Source_Files})
+
+set(CADShapes_Files
+    "Source/Library/CADShape/CADShape.cpp"
+    "Source/Library/CADShape/CADShape.h"
+    "Source/Library/CADShape/CADCompound.cpp"
+    "Source/Library/CADShape/CADCompound.h"
+    "Source/Library/CADShape/CADCompSolid.cpp"
+    "Source/Library/CADShape/CADCompSolid.h"
+    "Source/Library/CADShape/CADEdge.cpp"
+    "Source/Library/CADShape/CADEdge.h"
+    "Source/Library/CADShape/CADFace.cpp"
+    "Source/Library/CADShape/CADFace.h"
+    "Source/Library/CADShape/CADShell.cpp"
+    "Source/Library/CADShape/CADShell.h"
+    "Source/Library/CADShape/CADSolid.cpp"
+    "Source/Library/CADShape/CADSolid.h"
+    "Source/Library/CADShape/CADVertex.cpp"
+    "Source/Library/CADShape/CADVertex.h"
+    "Source/Library/CADShape/CADWire.cpp"
+    "Source/Library/CADShape/CADWire.h"
+    "Source/Library/CADShape/TopAbs2String.cpp"
+    "Source/Library/CADShape/TopAbs2String.h"
+    "Source/Library/CADShape/CADShapeFactory.cpp"
+    "Source/Library/CADShape/CADShapeFactory.h"
+)
+source_group("Source/CADShape" FILES ${CADShapes_Files})
 
 set(Experiment_Files
     "Source/Library/Experiments/HelloBottle.cpp"
@@ -33,6 +55,7 @@ source_group("Source/Experiments" FILES ${Experiment_Files})
 set(ALL_FILES
     ${Source_Files}
     ${Experiment_Files}
+    ${CADShapes_Files}
 )
 
 ############################################################################

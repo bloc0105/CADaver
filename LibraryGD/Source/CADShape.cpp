@@ -1,5 +1,5 @@
 #include "CADShape.h"
-#include "Library/CADShape.h"
+#include "Library/CADShape/CADShape.h"
 #include <godot_cpp/core/class_db.hpp>
 
 namespace godot
@@ -17,15 +17,18 @@ namespace godot
         shape = std::make_unique<Library::CADShape>();
     }
 
-    CADShape::~CADShape()
-    {
-
-    }
+    CADShape::~CADShape() {}
 
     bool CADShape::loadCadFromFile(const godot::String& str)
     {
         std::string filename = std::string(str.utf8());
-        return shape->load(filename);
+        auto        result   = std::move(Library::CADShape::load(filename));
+        if (result)
+        {
+            shape = std::move(result);
+            return true;
+        }
+        return false;
     }
 
     bool CADShape::saveCadToFile(const godot::String& str)
@@ -34,7 +37,8 @@ namespace godot
         return shape->save(filename);
     }
 
-    TypedArray<CADShape> CADShape::getCadChildren() const {
+    TypedArray<CADShape> CADShape::getCadChildren() const
+    {
         TypedArray<CADShape> result;
         for (auto& x : shape->getChildren())
         {
@@ -45,7 +49,7 @@ namespace godot
         }
         return result;
     }
-    
+
     godot::String CADShape::_to_string() const
     {
         return shape->toString().c_str();

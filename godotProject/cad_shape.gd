@@ -13,7 +13,6 @@ func traversechilds(child : CADShape, depth):
 
 func _init() -> void:
 	var path = "C:/Users/nicol/Downloads/GenericExtruderMount.step"
-	var shape = CADShape.new();
-	shape.loadCADFromFile(path)
+	var shape = CADShape.loadCADFromFile(path)
 	traversechilds(shape,0);
 	pass

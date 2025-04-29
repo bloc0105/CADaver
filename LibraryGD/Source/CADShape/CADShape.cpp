@@ -1,15 +1,17 @@
 #include "CADShape.h"
 #include "Library/CADShape/CADShape.h"
 #include <godot_cpp/core/class_db.hpp>
+#include "CADShapeFactory.h"
 
 namespace godot
 {
     void CADShape::_bind_methods()
     {
-        ClassDB::bind_method(D_METHOD("loadCADFromFile", "filename"), &CADShape::loadCadFromFile);
         ClassDB::bind_method(D_METHOD("saveCADToFile", "filename"), &CADShape::saveCadToFile);
         ClassDB::bind_method(D_METHOD("getCADChildren"), &CADShape::getCadChildren);
         ClassDB::bind_method(D_METHOD("getCADType"), &CADShape::getCadType);
+
+        ClassDB::bind_static_method("CADShape", D_METHOD("loadCADFromFile", "filename"), &CADShape::loadCadFromFile);
     }
 
     CADShape::CADShape()
@@ -19,16 +21,16 @@ namespace godot
 
     CADShape::~CADShape() {}
 
-    bool CADShape::loadCadFromFile(const godot::String& str)
+    Ref<CADShape> CADShape::loadCadFromFile(const godot::String& str)
     {
         std::string filename = std::string(str.utf8());
         auto        result   = std::move(Library::CADShape::load(filename));
         if (result)
         {
-            shape = std::move(result);
-            return true;
+            Ref<CADShape> resultGD = godot::CADShapeFactory::make(std::move(result));
+            return resultGD;
         }
-        return false;
+        return Ref<CADShape>();
     }
 
     bool CADShape::saveCadToFile(const godot::String& str)
@@ -58,5 +60,10 @@ namespace godot
     godot::String CADShape::getCadType() const
     {
         return shape->getType().c_str();
+    }
+
+    void CADShape::setData(std::unique_ptr<Library::CADShape> data)
+    {
+        shape = std::move(data);
     }
 }

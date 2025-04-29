@@ -6,7 +6,7 @@ namespace godot
 {
     void CADWire::_bind_methods()
     {
-        CADShape::_bind_methods();
+
     }
 
     CADWire::CADWire() {}

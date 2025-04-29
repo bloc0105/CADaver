@@ -26,6 +26,8 @@ set(CADShape_Files
     "Source/CADShape/CADVertex.h"
     "Source/CADShape/CADWire.cpp"
     "Source/CADShape/CADWire.h"
+    "Source/CADShape/CADShapeFactory.cpp"
+    "Source/CADShape/CADShapeFactory.h"
 )
 source_group("Source/CADShape" FILES ${CADShape_Files})
 

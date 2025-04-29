@@ -6,7 +6,7 @@ namespace godot
 {
     void CADFace::_bind_methods()
     {
-        CADShape::_bind_methods();
+
     }
 
     CADFace::CADFace() {}

@@ -6,7 +6,7 @@ namespace godot
 {
     void CADEdge::_bind_methods()
     {
-        CADShape::_bind_methods();
+
     }
 
     CADEdge::CADEdge() {}

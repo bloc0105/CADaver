@@ -6,7 +6,7 @@ namespace godot
 {
     void CADCompSolid::_bind_methods()
     {
-        CADShape::_bind_methods();
+
     }
 
     CADCompSolid::CADCompSolid() {}

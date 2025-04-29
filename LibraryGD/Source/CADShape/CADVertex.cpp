@@ -6,7 +6,7 @@ namespace godot
 {
     void CADVertex::_bind_methods()
     {
-        CADShape::_bind_methods();
+
     }
 
     CADVertex::CADVertex() {}

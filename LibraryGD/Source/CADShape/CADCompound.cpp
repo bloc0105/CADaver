@@ -6,7 +6,7 @@ namespace godot
 {
     void CADCompound::_bind_methods()
     {
-        CADShape::_bind_methods();
+
     }
 
     CADCompound::CADCompound() {}

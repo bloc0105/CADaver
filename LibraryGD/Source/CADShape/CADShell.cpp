@@ -6,7 +6,7 @@ namespace godot
 {
     void CADShell::_bind_methods()
     {
-        CADShape::_bind_methods();
+
     }
 
     CADShell::CADShell() {}

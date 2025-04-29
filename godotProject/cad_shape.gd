@@ -1,5 +1,8 @@
 extends Node
 
+@export var vertexScene : PackedScene;
+@export var scalefactor : float = 0.1;
+
 var point_mesh;
 var multi_mesh;
 var points = []
@@ -11,7 +14,9 @@ func traversechilds(child : CADShape, depth):
 	print(spaces + str(child))
 	
 	if (child is CADVertex):
-		points.append((child as CADVertex).get_position())
+		var v:Node3D = vertexScene.instantiate()
+		v.position = (child as CADVertex).get_position() * scalefactor
+		add_child(v)
 	
 	var childs = child.getCADChildren()
 	for x in childs:
@@ -23,32 +28,15 @@ func loadstp() -> void:
 	var shape = CADShape.loadCADFromFile(path)
 	traversechilds(shape,0);
 	
+	
+func clearChilds() -> void:
+	for n in self.get_children():
+		self.remove_child(n)
+		n.queue_free()
 
 func activate() -> void:
-	
-	# Erstelle ein einfaches Punkt-Mesh (z.B. eine kleine Kugel)
-	point_mesh = SphereMesh.new()
-	point_mesh.radius = 1
-
-	# Erstelle ein MultiMesh-Objekt
-	multi_mesh = MultiMesh.new()
-	multi_mesh.mesh = point_mesh
-
+	clearChilds();
 	loadstp()
-
-	# Setze die Anzahl der Instanzen im MultiMesh
-	multi_mesh.instance_count = points.size()
-
-	# Setze die Transformation (Position) für jede Instanz
-	for i in range(points.size()):
-		var transform = Transform3D()
-		transform.origin = points[i]
-		multi_mesh.set_instance_transform(i, transform)
-
-	# Erstelle einen MeshInstance3D und weise das MultiMesh zu
-	var multi_mesh_instance = MultiMeshInstance3D.new()
-	multi_mesh_instance.multimesh = multi_mesh
-	add_child(multi_mesh_instance)
 
 
 func _on_button_pressed() -> void:

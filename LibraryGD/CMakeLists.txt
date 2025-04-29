@@ -4,13 +4,34 @@ project(LibraryGD)
 set(Source_Files
     "Source/register_types.h"
     "Source/register_types.cpp"
-    "Source/CADShape.h"
-    "Source/CADShape.cpp"
 )
 source_group("Source" FILES ${Source_Files})
 
+set(CADShape_Files
+    "Source/CADShape/CADShape.cpp"
+    "Source/CADShape/CADShape.h"
+    "Source/CADShape/CADCompound.cpp"
+    "Source/CADShape/CADCompound.h"
+    "Source/CADShape/CADCompSolid.cpp"
+    "Source/CADShape/CADCompSolid.h"
+    "Source/CADShape/CADEdge.cpp"
+    "Source/CADShape/CADEdge.h"
+    "Source/CADShape/CADFace.cpp"
+    "Source/CADShape/CADFace.h"
+    "Source/CADShape/CADShell.cpp"
+    "Source/CADShape/CADShell.h"
+    "Source/CADShape/CADSolid.cpp"
+    "Source/CADShape/CADSolid.h"
+    "Source/CADShape/CADVertex.cpp"
+    "Source/CADShape/CADVertex.h"
+    "Source/CADShape/CADWire.cpp"
+    "Source/CADShape/CADWire.h"
+)
+source_group("Source/CADShape" FILES ${CADShape_Files})
+
 set(ALL_FILES
     ${Source_Files}
+    ${CADShape_Files}
 )
 
 add_library(LibraryGD SHARED ${ALL_FILES})

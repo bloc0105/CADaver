@@ -1,6 +1,14 @@
 #include "register_types.h"
 
-#include "CADShape.h"
+#include "CADShape/CADShape.h"
+#include "CADShape/CADCompound.h"
+#include "CADShape/CADCompSolid.h"
+#include "CADShape/CADEdge.h"
+#include "CADShape/CADFace.h"
+#include "CADShape/CADShell.h"
+#include "CADShape/CADSolid.h"
+#include "CADShape/CADVertex.h"
+#include "CADShape/CADWire.h"
 
 #include <gdextension_interface.h>
 #include <godot_cpp/core/defs.hpp>
@@ -16,6 +24,14 @@ void initialize_module(ModuleInitializationLevel p_level)
     }
 
     ClassDB::register_class<CADShape>();
+    ClassDB::register_class<CADCompound>();
+    ClassDB::register_class<CADCompSolid>();
+    ClassDB::register_class<CADEdge>();
+    ClassDB::register_class<CADFace>();
+    ClassDB::register_class<CADShell>();
+    ClassDB::register_class<CADSolid>();
+    ClassDB::register_class<CADVertex>();
+    ClassDB::register_class<CADWire>();
 }
 
 void uninitialize_module(ModuleInitializationLevel p_level)

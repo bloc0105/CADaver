@@ -6,7 +6,7 @@ namespace godot
 {
     void CADVertex::_bind_methods()
     {
-        ClassDB::bind_method(D_METHOD("get_position"), &CADVertex::getPosition);
+        ClassDB::bind_method(D_METHOD("get_cad_position"), &CADVertex::getPosition);
     }
 
     CADVertex::CADVertex() {}

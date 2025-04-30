@@ -7,11 +7,11 @@ namespace godot
 {
     void CADShape::_bind_methods()
     {
-        ClassDB::bind_method(D_METHOD("saveCADToFile", "filename"), &CADShape::saveCadToFile);
-        ClassDB::bind_method(D_METHOD("getCADChildren"), &CADShape::getCadChildren);
-        ClassDB::bind_method(D_METHOD("getCADType"), &CADShape::getCadType);
+        ClassDB::bind_method(D_METHOD("save_cad_to_file", "filename"), &CADShape::saveCadToFile);
+        ClassDB::bind_method(D_METHOD("get_cad_children"), &CADShape::getCadChildren);
+        ClassDB::bind_method(D_METHOD("get_cad_type"), &CADShape::getCadType);
 
-        ClassDB::bind_static_method("CADShape", D_METHOD("loadCADFromFile", "filename"), &CADShape::loadCadFromFile);
+        ClassDB::bind_static_method("CADShape", D_METHOD("load_cad_from_file", "filename"), &CADShape::loadCadFromFile);
     }
 
     CADShape::CADShape()

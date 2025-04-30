@@ -23,7 +23,7 @@ namespace Library
         if (status != IFSelect_RetDone)
             return nullptr;
         reader.TransferRoots();
-        return make(std::make_unique<TopoDS_Shape>(reader.OneShape()));
+        return make(reader.OneShape());
     }
 
     std::unique_ptr<CADShape> CADShapeFactory::make(int t)
@@ -64,10 +64,11 @@ namespace Library
         }
         return std::move(result);
     }
-    std::unique_ptr<CADShape> CADShapeFactory::make(std::unique_ptr<TopoDS_Shape> data)
+
+    std::unique_ptr<CADShape> CADShapeFactory::make(const TopoDS_Shape& data)
     {
-        auto result = make(data->ShapeType());
-        result->setData(std::move(data));
+        auto result = make(data.ShapeType());
+        result->setData(data);
         return std::move(result);
     }
 

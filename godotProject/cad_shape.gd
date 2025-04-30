@@ -3,6 +3,11 @@ extends Node
 @export var vertexScene : PackedScene;
 @export var scalefactor : float = 0.1;
 
+@onready var vertexOn : CheckBox = $VBoxContainer/Vertex
+@onready var edgeOn : CheckBox = $VBoxContainer/Edge
+@onready var childPool : Node = $ChildPool
+@onready var fileLocation : LineEdit = $VBoxContainer/FileLocation
+
 var point_mesh;
 var multi_mesh;
 var points = []
@@ -13,10 +18,8 @@ func traversechilds(child : CADShape, depth):
 		spaces = spaces + " "
 	print(spaces + str(child))
 	
-	if (child is CADVertex):
-		var v:Node3D = vertexScene.instantiate()
-		v.position = (child as CADVertex).get_position() * scalefactor
-		add_child(v)
+	loadVertex(child)
+	loadEdge(child)
 	
 	var childs = child.getCADChildren()
 	for x in childs:
@@ -24,14 +27,14 @@ func traversechilds(child : CADShape, depth):
 	pass
 
 func loadstp() -> void:
-	var path = "C:/Users/nicol/Downloads/GenericExtruderMount.step"
+	var path = fileLocation.text
 	var shape = CADShape.loadCADFromFile(path)
 	traversechilds(shape,0);
 	
 	
 func clearChilds() -> void:
-	for n in self.get_children():
-		self.remove_child(n)
+	for n in childPool.get_children():
+		childPool.remove_child(n)
 		n.queue_free()
 
 func activate() -> void:
@@ -41,3 +44,16 @@ func activate() -> void:
 
 func _on_button_pressed() -> void:
 	activate();
+
+func loadVertex(child):
+	if (child is CADVertex and vertexOn.button_pressed):
+		var v:Node3D = vertexScene.instantiate()
+		v.position = (child as CADVertex).get_position() * scalefactor
+		childPool.add_child(v)
+		
+func loadEdge(child):
+	if (child is CADEdge and edgeOn.button_pressed):
+		#var v:Node3D = vertexScene.instantiate()
+		#v.position = (child as CADVertex).get_position() * scalefactor
+		#childPool.add_child(v)
+		pass

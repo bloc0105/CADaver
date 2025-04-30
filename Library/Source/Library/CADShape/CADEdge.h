@@ -1,11 +1,15 @@
 #pragma once
 
 #include "CADShape.h"
+#include <glm/glm.hpp>
+#include <optional>
 
 class TopoDS_Edge;
 
 namespace Library
 {
+    class CADVertex;
+
     class CADEdge : public CADShape
     {
       public:
@@ -17,6 +21,10 @@ namespace Library
 
         TopoDS_Edge&       get();
         const TopoDS_Edge& get() const;
+
+        std::unique_ptr<CADVertex> getStart() const;
+        std::unique_ptr<CADVertex> getEnd() const;
+        std::string                getOrientation() const;
 
       private:
     };

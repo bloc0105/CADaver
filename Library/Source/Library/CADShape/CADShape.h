@@ -25,9 +25,9 @@ namespace Library
 
         TopoDS_Shape& getData();
         const TopoDS_Shape& getData() const;
-        void setData(std::unique_ptr<TopoDS_Shape>);
+        void setData(const TopoDS_Shape&);
 
       private:
-        std::unique_ptr<TopoDS_Shape> data    = nullptr;
+        std::unique_ptr<TopoDS_Shape> data = nullptr;
     };
 }

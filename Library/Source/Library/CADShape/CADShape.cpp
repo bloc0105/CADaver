@@ -9,15 +9,16 @@
 #include <TopAbs_ShapeEnum.hxx>
 #include <TopoDS_Compound.hxx>
 #include <TopoDS_Iterator.hxx>
+#include <TopoDS_Shape.hxx>
 
 namespace Library
 {
     CADShape::CADShape()
     {
-        data = std::make_unique<TopoDS_Compound>();
+        data = std::make_unique<TopoDS_Shape>();
     }
 
-    CADShape ::~CADShape() {}
+    CADShape::~CADShape() {}
 
     std::string CADShape::toString() const
     {
@@ -32,11 +33,11 @@ namespace Library
     std::vector<std::unique_ptr<CADShape>> CADShape::getChildren() const
     {
         std::vector<std::unique_ptr<CADShape>> result;
-        TopoDS_Iterator                        it(getData(), true, false);
-
+        TopoDS_Iterator       it(getData(), true, false);
+        
         while (it.More())
         {
-            auto current = CADShapeFactory::make(std::make_unique<TopoDS_Shape>(it.Value()));
+            auto current = CADShapeFactory::make(it.Value());
             it.Next();
             result.push_back(std::move(current));
         }
@@ -52,9 +53,9 @@ namespace Library
     {
         return *data;
     }
-    void CADShape::setData(std::unique_ptr<TopoDS_Shape> d)
+    void CADShape::setData(const TopoDS_Shape& d)
     {
-        data = std::move(d);
+        data = std::make_unique<TopoDS_Shape>(d);
     }
 
     bool CADShape::save(const std::string& filename) const

@@ -6,8 +6,17 @@
 #include <memory>
 #include <string>
 
+namespace Library
+{
+    class CADVertex;
+    class CADEdge;
+}
+
+
 namespace godot
 {
+    class CADVertex;
+
     class CADEdge : public godot::CADShape
     {
         GDCLASS(CADEdge, godot::CADShape)
@@ -18,5 +27,13 @@ namespace godot
       public:
         CADEdge();
         virtual ~CADEdge();
+
+      private:
+        const Library::CADEdge& get() const;
+        Library::CADEdge&       get();
+
+        Ref<godot::CADVertex> getCADStart() const;
+        Ref<godot::CADVertex> getCADEnd() const;
+        godot::String         getCADOrientation() const;
     };
 }

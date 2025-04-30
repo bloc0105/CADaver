@@ -53,4 +53,9 @@ namespace Library
         }
         return result;
     }
+
+    bool CADWire::isClosed() const {
+        bool isClosed = BRep_Tool::IsClosed(TopoDS::Wire(getData()));
+        return isClosed;
+    }
 }

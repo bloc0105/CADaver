@@ -24,6 +24,7 @@ namespace Library
         const TopoDS_Wire& get() const;
 
         std::vector<std::unique_ptr<CADEdge>> getEdges() const;
+        bool                                  isClosed() const;
 
       private:
     };

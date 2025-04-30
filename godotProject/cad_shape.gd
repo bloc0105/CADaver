@@ -6,6 +6,7 @@ extends Node
 
 @onready var vertexOn : CheckBox = $VBoxContainer/Vertex
 @onready var edgeOn : CheckBox = $VBoxContainer/Edge
+@onready var wireOn : CheckBox = $VBoxContainer/Wire
 @onready var childPool : Node = $ChildPool
 @onready var fileLocation : LineEdit = $VBoxContainer/FileLocation
 
@@ -21,6 +22,7 @@ func traversechilds(child : CADShape, depth):
 	
 	loadVertex(child)
 	loadEdge(child)
+	loadWire(child)
 	
 	var childs = child.get_cad_children()
 	for x in childs:
@@ -68,21 +70,41 @@ func quaternion_look_at(direction: Vector3, position: Vector3 = Vector3.ZERO, up
 	var lookat_basis = Basis(right, final_up, -forward).orthonormalized() # Beachte das negative Vorzeichen für forward
 	return lookat_basis
 		
+		
+func makeLine(start, end, clr):
+	var line_length = start.distance_to(end)
+	var direction = (end - start).normalized()
+	var transform = Transform3D()
+	var basis = quaternion_look_at(direction);
+	transform.basis = basis
+	transform = transform.scaled_local(Vector3(0.01, 0.01, line_length))
+	transform.origin = start + direction * line_length / 2.0
+	var v:Node3D = edgeScene.instantiate()
+	(v as MeshInstance3D).mesh = (v as MeshInstance3D).mesh.duplicate()
+	v.transform = transform
+	var material = StandardMaterial3D.new()
+	material.albedo_color = clr
+	v.mesh.surface_set_material(0, material) # 0 bezieht sich auf die erste
+	childPool.add_child(v)
+	
 func loadEdge(child):
 	if (child is CADEdge and edgeOn.button_pressed):
 		var edge : CADEdge = child as CADEdge;
 		var start = edge.get_cad_start().get_cad_position() * scalefactor
 		var end = edge.get_cad_end().get_cad_position() * scalefactor
-		
-		var line_length = start.distance_to(end)
-		var direction = (end - start).normalized()
-		var transform = Transform3D()
-		var basis = quaternion_look_at(direction);
+		makeLine(start,end,Color.WHITE)
 
-		transform.basis = basis
-		transform = transform.scaled_local(Vector3(0.01, 0.01, line_length))
-		transform.origin = start + direction * line_length / 2.0
-
-		var v:Node3D = edgeScene.instantiate()
-		v.transform = transform
-		childPool.add_child(v)
+func getRandomColor() -> Color:
+	var rot = randf()
+	var gruen = randf()
+	var blau = randf()
+	return Color(rot, gruen, blau)
+	
+func loadWire(child):
+	if (child is CADWire and wireOn.button_pressed):
+		var clr = getRandomColor()
+		for x in (child as CADWire).get_cad_edges():
+			var edge : CADEdge = x;
+			var start = edge.get_cad_start().get_cad_position() * scalefactor
+			var end = edge.get_cad_end().get_cad_position() * scalefactor
+			makeLine(start,end,clr)

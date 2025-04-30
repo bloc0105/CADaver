@@ -19,6 +19,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.61113)
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0)
 
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.868727, 0.200015, 0.453109, 0.495292, -0.35082, -0.79474, 0, 0.914833, -0.403833, 0, 0, 0)
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchors_preset = 11
 anchor_left = 1.0
@@ -43,6 +46,10 @@ text = "Vertex"
 [node name="Edge" type="CheckBox" parent="VBoxContainer"]
 layout_mode = 2
 text = "Edge"
+
+[node name="Wire" type="CheckBox" parent="VBoxContainer"]
+layout_mode = 2
+text = "Wire"
 
 [node name="ChildPool" type="Node" parent="."]
 

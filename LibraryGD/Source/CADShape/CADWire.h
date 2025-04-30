@@ -32,5 +32,6 @@ namespace godot
         Library::CADWire&       get();
       private:
         TypedArray<godot::CADEdge> getEdges() const;
+        bool                       isClosed() const;
     };
 }

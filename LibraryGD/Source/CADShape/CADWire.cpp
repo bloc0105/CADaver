@@ -10,6 +10,7 @@ namespace godot
     void CADWire::_bind_methods()
     {
         ClassDB::bind_method(D_METHOD("get_cad_edges"), &CADWire::getEdges);
+        ClassDB::bind_method(D_METHOD("is_cad_closed"), &CADWire::isClosed);
     }
 
     CADWire::CADWire() {}
@@ -35,5 +36,8 @@ namespace godot
             result.push_back(sub);
         }
         return result;
+    }
+    bool CADWire::isClosed() const {
+        return get().isClosed();
     }
 }

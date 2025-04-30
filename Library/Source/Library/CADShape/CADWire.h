@@ -1,11 +1,16 @@
 #pragma once
 
+#include <vector>
+
 #include "CADShape.h"
 
 class TopoDS_Wire;
+class TopoDS_Edge;
 
 namespace Library
 {
+    class CADEdge;
+
     class CADWire : public CADShape
     {
       public:
@@ -17,6 +22,8 @@ namespace Library
 
         TopoDS_Wire&       get();
         const TopoDS_Wire& get() const;
+
+        std::vector<std::unique_ptr<CADEdge>> getEdges() const;
 
       private:
     };

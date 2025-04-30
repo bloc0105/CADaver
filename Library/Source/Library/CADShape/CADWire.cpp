@@ -1,11 +1,14 @@
 #include "CADWire.h"
 
+#include "CADEdge.h"
 #include "TopAbs2String.h"
 
 #include <BRepTools_ShapeSet.hxx>
 #include <TopAbs_ShapeEnum.hxx>
 #include <TopoDS.hxx>
 #include <TopoDS_Wire.hxx>
+#include <TopExp_Explorer.hxx>
+#include <TopoDS_Edge.hxx>
 
 namespace Library
 {
@@ -36,5 +39,18 @@ namespace Library
     const TopoDS_Wire& CADWire::get() const
     {
         return (const TopoDS_Wire&)getData();
+    }
+
+    std::vector<std::unique_ptr<CADEdge>> CADWire::getEdges() const {
+        std::vector<std::unique_ptr<CADEdge>> result;
+        TopExp_Explorer edgeExplorer(get(), TopAbs_EDGE);
+        for (; edgeExplorer.More(); edgeExplorer.Next())
+        {
+            TopoDS_Edge edge = TopoDS::Edge(edgeExplorer.Current());
+            auto        sub  = std::make_unique<CADEdge>();
+            sub->setData(edge);
+            result.push_back(std::move(sub));
+        }
+        return result;
     }
 }

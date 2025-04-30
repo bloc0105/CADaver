@@ -7,8 +7,16 @@
 #include <memory>
 #include <string>
 
+namespace Library
+{
+    class CADWire;
+    class CADEdge;
+}
+
 namespace godot
 {
+    class CADEdge;
+
     class CADWire : public godot::CADShape
     {
         GDCLASS(CADWire, godot::CADShape)
@@ -19,5 +27,10 @@ namespace godot
       public:
         CADWire();
         virtual ~CADWire();
+
+        const Library::CADWire& get() const;
+        Library::CADWire&       get();
+      private:
+        TypedArray<godot::CADEdge> getEdges() const;
     };
 }

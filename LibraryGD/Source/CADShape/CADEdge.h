@@ -12,7 +12,6 @@ namespace Library
     class CADEdge;
 }
 
-
 namespace godot
 {
     class CADVertex;

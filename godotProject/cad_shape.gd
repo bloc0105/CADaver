@@ -1,6 +1,7 @@
 extends Node
 
 @export var vertexScene : PackedScene;
+@export var edgeScene : PackedScene;
 @export var scalefactor : float = 0.1;
 
 @onready var vertexOn : CheckBox = $VBoxContainer/Vertex
@@ -21,14 +22,14 @@ func traversechilds(child : CADShape, depth):
 	loadVertex(child)
 	loadEdge(child)
 	
-	var childs = child.getCADChildren()
+	var childs = child.get_cad_children()
 	for x in childs:
 		traversechilds(x,depth+1)
 	pass
 
 func loadstp() -> void:
 	var path = fileLocation.text
-	var shape = CADShape.loadCADFromFile(path)
+	var shape = CADShape.load_cad_from_file(path)
 	traversechilds(shape,0);
 	
 	
@@ -51,9 +52,37 @@ func loadVertex(child):
 		v.position = (child as CADVertex).get_position() * scalefactor
 		childPool.add_child(v)
 		
+func quaternion_look_at(direction: Vector3, position: Vector3 = Vector3.ZERO, up: Vector3 = Vector3.UP) -> Basis:
+	var forward = direction.normalized()
+	var right = forward.cross(up).normalized()
+
+	# Wenn forward und up kollinear sind, wähle einen alternativen right-Vektor
+	if right.length_squared() < 0.0001:
+		if abs(forward.dot(Vector3.UP)) > 0.99: # Forward ist (fast) parallel zu UP
+			right = Vector3.FORWARD.cross(forward).normalized()
+		else: # Forward ist (fast) parallel zu einer anderen Achse
+			right = Vector3.UP.cross(forward).normalized()
+
+	var final_up = right.cross(forward).normalized() # Stelle sicher, dass up orthogonal ist
+
+	var lookat_basis = Basis(right, final_up, -forward).orthonormalized() # Beachte das negative Vorzeichen für forward
+	return lookat_basis
+		
 func loadEdge(child):
 	if (child is CADEdge and edgeOn.button_pressed):
-		#var v:Node3D = vertexScene.instantiate()
-		#v.position = (child as CADVertex).get_position() * scalefactor
-		#childPool.add_child(v)
-		pass
+		var edge : CADEdge = child as CADEdge;
+		var start = edge.get_cad_start().get_cad_position() * scalefactor
+		var end = edge.get_cad_end().get_cad_position() * scalefactor
+		
+		var line_length = start.distance_to(end)
+		var direction = (end - start).normalized()
+		var transform = Transform3D()
+		var basis = quaternion_look_at(direction);
+
+		transform.basis = basis
+		transform = transform.scaled_local(Vector3(0.01, 0.01, line_length))
+		transform.origin = start + direction * line_length / 2.0
+
+		var v:Node3D = edgeScene.instantiate()
+		v.transform = transform
+		childPool.add_child(v)

@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://wde3lkeurwun"]
+[gd_scene load_steps=5 format=3 uid="uid://wde3lkeurwun"]
 
 [ext_resource type="Script" path="res://cad_shape.gd" id="1_rh5rf"]
 [ext_resource type="Script" path="res://camera_3d.gd" id="2_y18sa"]
+[ext_resource type="PackedScene" uid="uid://c6hd26h4bml0e" path="res://Edge.tscn" id="3_2fog2"]
 [ext_resource type="PackedScene" uid="uid://dodixr1x6oja6" path="res://Vertex.tscn" id="3_wcup8"]
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_rh5rf")
 vertexScene = ExtResource("3_wcup8")
+edgeScene = ExtResource("3_2fog2")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 script = ExtResource("2_y18sa")

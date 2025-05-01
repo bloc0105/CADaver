@@ -10,6 +10,7 @@ extends Node
 @onready var faceOn : CheckBox = $VBoxContainer/Face
 @onready var shellOn : CheckBox = $VBoxContainer/Shell
 @onready var solidOn : CheckBox = $VBoxContainer/Solid
+@onready var faceMeshOn : CheckBox = $VBoxContainer/FaceMesh
 @onready var childPool : Node = $ChildPool
 @onready var fileLocation : LineEdit = $VBoxContainer/FileLocation
 
@@ -29,6 +30,7 @@ func traversechilds(child : CADShape, depth):
 	loadFace(child)
 	loadShell(child)
 	loadSolid(child)
+	loadFaceMesh(child)
 	
 	var childs = child.get_cad_children()
 	for x in childs:
@@ -145,3 +147,15 @@ func loadSolid(child):
 		for x in (child as CADSolid).get_cad_shells():
 			var shell : CADShell = x;
 			drawShell(shell,clr)
+
+func loadFaceMesh(child):
+	if (child is CADFace and faceMeshOn.button_pressed):
+		var clr = getRandomColor()
+		var mesh = (child as CADFace).get_cad_triangulation()
+		var mesh_instance = MeshInstance3D.new()
+		mesh_instance.mesh = mesh
+		var material = StandardMaterial3D.new()
+		material.albedo_color = Color(1.0, 0.5, 0.2) # Orange
+		mesh_instance.material_override = material
+		mesh_instance.scale = mesh_instance.scale * scalefactor
+		childPool.add_child(mesh_instance)

@@ -1,17 +1,19 @@
 #pragma once
 
-#include "CADShape.h"
 #include <glm/glm.hpp>
-#include <godot_cpp/classes/node3d.hpp>
 #include <memory>
 #include <string>
+
+#include <godot_cpp/classes/array_mesh.hpp>
+#include <godot_cpp/classes/node3d.hpp>
+
+#include "CADShape.h"
 
 namespace Library
 {
     class CADFace;
     class CADWire;
 }
-
 
 namespace godot
 {
@@ -30,7 +32,9 @@ namespace godot
 
         const Library::CADFace& get() const;
         Library::CADFace&       get();
+
       private:
         TypedArray<godot::CADWire> getWires() const;
+        Ref<ArrayMesh>             getTriangulation() const;
     };
 }

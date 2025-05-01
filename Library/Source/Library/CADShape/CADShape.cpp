@@ -5,8 +5,10 @@
 #include "CADShapeFactory.h"
 #include "TopAbs2String.h"
 
+#include <Poly_Triangulation.hxx>
 #include <STEPControl_Writer.hxx>
 #include <TopAbs_ShapeEnum.hxx>
+#include <TopLoc_Location.hxx>
 #include <TopoDS_Compound.hxx>
 #include <TopoDS_Iterator.hxx>
 #include <TopoDS_Shape.hxx>
@@ -33,8 +35,8 @@ namespace Library
     std::vector<std::unique_ptr<CADShape>> CADShape::getChildren() const
     {
         std::vector<std::unique_ptr<CADShape>> result;
-        TopoDS_Iterator       it(getData(), true, false);
-        
+        TopoDS_Iterator                        it(getData(), true, false);
+
         while (it.More())
         {
             auto current = CADShapeFactory::make(it.Value());

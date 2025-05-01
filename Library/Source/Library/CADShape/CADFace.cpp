@@ -2,6 +2,7 @@
 
 #include "TopAbs2String.h"
 #include "CADWire.h"
+#include "Triangulation.h"
 
 #include <BRepTools_ShapeSet.hxx>
 #include <TopAbs_ShapeEnum.hxx>
@@ -10,6 +11,9 @@
 #include <TopoDS.hxx>
 #include <TopoDS_Face.hxx>
 #include <TopExp_Explorer.hxx>
+#include <BRepMesh_IncrementalMesh.hxx>
+#include <BRep_Tool.hxx>
+#include <Poly_Triangle.hxx>
 
 namespace Library
 {
@@ -56,5 +60,40 @@ namespace Library
             wireExplorer.Next();
         }
         return result;
+    }
+
+    std::unique_ptr<Triangulation> CADFace::getTriangulation(double precision) const
+    {
+        std::unique_ptr<Triangulation> result = std::make_unique<Triangulation>();
+
+        BRepMesh_IncrementalMesh mesher(getData(), precision);
+        mesher.Perform();
+        TopLoc_Location loc;
+        Handle(Poly_Triangulation) triangulation = BRep_Tool::Triangulation(get(), loc);
+
+        if (triangulation.IsNull())
+            return {};
+
+        size_t triangleAmount = triangulation->NbTriangles();
+        size_t verticesAmount = triangulation->NbNodes();
+        result->indices.reserve(triangleAmount * 3);
+        result->vertices.reserve(verticesAmount);
+
+        for (size_t i = 1; i < triangleAmount; i++)
+        {
+            const Poly_Triangle& tri = triangulation->Triangle(i);
+            int               a, b, c;
+            tri.Get(a, b, c);
+            result->indices.push_back(a);
+            result->indices.push_back(b);
+            result->indices.push_back(c);
+        }
+
+        for (size_t i = 1; i < verticesAmount; i++)
+        {
+            auto node = triangulation->Node(i);
+            result->vertices.push_back(glm::dvec3(node.X(),node.Y(),node.Z()));
+        }
+        return std::move(result);
     }
 }

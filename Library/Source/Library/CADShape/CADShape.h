@@ -8,6 +8,7 @@ class TopoDS_Shape;
 
 namespace Library
 {
+
     class CADShape
     {
       public:

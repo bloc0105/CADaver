@@ -39,6 +39,8 @@ set(CADShapes_Files
     "Source/Library/CADShape/TopAbs2String.h"
     "Source/Library/CADShape/CADShapeFactory.cpp"
     "Source/Library/CADShape/CADShapeFactory.h"
+    "Source/Library/CADShape/Triangulation.cpp"
+    "Source/Library/CADShape/Triangulation.h"
 )
 source_group("Source/CADShape" FILES ${CADShapes_Files})
 

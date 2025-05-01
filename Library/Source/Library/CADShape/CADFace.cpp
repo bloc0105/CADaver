@@ -1,19 +1,19 @@
 #include "CADFace.h"
 
-#include "TopAbs2String.h"
 #include "CADWire.h"
+#include "TopAbs2String.h"
 #include "Triangulation.h"
 
-#include <BRepTools_ShapeSet.hxx>
-#include <TopAbs_ShapeEnum.hxx>
-#include <GProp_GProps.hxx>
 #include <BRepGProp.hxx>
+#include <BRepMesh_IncrementalMesh.hxx>
+#include <BRepTools_ShapeSet.hxx>
+#include <BRep_Tool.hxx>
+#include <GProp_GProps.hxx>
+#include <Poly_Triangle.hxx>
+#include <TopAbs_ShapeEnum.hxx>
+#include <TopExp_Explorer.hxx>
 #include <TopoDS.hxx>
 #include <TopoDS_Face.hxx>
-#include <TopExp_Explorer.hxx>
-#include <BRepMesh_IncrementalMesh.hxx>
-#include <BRep_Tool.hxx>
-#include <Poly_Triangle.hxx>
 
 namespace Library
 {
@@ -48,13 +48,14 @@ namespace Library
         return (const TopoDS_Face&)getData();
     }
 
-    std::vector<std::unique_ptr<CADWire>> CADFace::getWires() const {
+    std::vector<std::unique_ptr<CADWire>> CADFace::getWires() const
+    {
         std::vector<std::unique_ptr<CADWire>> result;
-        TopExp_Explorer wireExplorer(get(), TopAbs_WIRE);
+        TopExp_Explorer                       wireExplorer(get(), TopAbs_WIRE);
         while (wireExplorer.More())
         {
             TopoDS_Wire wire = TopoDS::Wire(wireExplorer.Current());
-            auto sub = std::make_unique<CADWire>();
+            auto        sub  = std::make_unique<CADWire>();
             sub->setData(wire);
             result.push_back(std::move(sub));
             wireExplorer.Next();
@@ -62,9 +63,18 @@ namespace Library
         return result;
     }
 
+    std::string CADFace::getOrientation() const
+    {
+        return TopAbsOrientation2String(get().Orientation());
+    }
+
     std::unique_ptr<Triangulation> CADFace::getTriangulation(double precision) const
     {
         std::unique_ptr<Triangulation> result = std::make_unique<Triangulation>();
+
+        TopAbs_Orientation o = get().Orientation();
+        bool               reversed = o == 1;
+
 
         BRepMesh_IncrementalMesh mesher(getData(), precision);
         mesher.Perform();
@@ -79,21 +89,31 @@ namespace Library
         result->indices.reserve(triangleAmount * 3);
         result->vertices.reserve(verticesAmount);
 
-        for (size_t i = 1; i < triangleAmount; i++)
+        for (size_t i = 0; i < triangleAmount; i++)
         {
-            const Poly_Triangle& tri = triangulation->Triangle(i);
-            int               a, b, c;
+            const Poly_Triangle& tri = triangulation->Triangle(i + 1);
+            int                  a, b, c;
             tri.Get(a, b, c);
-            result->indices.push_back(a);
-            result->indices.push_back(b);
-            result->indices.push_back(c);
+            if (reversed)
+            {
+                result->indices.push_back(a - 1);
+                result->indices.push_back(c - 1);
+                result->indices.push_back(b - 1);
+            }
+            else
+            {
+                result->indices.push_back(a - 1);
+                result->indices.push_back(b - 1);
+                result->indices.push_back(c - 1);
+            }
         }
 
-        for (size_t i = 1; i < verticesAmount; i++)
+        for (size_t i = 0; i < verticesAmount; i++)
         {
-            auto node = triangulation->Node(i);
-            result->vertices.push_back(glm::dvec3(node.X(),node.Y(),node.Z()));
+            auto node = triangulation->Node(i + 1);
+            result->vertices.push_back(glm::dvec3(node.X(), node.Y(), node.Z()));
         }
+
         return std::move(result);
     }
 }

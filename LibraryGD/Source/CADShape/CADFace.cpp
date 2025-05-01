@@ -14,7 +14,8 @@ namespace godot
     void CADFace::_bind_methods()
     {
         ClassDB::bind_method(D_METHOD("get_cad_wires"), &CADFace::getWires);
-        ClassDB::bind_method(D_METHOD("get_cad_triangulation"), &CADFace::getTriangulation);
+        ClassDB::bind_method(D_METHOD("get_cad_orientation"), &CADFace::getOrientation);
+        ClassDB::bind_method(D_METHOD("get_cad_triangulation", "precision"), &CADFace::getTriangulation);
     }
 
     CADFace::CADFace() {}
@@ -42,10 +43,15 @@ namespace godot
         }
         return result;
     }
-
-    Ref<ArrayMesh> CADFace::getTriangulation() const
+    
+    godot::String CADFace::getOrientation() const
     {
-        auto mesh = get().getTriangulation();
+        return godot::String(get().getOrientation().c_str());
+    }
+
+    Ref<ArrayMesh> CADFace::getTriangulation(double precision) const
+    {
+        auto mesh = get().getTriangulation(precision);
         if (!mesh)
             return nullptr;
 

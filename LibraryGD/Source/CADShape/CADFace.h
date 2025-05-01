@@ -35,6 +35,7 @@ namespace godot
 
       private:
         TypedArray<godot::CADWire> getWires() const;
-        Ref<ArrayMesh>             getTriangulation() const;
+        godot::String              getOrientation() const;
+        Ref<ArrayMesh>             getTriangulation(double precision = 0.1) const;
     };
 }

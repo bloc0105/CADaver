@@ -19,6 +19,8 @@ var multi_mesh;
 var points = []
 
 func traversechilds(child : CADShape, depth):
+	if (!child):
+		return
 	var spaces = ""
 	for i in range(depth):
 		spaces = spaces + " "
@@ -151,7 +153,7 @@ func loadSolid(child):
 func loadFaceMesh(child):
 	if (child is CADFace and faceMeshOn.button_pressed):
 		var clr = getRandomColor()
-		var mesh = (child as CADFace).get_cad_triangulation()
+		var mesh = (child as CADFace).get_cad_triangulation(0.1)
 		var mesh_instance = MeshInstance3D.new()
 		mesh_instance.mesh = mesh
 		var material = StandardMaterial3D.new()

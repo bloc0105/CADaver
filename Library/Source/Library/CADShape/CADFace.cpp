@@ -94,7 +94,7 @@ namespace Library
             const Poly_Triangle& tri = triangulation->Triangle(i + 1);
             int                  a, b, c;
             tri.Get(a, b, c);
-            if (reversed)
+            if (!reversed)
             {
                 result->indices.push_back(a - 1);
                 result->indices.push_back(c - 1);

@@ -33,7 +33,7 @@ grow_vertical = 2
 
 [node name="FileLocation" type="LineEdit" parent="VBoxContainer"]
 layout_mode = 2
-text = "C:/Users/nicol/Downloads/GenericExtruderMount.step"
+text = "C:/Users/nicol/Downloads/Dagger1 v4.step"
 
 [node name="LoadButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2

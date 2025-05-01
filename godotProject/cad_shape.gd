@@ -21,10 +21,6 @@ var points = []
 func traversechilds(child : CADShape, depth):
 	if (!child):
 		return
-	var spaces = ""
-	for i in range(depth):
-		spaces = spaces + " "
-	print(spaces + str(child))
 	
 	loadVertex(child)
 	loadEdge(child)

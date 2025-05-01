@@ -6,6 +6,8 @@ class TopoDS_Solid;
 
 namespace Library
 {
+    class CADShell;
+
     class CADSolid : public CADShape
     {
       public:
@@ -18,6 +20,7 @@ namespace Library
         TopoDS_Solid&       get();
         const TopoDS_Solid& get() const;
 
+        std::vector<std::unique_ptr<CADShell>> getShells() const;
       private:
     };
 }

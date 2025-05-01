@@ -59,6 +59,10 @@ text = "Face"
 layout_mode = 2
 text = "Shell"
 
+[node name="Solid" type="CheckBox" parent="VBoxContainer"]
+layout_mode = 2
+text = "Solid"
+
 [node name="ChildPool" type="Node" parent="."]
 
 [connection signal="pressed" from="VBoxContainer/LoadButton" to="." method="_on_button_pressed"]

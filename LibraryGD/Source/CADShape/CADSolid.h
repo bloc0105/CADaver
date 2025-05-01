@@ -6,8 +6,15 @@
 #include <memory>
 #include <string>
 
+namespace Library
+{
+    class CADSolid;
+}
+
 namespace godot
 {
+    class CADShell;
+
     class CADSolid : public godot::CADShape
     {
         GDCLASS(CADSolid, godot::CADShape)
@@ -18,5 +25,11 @@ namespace godot
       public:
         CADSolid();
         virtual ~CADSolid();
+
+        const Library::CADSolid& get() const;
+        Library::CADSolid&       get();
+
+      private:
+        TypedArray<godot::CADShell> getShells() const;
     };
 }

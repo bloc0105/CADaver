@@ -8,6 +8,7 @@ extends Node
 @onready var edgeOn : CheckBox = $VBoxContainer/Edge
 @onready var wireOn : CheckBox = $VBoxContainer/Wire
 @onready var faceOn : CheckBox = $VBoxContainer/Face
+@onready var shellOn : CheckBox = $VBoxContainer/Shell
 @onready var childPool : Node = $ChildPool
 @onready var fileLocation : LineEdit = $VBoxContainer/FileLocation
 
@@ -25,6 +26,7 @@ func traversechilds(child : CADShape, depth):
 	loadEdge(child)
 	loadWire(child)
 	loadFace(child)
+	loadShell(child)
 	
 	var childs = child.get_cad_children()
 	for x in childs:
@@ -114,9 +116,20 @@ func loadWire(child):
 		var clr = getRandomColor()
 		drawWire(child, clr);
 
+func drawFace(child, clr):
+	for x in (child as CADFace).get_cad_wires():
+		var wire : CADWire = x;
+		drawWire(wire,clr)
+	
+
 func loadFace(child):
 	if (child is CADFace and faceOn.button_pressed):
 		var clr = getRandomColor()
-		for x in (child as CADFace).get_cad_wires():
-			var wire : CADWire = x;
-			drawWire(wire,clr)
+		drawFace(child,clr);
+		
+func loadShell(child):
+	if (child is CADShell and shellOn.button_pressed):
+		var clr = getRandomColor()
+		for x in (child as CADShell).get_cad_faces():
+			var face : CADFace = x;
+			drawFace(face,clr)

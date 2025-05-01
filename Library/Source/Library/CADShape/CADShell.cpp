@@ -1,9 +1,12 @@
 #include "CADShell.h"
 
+#include "CADFace.h"
 #include "TopAbs2String.h"
 
 #include <BRepTools_ShapeSet.hxx>
 #include <TopAbs_ShapeEnum.hxx>
+#include <TopExp_Explorer.hxx>
+#include <TopoDS.hxx>
 #include <TopoDS_Shell.hxx>
 
 namespace Library
@@ -35,4 +38,19 @@ namespace Library
     {
         return (const TopoDS_Shell&)getData();
     }
+
+    std::vector<std::unique_ptr<CADFace>> CADShell::getFaces() const
+    {
+        std::vector<std::unique_ptr<CADFace>> result;
+        TopExp_Explorer                       faceExplorer(get(), TopAbs_FACE);
+        while (faceExplorer.More())
+        {
+            auto sub = std::make_unique<CADFace>();
+            sub->setData(TopoDS::Face(faceExplorer.Current()));
+            result.push_back(std::move(sub));
+            faceExplorer.Next();
+        }
+        return result;
+    }
+
 }

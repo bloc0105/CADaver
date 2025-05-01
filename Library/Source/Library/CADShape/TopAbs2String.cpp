@@ -48,7 +48,7 @@ namespace Library
             }
             case TopAbs_SHELL:
             {
-                return "TopAbs_SOLID";
+                return "TopAbs_SHELL";
             }
             case TopAbs_FACE:
             {

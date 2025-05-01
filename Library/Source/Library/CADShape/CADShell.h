@@ -6,6 +6,8 @@ class TopoDS_Shell;
 
 namespace Library
 {
+    class CADFace;
+
     class CADShell : public CADShape
     {
       public:
@@ -16,7 +18,10 @@ namespace Library
         virtual std::string getType() const override;
 
         TopoDS_Shell&       get();
-        const TopoDS_Shell& get() const;
+        const TopoDS_Shell& get() const;  
+        
+        std::vector<std::unique_ptr<CADFace>> getFaces() const;
+
       private:
     };
 }

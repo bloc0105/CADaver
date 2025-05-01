@@ -51,6 +51,10 @@ text = "Edge"
 layout_mode = 2
 text = "Wire"
 
+[node name="Face" type="CheckBox" parent="VBoxContainer"]
+layout_mode = 2
+text = "Face"
+
 [node name="ChildPool" type="Node" parent="."]
 
 [connection signal="pressed" from="VBoxContainer/LoadButton" to="." method="_on_button_pressed"]

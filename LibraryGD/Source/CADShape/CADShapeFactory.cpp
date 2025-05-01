@@ -53,7 +53,7 @@ namespace godot
         }
         else if (type == "TopAbs_FACE")
         {
-            auto result = godot::Ref<godot::CADShell>();
+            auto result = godot::Ref<godot::CADFace>();
             result.instantiate();
             result->setData(std::move(data));
             return result;

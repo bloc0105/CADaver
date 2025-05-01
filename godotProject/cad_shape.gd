@@ -7,6 +7,7 @@ extends Node
 @onready var vertexOn : CheckBox = $VBoxContainer/Vertex
 @onready var edgeOn : CheckBox = $VBoxContainer/Edge
 @onready var wireOn : CheckBox = $VBoxContainer/Wire
+@onready var faceOn : CheckBox = $VBoxContainer/Face
 @onready var childPool : Node = $ChildPool
 @onready var fileLocation : LineEdit = $VBoxContainer/FileLocation
 
@@ -23,6 +24,7 @@ func traversechilds(child : CADShape, depth):
 	loadVertex(child)
 	loadEdge(child)
 	loadWire(child)
+	loadFace(child)
 	
 	var childs = child.get_cad_children()
 	for x in childs:
@@ -100,11 +102,21 @@ func getRandomColor() -> Color:
 	var blau = randf()
 	return Color(rot, gruen, blau)
 	
+func drawWire(wire, clr):
+	for x in (wire as CADWire).get_cad_edges():
+		var edge : CADEdge = x;
+		var start = edge.get_cad_start().get_cad_position() * scalefactor
+		var end = edge.get_cad_end().get_cad_position() * scalefactor
+		makeLine(start,end,clr)
+	
 func loadWire(child):
 	if (child is CADWire and wireOn.button_pressed):
 		var clr = getRandomColor()
-		for x in (child as CADWire).get_cad_edges():
-			var edge : CADEdge = x;
-			var start = edge.get_cad_start().get_cad_position() * scalefactor
-			var end = edge.get_cad_end().get_cad_position() * scalefactor
-			makeLine(start,end,clr)
+		drawWire(child, clr);
+
+func loadFace(child):
+	if (child is CADFace and faceOn.button_pressed):
+		var clr = getRandomColor()
+		for x in (child as CADFace).get_cad_wires():
+			var wire : CADWire = x;
+			drawWire(wire,clr)

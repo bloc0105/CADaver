@@ -6,6 +6,8 @@ class TopoDS_Face;
 
 namespace Library
 {
+    class CADWire;
+
     class CADFace : public CADShape
     {
       public:
@@ -17,6 +19,8 @@ namespace Library
 
         TopoDS_Face&       get();
         const TopoDS_Face& get() const;
+
+        std::vector<std::unique_ptr<CADWire>> getWires() const;
       private:
     };
 }

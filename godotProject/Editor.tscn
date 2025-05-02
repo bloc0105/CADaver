@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://thqwk06i713u"]
+
+[ext_resource type="PackedScene" uid="uid://c2rokc52ag5sx" path="res://UI/light.tscn" id="1_qt2ko"]
+[ext_resource type="PackedScene" uid="uid://dfrsgfh3rcwt5" path="res://UI/MenuBar/menu_bar.tscn" id="2_0tlcs"]
+
+[node name="Editor" type="Node3D"]
+
+[node name="Light" parent="." instance=ExtResource("1_qt2ko")]
+
+[node name="MenuBar" parent="." instance=ExtResource("2_0tlcs")]

@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfrsgfh3rcwt5"]
+
+[ext_resource type="Script" path="res://UI/MenuBar/menu_bar_file.gd" id="1_0dwda"]
+
+[node name="MenuBar" type="PanelContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 31.0
+grow_horizontal = 2
+
+[node name="MenuBar" type="MenuBar" parent="."]
+layout_mode = 2
+
+[node name="File" type="PopupMenu" parent="MenuBar"]
+auto_translate_mode = 1
+title = "File"
+item_count = 4
+item_0/text = "New..."
+item_1/text = "Load..."
+item_1/id = 1
+item_2/text = "Save..."
+item_2/id = 2
+item_3/text = "Quit"
+item_3/id = 3
+script = ExtResource("1_0dwda")
+
+[connection signal="index_pressed" from="MenuBar/File" to="MenuBar/File" method="_on_index_pressed"]

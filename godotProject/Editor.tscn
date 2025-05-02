@@ -1,10 +1,30 @@
-[gd_scene load_steps=3 format=3 uid="uid://thqwk06i713u"]
+[gd_scene load_steps=6 format=3 uid="uid://thqwk06i713u"]
 
-[ext_resource type="PackedScene" uid="uid://c2rokc52ag5sx" path="res://UI/light.tscn" id="1_qt2ko"]
+[ext_resource type="PackedScene" uid="uid://c2rokc52ag5sx" path="res://3D/light.tscn" id="1_qt2ko"]
 [ext_resource type="PackedScene" uid="uid://dfrsgfh3rcwt5" path="res://UI/MenuBar/menu_bar.tscn" id="2_0tlcs"]
+[ext_resource type="PackedScene" uid="uid://c123og5t25xh5" path="res://Logic/Logic.tscn" id="2_qmfjc"]
+[ext_resource type="PackedScene" uid="uid://7depx8duyh2a" path="res://UI/Tabs/tab_bar.tscn" id="3_73niu"]
+[ext_resource type="Script" path="res://Logic/drawings_container.gd" id="5_sfcbq"]
 
-[node name="Editor" type="Node3D"]
+[node name="Editor" type="Node"]
 
 [node name="Light" parent="." instance=ExtResource("1_qt2ko")]
 
-[node name="MenuBar" parent="." instance=ExtResource("2_0tlcs")]
+[node name="Logic" parent="." instance=ExtResource("2_qmfjc")]
+
+[node name="Menus" type="VBoxContainer" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 35.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MenuBar" parent="Menus" instance=ExtResource("2_0tlcs")]
+layout_mode = 2
+
+[node name="TabBar" parent="Menus" instance=ExtResource("3_73niu")]
+layout_mode = 2
+
+[node name="DrawingsContainer" type="Node" parent="."]
+script = ExtResource("5_sfcbq")

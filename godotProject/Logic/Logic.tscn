@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://c123og5t25xh5"]
+
+[ext_resource type="Script" path="res://Logic/on_new_drawing.gd" id="1_v3341"]
+[ext_resource type="PackedScene" uid="uid://bsabpw4agcisv" path="res://UI/DrawingScene/DrawingScene.tscn" id="2_3gjja"]
+[ext_resource type="Script" path="res://Logic/on_close_drawing.gd" id="2_bnekk"]
+[ext_resource type="Script" path="res://Logic/on_save_drawing.gd" id="4_hokne"]
+
+[node name="Logic" type="Node3D"]
+
+[node name="OnNewDrawing" type="Node" parent="."]
+script = ExtResource("1_v3341")
+drawingScene = ExtResource("2_3gjja")
+
+[node name="OnCloseDrawing" type="Node" parent="."]
+script = ExtResource("2_bnekk")
+
+[node name="OnSaveDrawing" type="Node" parent="."]
+script = ExtResource("4_hokne")

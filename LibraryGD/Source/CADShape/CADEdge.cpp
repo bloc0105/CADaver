@@ -37,6 +37,7 @@ namespace godot
         }
         return result;
     }
+
     Ref<godot::CADVertex> CADEdge::getCADEnd() const
     {
         Ref<godot::CADVertex> result;

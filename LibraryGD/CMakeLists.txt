@@ -31,7 +31,16 @@ set(CADShape_Files
 )
 source_group("Source/CADShape" FILES ${CADShape_Files})
 
+set(Util_Files
+    "Source/Util/SaveFileDialog.h"
+    "Source/Util/SaveFileDialog.cpp"
+    "Source/Util/LoadFileDialog.h"
+    "Source/Util/LoadFileDialog.cpp"
+)
+source_group("Source/Util" FILES ${Util_Files})
+
 set(ALL_FILES
+    ${Util_Files}
     ${Source_Files}
     ${CADShape_Files}
 )

@@ -4,9 +4,12 @@ class_name UnsavedChangesDialog extends Control
 
 @onready var hint_label = $PanelContainer/MarginContainer/VBoxContainer/Hint
 
-signal yes_pressed;
-signal no_pressed;
-signal cancel_pressed;
+signal dialog_finished;
+
+
+var yes_pressed : bool = false;
+var no_pressed: bool = false;
+var cancel_pressed: bool = false;
 
 static func make(hint : String) -> UnsavedChangesDialog:
 	var dlg := preload("res://UI/UnsavedChanges/UnsavedChangesDialog.tscn").instantiate()
@@ -18,13 +21,14 @@ func _ready() -> void:
 	hint_label.text = hint
 
 func _on_yes_pressed() -> void:
-	yes_pressed.emit()
-	queue_free()
-
+	yes_pressed = true;
+	dialog_finished.emit()
+	
 func _on_no_pressed() -> void:
-	no_pressed.emit()
-	queue_free()
-
+	no_pressed = true;
+	dialog_finished.emit()
+	
 func _on_cancel_pressed() -> void:
-	cancel_pressed.emit()
-	queue_free()
+	cancel_pressed = true;
+	dialog_finished.emit()
+	

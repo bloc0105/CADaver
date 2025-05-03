@@ -7,6 +7,7 @@ func _ready() -> void:
 
 func on_close_drawing(index) -> void:
 	if (Hub.drawings.size() <= index):
+		Hub.close_drawing_finished = true
 		return
 	var drawing := Hub.drawings[index]
 	current_drawing = drawing
@@ -15,6 +16,7 @@ func on_close_drawing(index) -> void:
 		save_confirmation();
 	else:
 		close_drawing()
+		Hub.close_drawing_finished = true
 		
 func close_drawing()->void:
 		Hub.drawings.erase(current_drawing)
@@ -32,17 +34,13 @@ func reset_current_drawing(drawing : Drawing) -> void:
 
 func save_confirmation() -> void:
 	var dlg := UnsavedChangesDialog.make("Drawing: " + current_drawing.draw_name)
-	dlg.yes_pressed.connect(confirmation_confirmed)
-	dlg.no_pressed.connect(confirmation_declined)
-	dlg.cancel_pressed.connect(confirmation_canceled)
-
-func confirmation_canceled()->void:
-	pass
+	await dlg.dialog_finished
+	if (dlg.yes_pressed):
+		Hub.save_drawing.emit(Hub.drawings.find(current_drawing))
+	if (!dlg.cancel_pressed):	
+		close_drawing()
+	if (dlg.cancel_pressed):
+		Hub.is_closing = false
+	dlg.queue_free()
+	Hub.close_drawing_finished = true
 	
-func confirmation_confirmed()->void:
-	print("Saved")
-	close_drawing()
-	
-func confirmation_declined()->void:
-	print("Not saved");
-	close_drawing()

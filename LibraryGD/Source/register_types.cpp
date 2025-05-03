@@ -10,6 +10,9 @@
 #include "CADShape/CADVertex.h"
 #include "CADShape/CADWire.h"
 
+#include "Util/SaveFileDialog.h"
+#include "Util/LoadFileDialog.h"
+
 #include <gdextension_interface.h>
 #include <godot_cpp/core/defs.hpp>
 #include <godot_cpp/godot.hpp>
@@ -32,6 +35,8 @@ void initialize_module(ModuleInitializationLevel p_level)
     ClassDB::register_class<CADSolid>();
     ClassDB::register_class<CADVertex>();
     ClassDB::register_class<CADWire>();
+    ClassDB::register_class<SaveFileDialog>();
+    ClassDB::register_class<LoadFileDialog>();
 }
 
 void uninitialize_module(ModuleInitializationLevel p_level)

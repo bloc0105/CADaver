@@ -7,12 +7,15 @@ signal drawings_changed; # void
 signal current_drawing_changed; # void
 signal load_drawing; # void
 signal new_drawing; # void
-signal close_drawing; # index int
+
+
 signal save_drawing; # index int
 signal dirty_changed;
 
-var is_closing = false;
 
+signal close_drawing; # index int
+var close_drawing_finished := true;
+var is_closing := false;
 
 var currentDrawing : Drawing; # selected Tab
 var drawings : Array[Drawing]; # All Open Drawings

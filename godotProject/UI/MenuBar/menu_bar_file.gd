@@ -37,8 +37,11 @@ func quit_pressed():
 	Hub.is_closing = true
 	
 	# give a chance to save things
-	for i in range(Hub.drawings.size(), 0, -1):
-		Hub.close_drawing.emit(i)
+	while(Hub.is_closing and Hub.drawings.size() > 0):
+		Hub.close_drawing_finished = false;
+		Hub.close_drawing.emit(0)
+		while(!Hub.close_drawing_finished):
+			await get_tree().create_timer(0.1).timeout
 		
 	if (Hub.is_closing): # somebody canceled?
 		get_tree().quit()

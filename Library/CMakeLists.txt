@@ -7,14 +7,13 @@ project(LibraryTest)
 
 find_package(glm REQUIRED)
 find_package(nlohmann_json REQUIRED)
+find_package(nfd CONFIG REQUIRED) 
 find_package(OpenCASCADE)
 include_directories(SYSTEM ${OpenCASCADE_INCLUDE_DIR})
 
 
 set(Source_Files
     "Source/Library/testMain.cpp"
-    "Source/Library/STLWriter.cpp"
-    "Source/Library/STLWriter.h"
 )
 source_group("Source" FILES ${Source_Files})
 
@@ -56,6 +55,16 @@ set(Experiment_Files
 )
 source_group("Source/Experiments" FILES ${Experiment_Files})
 
+set(Experiment_Files
+    "Source/Library/Util/STLWriter.cpp"
+    "Source/Library/Util/STLWriter.h"
+    "Source/Library/Util/SaveFileDialog.cpp"
+    "Source/Library/Util/SaveFileDialog.h"
+    "Source/Library/Util/LoadFileDialog.cpp"
+    "Source/Library/Util/LoadFileDialog.h"
+)
+source_group("Source/Util" FILES ${Experiment_Files})
+
 set(ALL_FILES
     ${Source_Files}
     ${Experiment_Files}
@@ -75,10 +84,12 @@ target_link_libraries(LibraryTest PUBLIC
 Catch2::Catch2
 glm::glm
 nlohmann_json::nlohmann_json
+nfd::nfd
 )
 target_link_libraries(Library PUBLIC 
 glm::glm
 nlohmann_json::nlohmann_json
+nfd::nfd
 )
 
 target_include_directories(Library PUBLIC 

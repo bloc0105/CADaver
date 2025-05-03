@@ -5,6 +5,7 @@
     "nlohmann-json",
     "glm",
     "catch2",
-	"opencascade"
+	"opencascade",
+	"nativefiledialog-extended"
 	]
 }

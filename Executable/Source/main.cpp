@@ -5,7 +5,7 @@
 #include "Library/CADShape/CADShell.h"
 #include "Library/CADShape/CADSolid.h"
 #include "Library/CADShape/Triangulation.h"
-#include "Library/STLWriter.h"
+#include "Library/Util/STLWriter.h"
 
 std::vector<glm::dvec3> v;
 

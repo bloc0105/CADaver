@@ -8,6 +8,7 @@ anchors_preset = 0
 script = ExtResource("1_esesk")
 
 [node name="dirtymaker" type="Button" parent="."]
+layout_mode = 0
 offset_left = 264.0
 offset_top = 196.0
 offset_right = 405.0

@@ -18,3 +18,4 @@ var currentDrawing : Drawing; # selected Tab
 var drawings : Array[Drawing]; # All Open Drawings
 
 var drawings_container : Node;
+var root_node : Node;

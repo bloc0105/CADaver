@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://thqwk06i713u"]
+[gd_scene load_steps=7 format=3 uid="uid://thqwk06i713u"]
 
+[ext_resource type="Script" path="res://Logic/root_node.gd" id="1_cy7sl"]
 [ext_resource type="PackedScene" uid="uid://c2rokc52ag5sx" path="res://3D/light.tscn" id="1_qt2ko"]
 [ext_resource type="PackedScene" uid="uid://dfrsgfh3rcwt5" path="res://UI/MenuBar/menu_bar.tscn" id="2_0tlcs"]
 [ext_resource type="PackedScene" uid="uid://c123og5t25xh5" path="res://Logic/Logic.tscn" id="2_qmfjc"]
@@ -7,6 +8,7 @@
 [ext_resource type="Script" path="res://Logic/drawings_container.gd" id="5_sfcbq"]
 
 [node name="Editor" type="Node"]
+script = ExtResource("1_cy7sl")
 
 [node name="Light" parent="." instance=ExtResource("1_qt2ko")]
 

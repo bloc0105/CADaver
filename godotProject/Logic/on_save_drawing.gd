@@ -1,7 +1,5 @@
 extends Node
 
-@export var drawingScene : PackedScene
-
 var currentDrawing : Drawing;
 
 func _ready() -> void:
@@ -14,6 +12,7 @@ func on_save_drawing(index) -> void:
 	currentDrawing = d
 	invokeSaveFileDialog()
 
+
 func invokeSaveFileDialog():
 	var dlg = SaveFileDialog.new()
 	dlg.add_filter("Step File", ["stp","step"])
@@ -23,4 +22,5 @@ func invokeSaveFileDialog():
 	if (!dlg.is_canceled()):
 		print("Save");
 		currentDrawing.dirty = false
+		currentDrawing.name = path_util.get_file_name_without_extension(dlg.get_result_path());
 		Hub.dirty_changed.emit()

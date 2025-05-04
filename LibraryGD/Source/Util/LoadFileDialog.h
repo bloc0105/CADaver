@@ -22,11 +22,12 @@ namespace godot
         virtual ~LoadFileDialog();
 
       private:
-        void setPath(const godot::String&);
-        void addFilter(const godot::String&, TypedArray<godot::String>);
-        bool isCanceled();
-        void execute();
+        void          setPath(const godot::String&);
+        void          addFilter(const godot::String&, TypedArray<godot::String>);
+        bool          isCanceled();
+        void          execute();
+        godot::String getResultPath() const;
 
-        std::unique_ptr<Library::LoadFileDialog> dlg; 
+        std::unique_ptr<Library::LoadFileDialog> dlg;
     };
 }

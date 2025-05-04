@@ -82,5 +82,6 @@ namespace Library
             cancel = true;
         }
         NFD_Quit();
+        std::replace(resultPath.begin(), resultPath.end(), '\\', '/');
     }
 }

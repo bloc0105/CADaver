@@ -11,6 +11,7 @@ namespace godot
         ClassDB::bind_method(D_METHOD("add_filter", "name", "comma_list_of_suffixes"), &SaveFileDialog::addFilter);
         ClassDB::bind_method(D_METHOD("set_path", "default_path"), &SaveFileDialog::setPath);
         ClassDB::bind_method(D_METHOD("set_save_file_name", "save_file_name"), &SaveFileDialog::setSaveFileName);
+        ClassDB::bind_method(D_METHOD("get_result_path"), &SaveFileDialog::getResultPath);
     }
 
     SaveFileDialog::SaveFileDialog()
@@ -50,5 +51,10 @@ namespace godot
     void SaveFileDialog::setSaveFileName(const godot::String& f)
     {
         dlg->setSaveFileName(std::string(f.utf8()));
+    }
+
+    godot::String SaveFileDialog::getResultPath() const
+    {
+        return dlg->getResultPath().c_str();
     }
 }

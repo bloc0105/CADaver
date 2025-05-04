@@ -10,6 +10,7 @@ namespace godot
         ClassDB::bind_method(D_METHOD("execute"), &LoadFileDialog::execute);
         ClassDB::bind_method(D_METHOD("add_filter", "name", "comma_list_of_suffixes"), &LoadFileDialog::addFilter);
         ClassDB::bind_method(D_METHOD("set_path", "default_path"), &LoadFileDialog::setPath);
+        ClassDB::bind_method(D_METHOD("get_result_path"), &LoadFileDialog::getResultPath);
     }
 
     LoadFileDialog::LoadFileDialog()
@@ -43,5 +44,10 @@ namespace godot
     void LoadFileDialog::execute()
     {
         dlg->execute();
+    }
+
+    godot::String LoadFileDialog::getResultPath() const
+    {
+        return dlg->getResultPath().c_str();
     }
 }

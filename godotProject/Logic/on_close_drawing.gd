@@ -4,7 +4,12 @@ var current_drawing : Drawing;
 
 func _ready() -> void:
 	Hub.close_drawing.connect(on_close_drawing)
+	get_tree().set_auto_accept_quit(false)
 
+func _notification(what : int):
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		Hub.quit_pressed();
+		
 func on_close_drawing(index) -> void:
 	if (Hub.drawings.size() <= index):
 		Hub.close_drawing_finished = true
@@ -43,4 +48,5 @@ func save_confirmation() -> void:
 		Hub.is_closing = false
 	dlg.queue_free()
 	Hub.close_drawing_finished = true
+	
 	

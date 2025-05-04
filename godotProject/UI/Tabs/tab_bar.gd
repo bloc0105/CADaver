@@ -10,9 +10,9 @@ func _ready() -> void:
 func update_tabs():
 	is_updating = true
 	clear_tabs()
-	for draw in Hub.drawings:
-		var text := draw.draw_name
-		if (draw.dirty):
+	for cdraw in Hub.drawings:
+		var text := cdraw.draw_name
+		if (cdraw.dirty):
 			text += "(*)"
 		add_tab(text)
 	current_tab = Hub.drawings.find(Hub.currentDrawing)

@@ -7,8 +7,6 @@ func _ready() -> void:
 
 func on_save_drawing(index) -> void:
 	var d := Hub.drawings[index]
-	if (!d.dirty):
-		return
 	currentDrawing = d
 	invokeSaveFileDialog()
 

@@ -11,9 +11,9 @@ var yes_pressed : bool = false;
 var no_pressed: bool = false;
 var cancel_pressed: bool = false;
 
-static func make(hint : String) -> UnsavedChangesDialog:
+static func make(inputhint : String) -> UnsavedChangesDialog:
 	var dlg := preload("res://UI/UnsavedChanges/UnsavedChangesDialog.tscn").instantiate()
-	dlg.hint = hint;
+	dlg.hint = inputhint;
 	Hub.root_node.add_child(dlg)
 	return dlg;
 

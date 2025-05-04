@@ -3,16 +3,23 @@ class_name HubClass extends Node
 # Location for all UI Elements. 
 # They have to self register.
 
+@warning_ignore("unused_signal")
 signal drawings_changed; # void
+@warning_ignore("unused_signal")
 signal current_drawing_changed; # void
+@warning_ignore("unused_signal")
 signal load_drawing; # void
+@warning_ignore("unused_signal")
 signal new_drawing; # void
 
 
+@warning_ignore("unused_signal")
 signal save_drawing; # index int
+@warning_ignore("unused_signal")
 signal dirty_changed;
 
 
+@warning_ignore("unused_signal")
 signal close_drawing; # index int
 var close_drawing_finished := true;
 var is_closing := false;

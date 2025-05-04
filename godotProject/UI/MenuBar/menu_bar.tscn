@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dfrsgfh3rcwt5"]
+[gd_scene load_steps=3 format=3 uid="uid://dfrsgfh3rcwt5"]
 
 [ext_resource type="Script" path="res://UI/MenuBar/menu_bar_file.gd" id="1_0dwda"]
+[ext_resource type="Script" path="res://UI/MenuBar/menu_var_view.gd" id="2_h18jj"]
 
 [node name="MenuBar" type="PanelContainer"]
 anchors_preset = 10
@@ -23,5 +24,32 @@ item_2/id = 2
 item_3/text = "Quit"
 item_3/id = 3
 script = ExtResource("1_0dwda")
+
+[node name="View" type="PopupMenu" parent="MenuBar"]
+item_count = 2
+item_0/text = "Fullscreen"
+item_0/id = 2
+item_1/text = "Show Tabs"
+item_1/checkable = 1
+item_1/checked = true
+item_1/id = 1
+script = ExtResource("2_h18jj")
+
+[node name="Frames" type="PopupMenu" parent="MenuBar/View"]
+item_count = 5
+item_0/text = "One View"
+item_0/checkable = 2
+item_0/checked = true
+item_1/text = "Left Right Split"
+item_1/checkable = 2
+item_1/id = 1
+item_2/text = "Top Bot Split"
+item_2/checkable = 2
+item_2/id = 2
+item_3/text = "Four Split"
+item_3/checkable = 2
+item_3/id = 4
+item_4/text = "Add Window"
+item_4/id = 3
 
 [connection signal="index_pressed" from="MenuBar/File" to="MenuBar/File" method="_on_index_pressed"]

@@ -3,7 +3,7 @@ extends Node
 @export var drawingScene : PackedScene
 
 func _ready() -> void:
-	Hub.load_drawing.connect(on_load_drawing)
+	Hub.file.load_drawing.connect(on_load_drawing)
 
 func on_load_drawing() -> void:
 	var dlg = LoadFileDialog.new()
@@ -18,14 +18,14 @@ func on_load_drawing() -> void:
 		if (!success):
 			OKPopup.make("Loading failed");
 			return;
-		Hub.drawings.append(newOne);
-		Hub.currentDrawing = newOne
+		Hub.file.drawings.append(newOne);
+		Hub.file.currentDrawing = newOne
 
 		var newScene := drawingScene.instantiate() as DrawingScene
 		newScene.drawing = newOne
 		Hub.drawings_container.add_child(newScene)
 		
-		Hub.drawings_changed.emit()
-		Hub.current_drawing_changed.emit()
+		Hub.file.drawings_changed.emit()
+		Hub.file.current_drawing_changed.emit()
 		
 		

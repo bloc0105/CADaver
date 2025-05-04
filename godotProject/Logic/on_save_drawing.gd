@@ -3,10 +3,10 @@ extends Node
 var currentDrawing : Drawing;
 
 func _ready() -> void:
-	Hub.save_drawing.connect(on_save_drawing)
+	Hub.file.save_drawing.connect(on_save_drawing)
 
 func on_save_drawing(index) -> void:
-	var d := Hub.drawings[index]
+	var d := Hub.file.drawings[index]
 	currentDrawing = d
 	invokeSaveFileDialog()
 
@@ -21,4 +21,4 @@ func invokeSaveFileDialog():
 		currentDrawing.shape.save_cad_to_file(dlg.get_result_path())
 		currentDrawing.dirty = false
 		currentDrawing.name = path_util.get_file_name_without_extension(dlg.get_result_path());
-		Hub.dirty_changed.emit()
+		Hub.file.dirty_changed.emit()

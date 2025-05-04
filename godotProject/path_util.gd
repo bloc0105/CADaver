@@ -20,3 +20,14 @@ static func get_file_name_without_extension(path: String) -> String:
 		else:
 			return file_name_with_ext
 	return ""
+
+static func get_path_without_filename(path: String) -> String:
+	if path.is_empty():
+		return ""
+	var last_slash_index = path.rfind("/")
+	if last_slash_index != -1:
+		if last_slash_index == path.length() - 1:
+			return ""
+		return path.substr(0,last_slash_index + 1)
+	else:
+		return path

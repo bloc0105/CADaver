@@ -10,12 +10,12 @@ func on_save_drawing(index) -> void:
 	currentDrawing = d
 	invokeSaveFileDialog()
 
-
 func invokeSaveFileDialog():
 	var dlg = SaveFileDialog.new()
 	dlg.add_filter("Step File", ["stp","step"])
-	dlg.set_save_file_name(currentDrawing.name + ".step");
-	dlg.execute()
+	dlg.set_save_file_name(currentDrawing.draw_name + ".step");
+	dlg.set_path(path_util.get_path_without_filename(currentDrawing.save_path));
+	dlg.execute();
 	
 	if (!dlg.is_canceled()):
 		print("Save");

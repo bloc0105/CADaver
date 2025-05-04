@@ -43,5 +43,6 @@ item_2/id = 2
 script = ExtResource("2_h18jj")
 bar = NodePath("../..")
 
+[connection signal="filemenuquit" from="." to="MenuBar/File" method="_on_menu_bar_filemenuquit"]
 [connection signal="index_pressed" from="MenuBar/File" to="MenuBar/File" method="_on_index_pressed"]
 [connection signal="index_pressed" from="MenuBar/View" to="MenuBar/View" method="_on_index_pressed"]

@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://c123og5t25xh5"]
-
-[ext_resource type="Script" path="res://Logic/on_close_drawing.gd" id="2_bnekk"]
-
-[node name="Logic" type="Node3D"]
-
-[node name="OnCloseDrawing" type="Node" parent="."]
-script = ExtResource("2_bnekk")

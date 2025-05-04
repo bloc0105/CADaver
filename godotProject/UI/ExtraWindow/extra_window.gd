@@ -10,3 +10,6 @@ func _on_window_content_toggle_fullscreen() -> void:
 		mode = MODE_FULLSCREEN
 		fullscreen_mode_set.emit(true)
 	
+func _notification(what : int):
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		queue_free()

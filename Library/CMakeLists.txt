@@ -62,6 +62,8 @@ set(Experiment_Files
     "Source/Library/Util/SaveFileDialog.h"
     "Source/Library/Util/LoadFileDialog.cpp"
     "Source/Library/Util/LoadFileDialog.h"
+    "Source/Library/Util/PopupMessage.cpp"
+    "Source/Library/Util/PopupMessage.h"
 )
 source_group("Source/Util" FILES ${Experiment_Files})
 

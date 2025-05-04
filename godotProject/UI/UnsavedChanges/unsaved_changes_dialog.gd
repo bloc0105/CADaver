@@ -1,8 +1,8 @@
-class_name UnsavedChangesDialog extends Control
+class_name UnsavedChangesDialog extends Window
 
 @export var hint : String  = "Drawing: new";
 
-@onready var hint_label = $PanelContainer/MarginContainer/VBoxContainer/Hint
+@onready var hint_label = $MarginContainer/VBoxContainer/Hint
 
 signal dialog_finished;
 

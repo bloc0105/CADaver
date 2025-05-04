@@ -1,8 +1,8 @@
-class_name OKPopup extends Control
+class_name OKPopup extends Window
 
 @export var description : String  = "Operation Failed!";
 
-@onready var description_label = $PanelContainer/MarginContainer/VBoxContainer/Title
+@onready var description_label = $MarginContainer/VBoxContainer/Title
 
 signal dialog_finished;
 

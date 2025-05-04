@@ -1,11 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://thqwk06i713u"]
+[gd_scene load_steps=5 format=3 uid="uid://thqwk06i713u"]
 
 [ext_resource type="Script" path="res://Logic/root_node.gd" id="1_cy7sl"]
 [ext_resource type="PackedScene" uid="uid://c2rokc52ag5sx" path="res://3D/light.tscn" id="1_qt2ko"]
-[ext_resource type="PackedScene" uid="uid://dfrsgfh3rcwt5" path="res://UI/MenuBar/menu_bar.tscn" id="2_0tlcs"]
 [ext_resource type="PackedScene" uid="uid://c123og5t25xh5" path="res://Logic/Logic.tscn" id="2_qmfjc"]
-[ext_resource type="PackedScene" uid="uid://7depx8duyh2a" path="res://UI/Tabs/tab_bar.tscn" id="3_73niu"]
-[ext_resource type="Script" path="res://Logic/drawings_container.gd" id="5_sfcbq"]
+[ext_resource type="PackedScene" uid="uid://b8ifiy4c8cgpb" path="res://UI/WindowContent/window_content.tscn" id="4_3l7uq"]
 
 [node name="Editor" type="Node"]
 script = ExtResource("1_cy7sl")
@@ -14,22 +12,7 @@ script = ExtResource("1_cy7sl")
 
 [node name="Logic" parent="." instance=ExtResource("2_qmfjc")]
 
-[node name="Content" type="VBoxContainer" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+[node name="Window Content" parent="." instance=ExtResource("4_3l7uq")]
 
-[node name="MenuBar" parent="Content" instance=ExtResource("2_0tlcs")]
-layout_mode = 2
-
-[node name="TabBar" parent="Content" instance=ExtResource("3_73niu")]
-layout_mode = 2
-
-[node name="Drawings" type="Control" parent="Content"]
-layout_mode = 2
-size_flags_vertical = 3
-script = ExtResource("5_sfcbq")
+[connection signal="fullscreen_mode_changed" from="." to="Window Content" method="_on_editor_fullscreen_mode_changed"]
+[connection signal="toggle_fullscreen" from="Window Content" to="." method="_on_window_content_toggle_fullscreen"]

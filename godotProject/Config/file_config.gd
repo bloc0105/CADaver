@@ -1,24 +1,15 @@
 class_name file_config extends Node
 
-@warning_ignore("unused_signal")
 signal load_drawing; # void
-@warning_ignore("unused_signal")
 signal new_drawing; # void
-@warning_ignore("unused_signal")
 signal close_drawing; # index int
-@warning_ignore("unused_signal")
 signal save_drawing; # index int
-@warning_ignore("unused_signal")
 signal dirty_changed;
-@warning_ignore("unused_signal")
 signal drawings_changed; # void
-@warning_ignore("unused_signal")
-signal current_drawing_changed; # void
 
 var close_drawing_finished := true;
 var is_closing := false;
 
-var currentDrawing : Drawing; # selected Tab
 var drawings : Array[Drawing]; # All Open Drawings
 
 

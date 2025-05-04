@@ -32,10 +32,10 @@ func reset_current_drawing(drawing : Drawing) -> void:
 	if (drawing == Hub.file.currentDrawing):
 		if (Hub.file.drawings.size() > 0):
 			Hub.file.currentDrawing = Hub.file.drawings.back();
-			Hub.file.current_drawing_changed.emit()
+			Hub.current_drawing_changed.emit()
 		else:
 			Hub.file.currentDrawing = null;
-			Hub.file.current_drawing_changed.emit()
+			Hub.current_drawing_changed.emit()
 
 func save_confirmation() -> void:
 	var dlg := UnsavedChangesDialog.make("Drawing: " + current_drawing.draw_name)

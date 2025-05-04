@@ -26,6 +26,6 @@ func on_load_drawing() -> void:
 		Hub.drawings_container.add_child(newScene)
 		
 		Hub.file.drawings_changed.emit()
-		Hub.file.current_drawing_changed.emit()
+		Hub.current_drawing_changed.emit()
 		
 		

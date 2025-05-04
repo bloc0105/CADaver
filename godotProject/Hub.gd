@@ -27,7 +27,7 @@ var is_closing := false;
 var currentDrawing : Drawing; # selected Tab
 var drawings : Array[Drawing]; # All Open Drawings
 
-var drawings_container : Node;
+var drawings_container : Control;
 var root_node : Node;
 
 

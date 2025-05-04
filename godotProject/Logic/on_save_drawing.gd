@@ -18,7 +18,7 @@ func invokeSaveFileDialog():
 	dlg.execute();
 	
 	if (!dlg.is_canceled()):
-		print("Save");
+		currentDrawing.shape.save_cad_to_file(dlg.get_result_path())
 		currentDrawing.dirty = false
 		currentDrawing.name = path_util.get_file_name_without_extension(dlg.get_result_path());
 		Hub.dirty_changed.emit()

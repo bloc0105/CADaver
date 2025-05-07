@@ -30,4 +30,4 @@ window = NodePath("..")
 layout_mode = 2
 
 [connection signal="fullscreen_mode_set" from="." to="MenuBar" method="_on_window_content_fullscreen_mode_set"]
-[connection signal="drawing_changed" from="TabBar" to="DrawingScene" method="_on_drawing_changed"]
+[connection signal="drawing_changed" from="TabBar" to="DrawingScene" method="_on_tab_bar_drawing_changed"]

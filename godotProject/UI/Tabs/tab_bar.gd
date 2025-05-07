@@ -13,6 +13,7 @@ func _ready() -> void:
 	update_tabs()
 
 func update_tabs():
+	var oldTab = current_tab
 	is_updating = true
 	clear_tabs()
 	for cdraw in Hub.file.drawings:
@@ -21,12 +22,16 @@ func update_tabs():
 			text += "(*)"
 		add_tab(text)
 	var nextTab = Hub.file.drawings.find(window.scene.drawing);
-	if (nextTab):
+	if (nextTab!=-1):
 		current_tab = nextTab
+		if (current_tab != oldTab):
+			drawing_changed.emit(current_tab)
 	is_updating = false
 		
 func _on_tab_close_pressed(tab: int) -> void:
 	window.menu.close_drawing_request(tab)
+	if (current_tab != tab):
+		drawing_changed.emit(current_tab)
 
 func _on_tab_changed(tab: int) -> void:
 	if (is_updating):

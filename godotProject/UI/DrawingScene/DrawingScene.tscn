@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bsabpw4agcisv"]
+[gd_scene load_steps=6 format=3 uid="uid://bsabpw4agcisv"]
 
 [ext_resource type="Script" path="res://UI/DrawingScene/DrawingScene.gd" id="1_esesk"]
 [ext_resource type="Script" path="res://Experiments/Experiment1/camera_3d.gd" id="2_gxqih"]
+[ext_resource type="PackedScene" uid="uid://c2hlwf4d1wg8" path="res://3D/CADObject/CADObject.tscn" id="3_751we"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_aq2ix"]
 
@@ -32,13 +33,17 @@ grow_horizontal = 0
 grow_vertical = 0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.53061)
 mesh = SubResource("PlaneMesh_aq2ix")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.53061)
 mesh = SubResource("CylinderMesh_idnq4")
 
 [node name="FreeLookCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.71266)
 script = ExtResource("2_gxqih")
+
+[node name="CADObject" parent="." instance=ExtResource("3_751we")]
 
 [connection signal="pressed" from="dirtymaker" to="." method="_on_dirtymaker_pressed"]

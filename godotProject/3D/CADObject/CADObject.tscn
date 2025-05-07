@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://c2hlwf4d1wg8"]
-
-[ext_resource type="Script" path="res://3D/CADObject/cad_object.gd" id="1_og5mw"]
-
-[node name="CADObject" type="Node3D"]
-script = ExtResource("1_og5mw")
-
-[node name="ChildPool" type="Node3D" parent="."]

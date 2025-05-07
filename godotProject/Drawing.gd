@@ -11,3 +11,6 @@ func load_from_step_file()->bool: # return success
 		return false;
 	dirty = false;
 	return true
+
+func prepare_visualization()->void:
+	pass

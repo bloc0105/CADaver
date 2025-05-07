@@ -1,14 +1,15 @@
-class_name CADObject extends Node3D
+class_name CADVisualization extends Node3D
 
 @onready var child_pool : Node = $ChildPool
 
-var drawing : Drawing;
+var drawing : Drawing = null;
 var factory : CADSceneFactory = CADSceneFactory.new();
 
 func set_drawing(d : Drawing)->void:
-	drawing = d;
-	reset_children()
-	build_children()
+	if (drawing != d):
+		drawing = d;
+		reset_children()
+		build_children()
 
 func reset_drawing()-> void:
 	drawing = null

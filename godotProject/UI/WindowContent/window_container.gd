@@ -14,4 +14,4 @@ func _on_editor_fullscreen_mode_changed(val:bool) -> void:
 	fullscreen_mode_set.emit(val)
 
 func _on_main_window_quit_requested() -> void:
-	menu.quit_requested()
+	menu.close_request()

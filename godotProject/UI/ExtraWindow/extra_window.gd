@@ -13,3 +13,17 @@ func _on_window_content_toggle_fullscreen() -> void:
 func _notification(what : int):
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		queue_free()
+
+func _on_tree_entered() -> void:
+	Hub.extra_windows.append(self)
+
+func _on_tree_exited() -> void:
+	Hub.extra_windows.erase(self)
+
+static func disable_all():
+	for x in Hub.extra_windows:
+		x.visible = false
+		
+static func enable_all():
+	for x in Hub.extra_windows:
+		x.visible = true

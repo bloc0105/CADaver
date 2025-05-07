@@ -1,4 +1,4 @@
-extends PopupMenu
+class_name FileMenu extends PopupMenu
 
 @export var bar : ApplicationMenuBar;
 
@@ -75,6 +75,8 @@ func invokeSaveFileDialog(drawing : Drawing):
 		Hub.file.dirty_changed.emit()
 
 func quit_pressed():
+	if (continue_closing):
+		return
 	continue_closing = true
 	
 	while(continue_closing and Hub.file.drawings.size() > 0):
@@ -100,14 +102,17 @@ func close_drawing(index) -> void:
 		Hub.file.drawings_changed.emit()
 
 func save_confirmation(drawing : Drawing) -> void:
+	ExtraWindow.disable_all()
 	var dlg := UnsavedChangesDialog.make("Drawing: " + drawing.draw_name)
 	await dlg.dialog_finished
 	if (dlg.yes_pressed):
 		invokeSaveFileDialog(drawing)
 	if (!dlg.cancel_pressed):	
-		close_drawing(Hub.file.drawings.find(drawing))
+		Hub.file.drawings.erase(drawing)
+		Hub.file.drawings_changed.emit()
 	if (dlg.cancel_pressed):
 		continue_closing = false
 	dlg.queue_free()
-	
+	ExtraWindow.enable_all()
+
 	

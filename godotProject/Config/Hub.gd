@@ -8,3 +8,4 @@ signal show_tabs_changed;
 var show_tabs = true
 
 var root_node : Node;
+var extra_windows : Array[ExtraWindow]

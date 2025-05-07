@@ -20,8 +20,9 @@ func update_tabs():
 		if (cdraw.dirty):
 			text += "(*)"
 		add_tab(text)
-	if (window.scene.drawing):
-		current_tab = Hub.file.drawings.find(window.scene.drawing)
+	var nextTab = Hub.file.drawings.find(window.scene.drawing);
+	if (nextTab):
+		current_tab = nextTab
 	is_updating = false
 		
 func _on_tab_close_pressed(tab: int) -> void:

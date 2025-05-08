@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bsabpw4agcisv"]
+[gd_scene load_steps=8 format=3 uid="uid://bsabpw4agcisv"]
 
 [ext_resource type="Script" path="res://UI/DrawingScene/DrawingScene.gd" id="1_esesk"]
 [ext_resource type="Script" path="res://Experiments/Experiment1/camera_3d.gd" id="2_gxqih"]
 [ext_resource type="PackedScene" uid="uid://c2rokc52ag5sx" path="res://3D/light.tscn" id="3_0bqdw"]
+[ext_resource type="PackedScene" uid="uid://cj2haut1mwxe4" path="res://3D/ViewCube/view_cube_control.tscn" id="4_1biwo"]
 
 [sub_resource type="World3D" id="World3D_4yx81"]
 
@@ -21,18 +22,6 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_esesk")
-
-[node name="dirtymaker" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -141.0
-offset_top = -134.0
-grow_horizontal = 0
-grow_vertical = 0
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 layout_mode = 1
@@ -68,6 +57,24 @@ script = ExtResource("2_gxqih")
 
 [node name="Light" parent="SubViewportContainer/Viewport" instance=ExtResource("3_0bqdw")]
 
-[connection signal="pressed" from="dirtymaker" to="." method="_on_dirtymaker_pressed"]
+[node name="dirtymaker" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -141.0
+offset_top = -134.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="ViewCube" parent="." node_paths=PackedStringArray("cam") instance=ExtResource("4_1biwo")]
+layout_mode = 1
+offset_left = -40.0
+scale = Vector2(0.999215, 1)
+cam = NodePath("../SubViewportContainer/Viewport/FreeLookCamera")
+
 [connection signal="item_rect_changed" from="SubViewportContainer" to="SubViewportContainer" method="_on_item_rect_changed"]
 [connection signal="resized" from="SubViewportContainer" to="SubViewportContainer" method="_on_resized"]
+[connection signal="pressed" from="dirtymaker" to="." method="_on_dirtymaker_pressed"]

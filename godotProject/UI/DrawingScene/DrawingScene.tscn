@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bsabpw4agcisv"]
+[gd_scene load_steps=7 format=3 uid="uid://bsabpw4agcisv"]
 
 [ext_resource type="Script" path="res://UI/DrawingScene/DrawingScene.gd" id="1_esesk"]
 [ext_resource type="Script" path="res://Experiments/Experiment1/camera_3d.gd" id="2_gxqih"]
+[ext_resource type="PackedScene" uid="uid://c2rokc52ag5sx" path="res://3D/light.tscn" id="3_0bqdw"]
+
+[sub_resource type="World3D" id="World3D_4yx81"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_aq2ix"]
 
@@ -31,18 +34,40 @@ offset_top = -134.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="Viewport" type="SubViewport" parent="SubViewportContainer"]
+own_world_3d = true
+world_3d = SubResource("World3D_4yx81")
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/Viewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.53061)
 mesh = SubResource("PlaneMesh_aq2ix")
+skeleton = NodePath("../../..")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="SubViewportContainer/Viewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.53061)
 mesh = SubResource("CylinderMesh_idnq4")
+skeleton = NodePath("../../..")
 
-[node name="FreeLookCamera" type="Camera3D" parent="."]
+[node name="ChildPool" type="Node3D" parent="SubViewportContainer/Viewport"]
+
+[node name="FreeLookCamera" type="Camera3D" parent="SubViewportContainer/Viewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.71266)
 script = ExtResource("2_gxqih")
 
-[node name="ChildPool" type="Node3D" parent="."]
+[node name="Light" parent="SubViewportContainer/Viewport" instance=ExtResource("3_0bqdw")]
 
 [connection signal="pressed" from="dirtymaker" to="." method="_on_dirtymaker_pressed"]
+[connection signal="item_rect_changed" from="SubViewportContainer" to="SubViewportContainer" method="_on_item_rect_changed"]
+[connection signal="resized" from="SubViewportContainer" to="SubViewportContainer" method="_on_resized"]

@@ -1,7 +1,7 @@
 class_name DrawingScene extends Control
 
-@onready var camera : Camera3D = $FreeLookCamera
-@onready var child_pool : Node = $ChildPool
+@onready var camera : Camera3D = $SubViewportContainer/Viewport/FreeLookCamera
+@onready var child_pool : Node = $SubViewportContainer/Viewport/ChildPool
 
 var cad_vis : PackedScene = preload("res://3D/CADObject/CADVisualization.tscn")
 
@@ -25,8 +25,9 @@ func _on_tab_bar_drawing_changed(index: Variant) -> void:
 		return;
 	reset_children()
 	if (index != -1):
-		var drawing := Hub.file.drawings[index]
+		var d := Hub.file.drawings[index]
 		var vis := cad_vis.instantiate() as CADVisualization
 		child_pool.add_child(vis)
-		vis.set_drawing(drawing)		
+		vis.set_drawing(d)		
+		drawing = d;
 		

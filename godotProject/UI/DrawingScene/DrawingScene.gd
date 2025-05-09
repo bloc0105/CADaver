@@ -30,4 +30,5 @@ func _on_tab_bar_drawing_changed(index: Variant) -> void:
 		child_pool.add_child(vis)
 		vis.set_drawing(d)		
 		drawing = d;
+		camera.set_aabb(vis.bounding_box)
 		

@@ -12,6 +12,7 @@
 #include <TopoDS_Compound.hxx>
 #include <TopoDS_Iterator.hxx>
 #include <TopoDS_Shape.hxx>
+#include <BRepBndLib.hxx>
 
 namespace Library
 {
@@ -75,5 +76,19 @@ namespace Library
     {
         std::unique_ptr<CADShape> result = CADShapeFactory::make(filename);
         return std::move(result);
+    }
+
+    std::pair<glm::dvec3, glm::dvec3> CADShape::getBoundingBox() const {
+        Bnd_Box aBndBox;
+        BRepBndLib::Add(*data, aBndBox);
+        if (aBndBox.IsVoid())
+        {
+            return std::make_pair(glm::dvec3(),glm::dvec3());
+        }
+        std::pair<glm::dvec3, glm::dvec3> result;
+        aBndBox.Get(result.first.x, result.first.y, result.first.z, result.second.x, result.second.y, result.second.z);
+
+        result.second = result.second - result.first;
+        return result;
     }
 }

@@ -1,6 +1,7 @@
 #include "CADShape.h"
 #include "Library/CADShape/CADShape.h"
 #include <godot_cpp/core/class_db.hpp>
+#include <godot_cpp/variant/aabb.hpp>
 #include "CADShapeFactory.h"
 
 namespace godot
@@ -10,6 +11,7 @@ namespace godot
         ClassDB::bind_method(D_METHOD("save_cad_to_file", "filename"), &CADShape::saveCadToFile);
         ClassDB::bind_method(D_METHOD("get_cad_children"), &CADShape::getCadChildren);
         ClassDB::bind_method(D_METHOD("get_cad_type"), &CADShape::getCadType);
+        ClassDB::bind_method(D_METHOD("get_cad_aabb"), &CADShape::getAABB);
 
         ClassDB::bind_static_method("CADShape", D_METHOD("load_cad_from_file", "filename"), &CADShape::loadCadFromFile);
     }
@@ -72,5 +74,14 @@ namespace godot
     const Library::CADShape& CADShape::getData() const
     {
         return *shape;
+    }
+
+    godot::AABB CADShape::getAABB() const
+    {
+        auto    aabb = getData().getBoundingBox();
+        // Convert the glm::dvec3 points to Godot Vector3
+        Vector3 position = Vector3(aabb.first.x, aabb.first.y, aabb.first.z);
+        Vector3 size = Vector3(aabb.second.x, aabb.second.y, aabb.second.z);
+        return AABB(position, size);
     }
 }

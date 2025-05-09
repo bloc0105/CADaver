@@ -27,13 +27,14 @@ namespace godot
 
         void setData(std::unique_ptr<Library::CADShape>);
 
-        Library::CADShape& getData();
+        Library::CADShape&       getData();
         const Library::CADShape& getData() const;
 
       private:
         static Ref<CADShape> loadCadFromFile(const godot::String&);
         bool                 saveCadToFile(const godot::String&);
-        Array getCadChildren() const;
+        Array                getCadChildren() const;
+        godot::AABB          getAABB() const;
         godot::String        getCadType() const;
 
         std::unique_ptr<Library::CADShape> shape;

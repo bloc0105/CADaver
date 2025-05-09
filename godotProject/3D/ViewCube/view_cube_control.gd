@@ -1,4 +1,4 @@
-extends Control
+class_name view_cube_control extends Control
 
 signal transform_changed(trans : Transform3D);
 

@@ -7,17 +7,18 @@ extends Camera3D
 signal rotation_changed()
 
 var zoom: float = 5.0
+var camera_rotation : Transform3D;
+var offset : Vector3;
+var bounding_box : AABB;
 
 var is_dragging: bool = false
 var last_mouse_pos: Vector2
 
-var camera_rotation : Transform3D;
-var camera_zoom : float = 10;
 
 func _ready() -> void:
-	size = camera_zoom
+	size = zoom
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 func _input(event):
@@ -48,6 +49,13 @@ func _on_view_cube_transform_changed(trans: Transform3D) -> void:
 	update_camera()
 	
 func update_camera()->void:
-		transform = camera_rotation*Transform3D.IDENTITY.translated(Vector3(0,0,zoom))
+		transform = Transform3D.IDENTITY.translated(offset)*camera_rotation*Transform3D.IDENTITY.translated(Vector3(0,0,zoom))
 		size = zoom
-		look_at(Vector3(0,0,0),camera_rotation.basis.y)
+		look_at(offset,camera_rotation.basis.y)
+
+func set_aabb(aabb : AABB)->void:
+	bounding_box = aabb;
+	offset= bounding_box.get_center()
+	zoom = bounding_box.get_longest_axis_size()
+	update_camera()
+	

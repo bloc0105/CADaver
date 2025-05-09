@@ -4,6 +4,7 @@ class_name CADVisualization extends Node3D
 
 var drawing : Drawing = null;
 var factory : CADSceneFactory = CADSceneFactory.new();
+var bounding_box : AABB;
 
 func set_drawing(d : Drawing)->void:
 	if (drawing != d):
@@ -31,4 +32,5 @@ func build(shape :CADShape, parent : Node):
 
 func build_children()->void:
 	build(drawing.shape,child_pool)
+	bounding_box = drawing.shape.get_cad_aabb()
 		

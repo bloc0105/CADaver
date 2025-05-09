@@ -56,3 +56,27 @@ theme_override_styles/pressed = ExtResource("3_rvtfl")
 toggle_mode = true
 action_mode = 0
 text = "🟦"
+
+[node name="Rotate90Counter" type="Button" parent="."]
+layout_mode = 0
+offset_left = 125.0
+offset_top = 118.0
+offset_right = 145.0
+offset_bottom = 149.0
+text = "⤴️"
+flat = true
+
+[node name="Rotate90" type="Button" parent="."]
+layout_mode = 0
+offset_left = 125.0
+offset_top = -1.0
+offset_right = 147.0
+offset_bottom = 30.0
+text = "⤵️"
+flat = true
+
+[connection signal="transformation_changed" from="VBoxContainer/SubViewportContainer/SubViewport/ViewCube" to="." method="_on_view_cube_transformation_changed"]
+[connection signal="button_down" from="VBoxContainer/HBoxContainer/View" to="." method="_on_view_button_down"]
+[connection signal="button_down" from="VBoxContainer/HBoxContainer/Orthographic" to="." method="_on_orthographic_button_down"]
+[connection signal="pressed" from="Rotate90Counter" to="." method="_on_rotate_90_counter_pressed"]
+[connection signal="pressed" from="Rotate90" to="." method="_on_rotate_90_pressed"]

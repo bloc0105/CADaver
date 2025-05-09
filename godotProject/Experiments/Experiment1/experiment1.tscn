@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Experiments/Experiment1/experiment1.gd" id="1_qvcxk"]
 [ext_resource type="PackedScene" uid="uid://dodixr1x6oja6" path="res://Experiments/Experiment1/Vertex.tscn" id="2_52weu"]
 [ext_resource type="PackedScene" uid="uid://c6hd26h4bml0e" path="res://Experiments/Experiment1/Edge.tscn" id="3_wkmwd"]
-[ext_resource type="Script" path="res://Experiments/Experiment1/camera_3d.gd" id="4_3lvhm"]
+[ext_resource type="Script" path="res://3D/Camera/adamviola_camera_3d.gd" id="4_3lvhm"]
 [ext_resource type="PackedScene" uid="uid://c2rokc52ag5sx" path="res://3D/light.tscn" id="5_4rrpx"]
 
 [node name="Node3D" type="Node3D"]

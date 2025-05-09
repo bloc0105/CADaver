@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bsabpw4agcisv"]
 
 [ext_resource type="Script" path="res://UI/DrawingScene/DrawingScene.gd" id="1_esesk"]
-[ext_resource type="Script" path="res://Experiments/Experiment1/camera_3d.gd" id="2_gxqih"]
+[ext_resource type="PackedScene" uid="uid://b4y8g54udjjdq" path="res://3D/Camera/free_look_camera.tscn" id="2_ybpe5"]
 [ext_resource type="PackedScene" uid="uid://c2rokc52ag5sx" path="res://3D/light.tscn" id="3_0bqdw"]
 [ext_resource type="PackedScene" uid="uid://cj2haut1mwxe4" path="res://3D/ViewCube/view_cube_control.tscn" id="4_1biwo"]
 
@@ -40,20 +40,16 @@ size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/Viewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.53061)
 mesh = SubResource("PlaneMesh_aq2ix")
 skeleton = NodePath("../../..")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="SubViewportContainer/Viewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.53061)
 mesh = SubResource("CylinderMesh_idnq4")
 skeleton = NodePath("../../..")
 
 [node name="ChildPool" type="Node3D" parent="SubViewportContainer/Viewport"]
 
-[node name="FreeLookCamera" type="Camera3D" parent="SubViewportContainer/Viewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.71266)
-script = ExtResource("2_gxqih")
+[node name="Camera" parent="SubViewportContainer/Viewport" instance=ExtResource("2_ybpe5")]
 
 [node name="Light" parent="SubViewportContainer/Viewport" instance=ExtResource("3_0bqdw")]
 
@@ -73,8 +69,10 @@ grow_vertical = 0
 layout_mode = 1
 offset_left = -40.0
 scale = Vector2(0.999215, 1)
-cam = NodePath("../SubViewportContainer/Viewport/FreeLookCamera")
+cam = NodePath("../SubViewportContainer/Viewport/Camera")
 
 [connection signal="item_rect_changed" from="SubViewportContainer" to="SubViewportContainer" method="_on_item_rect_changed"]
 [connection signal="resized" from="SubViewportContainer" to="SubViewportContainer" method="_on_resized"]
+[connection signal="rotation_changed" from="SubViewportContainer/Viewport/Camera" to="ViewCube" method="_on_camera_rotation_changed"]
 [connection signal="pressed" from="dirtymaker" to="." method="_on_dirtymaker_pressed"]
+[connection signal="transform_changed" from="ViewCube" to="SubViewportContainer/Viewport/Camera" method="_on_view_cube_transform_changed"]

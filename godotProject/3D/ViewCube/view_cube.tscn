@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://b6rn8yhapkhfm"]
+[gd_scene load_steps=6 format=3 uid="uid://b6rn8yhapkhfm"]
 
+[ext_resource type="Script" path="res://3D/ViewCube/view_cube.gd" id="1_4qvvf"]
 [ext_resource type="Material" uid="uid://c2qx01sya8jo7" path="res://3D/ViewCube/view_cube_edge_material.tres" id="1_gdys1"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_q15ff"]
@@ -11,6 +12,7 @@
 [node name="ViewCube" type="MeshInstance3D"]
 mesh = SubResource("BoxMesh_q15ff")
 skeleton = NodePath("../../..")
+script = ExtResource("1_4qvvf")
 
 [node name="Text" type="Node3D" parent="."]
 

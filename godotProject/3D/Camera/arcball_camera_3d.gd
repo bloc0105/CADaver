@@ -35,6 +35,19 @@ func _input(event):
 		elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 			zoom = zoom * (1+zoom_speed);
 			update_camera()
+		elif event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_RIGHT:
+			var viewport = get_viewport()
+			var mouse_position = event.position
+			var ray = project_ray_origin(mouse_position)
+			var to = ray + project_ray_normal(mouse_position) * 1000 # Ray length
+
+			var space_state = get_world_3d().get_direct_space_state()
+			var query = PhysicsRayQueryParameters3D.create(ray, to)
+			var result = space_state.intersect_ray(query)
+
+			if result and result.has("position"):
+				offset = result["position"]
+			
 	if event is InputEventMouseMotion and is_dragging:
 		var current_mouse_pos = event.position
 		var delta : Vector2 = current_mouse_pos - last_mouse_pos

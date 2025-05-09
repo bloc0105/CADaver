@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bsabpw4agcisv"]
+[gd_scene load_steps=6 format=3 uid="uid://bsabpw4agcisv"]
 
 [ext_resource type="Script" path="res://UI/DrawingScene/DrawingScene.gd" id="1_esesk"]
 [ext_resource type="PackedScene" uid="uid://b4y8g54udjjdq" path="res://3D/Camera/free_look_camera.tscn" id="2_ybpe5"]
@@ -6,10 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://cj2haut1mwxe4" path="res://3D/ViewCube/view_cube_control.tscn" id="4_1biwo"]
 
 [sub_resource type="World3D" id="World3D_4yx81"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_aq2ix"]
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_idnq4"]
 
 [node name="DrawingScene" type="Control"]
 custom_minimum_size = Vector2(200, 200)
@@ -38,14 +34,6 @@ world_3d = SubResource("World3D_4yx81")
 handle_input_locally = false
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/Viewport"]
-mesh = SubResource("PlaneMesh_aq2ix")
-skeleton = NodePath("../../..")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="SubViewportContainer/Viewport"]
-mesh = SubResource("CylinderMesh_idnq4")
-skeleton = NodePath("../../..")
 
 [node name="ChildPool" type="Node3D" parent="SubViewportContainer/Viewport"]
 

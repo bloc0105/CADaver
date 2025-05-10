@@ -3,11 +3,13 @@ extends Camera3D
 @export var sensitivity: float = 0.005
 @export var zoom_speed: float = 0.05
 
+@export var start_rotation : Transform3D;
+
+var camera_rotation : Transform3D;
 
 signal rotation_changed()
 
 var zoom: float = 5.0
-var camera_rotation : Transform3D;
 var offset : Vector3;
 var bounding_box : AABB;
 
@@ -70,5 +72,7 @@ func set_aabb(aabb : AABB)->void:
 	bounding_box = aabb;
 	offset= bounding_box.get_center()
 	zoom = bounding_box.get_longest_axis_size()
+	camera_rotation = start_rotation.inverse()
 	update_camera()
+	rotation_changed.emit()
 	

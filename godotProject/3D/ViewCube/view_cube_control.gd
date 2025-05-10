@@ -9,7 +9,7 @@ signal transform_changed(trans : Transform3D);
 @onready var ortho_button : Button = $VBoxContainer/HBoxContainer/Orthographic
 
 func _ready() -> void:
-	view_button.button_pressed = true
+	ortho_button.button_pressed = true
 
 func _process(_delta: float) -> void:
 	pass

@@ -75,6 +75,7 @@ offset_bottom = 30.0
 text = "⤵️"
 flat = true
 
+[connection signal="reset_view" from="VBoxContainer/SubViewportContainer/SubViewport/ViewCube" to="." method="_on_view_cube_reset_view"]
 [connection signal="transformation_changed" from="VBoxContainer/SubViewportContainer/SubViewport/ViewCube" to="." method="_on_view_cube_transformation_changed"]
 [connection signal="button_down" from="VBoxContainer/HBoxContainer/View" to="." method="_on_view_button_down"]
 [connection signal="button_down" from="VBoxContainer/HBoxContainer/Orthographic" to="." method="_on_orthographic_button_down"]

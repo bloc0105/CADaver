@@ -8,3 +8,7 @@ var face : CADFace;
 func _ready()->void:
 	var cadmesh = face.get_cad_triangulation(0.1)
 	mesh.mesh = cadmesh
+	for x in mesh.get_children():
+		mesh.remove_child(x)
+		x.queue_free()
+	mesh.create_trimesh_collision()

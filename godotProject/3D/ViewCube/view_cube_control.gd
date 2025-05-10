@@ -1,6 +1,7 @@
 class_name view_cube_control extends Control
 
 signal transform_changed(trans : Transform3D);
+signal reset_view()
 
 @export var cam : Camera3D 
 
@@ -38,3 +39,7 @@ func _on_rotate_90_counter_pressed() -> void:
 func _on_rotate_90_pressed() -> void:
 	cube.rotate_z(PI/4)
 	transform_changed.emit(cube.transform.inverse())
+
+
+func _on_view_cube_reset_view() -> void:
+	reset_view.emit()

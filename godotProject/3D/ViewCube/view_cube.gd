@@ -1,6 +1,7 @@
 class_name view_cube extends MeshInstance3D
 
 signal transformation_changed(trans : Transform3D)
+signal reset_view()
 
 @export var sensitivity: float = 0.01
 
@@ -20,11 +21,11 @@ func _input(event):
 				there_was_motion = false
 			else:
 				is_dragging = false
-				print(transform)
 				if (!there_was_motion):
 					var col : view_cube_button = pick(event.position)
 					if(col):
 						transform = col.trans
+						reset_view.emit()
 						transformation_changed.emit(transform)
 	if event is InputEventMouseMotion and is_dragging:
 		there_was_motion = true
@@ -44,7 +45,7 @@ func _input(event):
 			hover_button = col;
 			hover_button.hover()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	trans = transform
 		
 func pick(pos : Vector2) -> view_cube_button:

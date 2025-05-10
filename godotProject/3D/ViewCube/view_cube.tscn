@@ -196,6 +196,7 @@ material_override = ExtResource("1_gdys1")
 mesh = SubResource("BoxMesh_xt78w")
 
 [node name="ViewCubeButton" parent="Corners/CornerPPP" instance=ExtResource("2_w5ryy")]
+trans = Transform3D(0.71, 0, -0.71, -0.5, 0.71, -0.5, 0.5, 0.71, 0.5, 0, 0, 0)
 
 [node name="CornerPPM" type="MeshInstance3D" parent="Corners"]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.5, 0.5, -0.5)
@@ -203,6 +204,7 @@ material_override = ExtResource("1_gdys1")
 mesh = SubResource("BoxMesh_xt78w")
 
 [node name="ViewCubeButton" parent="Corners/CornerPPM" instance=ExtResource("2_w5ryy")]
+trans = Transform3D(-0.71, 0, -0.71, -0.5, 0.71, 0.5, 0.5, 0.5, -0.5, 0, 0, 0)
 
 [node name="CornerPMM" type="MeshInstance3D" parent="Corners"]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.5, -0.5, -0.5)
@@ -210,6 +212,7 @@ material_override = ExtResource("1_gdys1")
 mesh = SubResource("BoxMesh_xt78w")
 
 [node name="ViewCubeButton" parent="Corners/CornerPMM" instance=ExtResource("2_w5ryy")]
+trans = Transform3D(-0.707, 0, -0.707, 0.5, 0.707, -0.5, 0.5, -0.707, -0.5, 0, 0, 0)
 
 [node name="CornerPMP" type="MeshInstance3D" parent="Corners"]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.5, -0.5, 0.5)
@@ -217,6 +220,7 @@ material_override = ExtResource("1_gdys1")
 mesh = SubResource("BoxMesh_xt78w")
 
 [node name="ViewCubeButton" parent="Corners/CornerPMP" instance=ExtResource("2_w5ryy")]
+trans = Transform3D(0.71, 0, -0.71, 0.5, 0.71, 0.5, 0.5, -0.71, 0.5, 0, 0, 0)
 
 [node name="CornerMPP" type="MeshInstance3D" parent="Corners"]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.5, 0.5, 0.5)
@@ -224,6 +228,7 @@ material_override = ExtResource("1_gdys1")
 mesh = SubResource("BoxMesh_xt78w")
 
 [node name="ViewCubeButton" parent="Corners/CornerMPP" instance=ExtResource("2_w5ryy")]
+trans = Transform3D(0.71, 0, 0.71, 0.5, 0.71, -0.5, -0.5, 0.5, 0.5, 0, 0, 0)
 
 [node name="CornerMPM" type="MeshInstance3D" parent="Corners"]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.5, 0.5, -0.5)
@@ -231,6 +236,7 @@ material_override = ExtResource("1_gdys1")
 mesh = SubResource("BoxMesh_xt78w")
 
 [node name="ViewCubeButton" parent="Corners/CornerMPM" instance=ExtResource("2_w5ryy")]
+trans = Transform3D(-0.707, 0, 0.707, 0.5, 0.707, 0.5, -0.5, 0.5, -0.5, 0, 0, 0)
 
 [node name="CornerMMP" type="MeshInstance3D" parent="Corners"]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.5, -0.5, 0.5)
@@ -238,6 +244,7 @@ material_override = ExtResource("1_gdys1")
 mesh = SubResource("BoxMesh_xt78w")
 
 [node name="ViewCubeButton" parent="Corners/CornerMMP" instance=ExtResource("2_w5ryy")]
+trans = Transform3D(0.71, 0, 0.71, -0.5, 0.71, 0.5, -0.5, 0, 0.5, 0, 0, 0)
 
 [node name="CornerMMM" type="MeshInstance3D" parent="Corners"]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.5, -0.5, -0.5)
@@ -245,6 +252,7 @@ material_override = ExtResource("1_gdys1")
 mesh = SubResource("BoxMesh_xt78w")
 
 [node name="ViewCubeButton" parent="Corners/CornerMMM" instance=ExtResource("2_w5ryy")]
+trans = Transform3D(-0.707, 0, 0.707, -0.5, 0.707, -0.5, -0.5, -0.707, -0.5, 0, 0, 0)
 
 [node name="Light" type="Node3D" parent="."]
 

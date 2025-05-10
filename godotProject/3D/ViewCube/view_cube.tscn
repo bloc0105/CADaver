@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://b6rn8yhapkhfm"]
+[gd_scene load_steps=8 format=3 uid="uid://b6rn8yhapkhfm"]
 
 [ext_resource type="Script" path="res://3D/ViewCube/view_cube.gd" id="1_4qvvf"]
 [ext_resource type="Material" uid="uid://c2qx01sya8jo7" path="res://3D/ViewCube/view_cube_edge_material.tres" id="1_gdys1"]
+[ext_resource type="PackedScene" uid="uid://dnnlnvx6epsq5" path="res://3D/ViewCube/view_cube_button_text.tscn" id="2_812jq"]
 [ext_resource type="PackedScene" uid="uid://b6a7ghrkoyfgt" path="res://3D/ViewCube/view_cube_button.tscn" id="2_w5ryy"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_q15ff"]
@@ -18,49 +19,49 @@ script = ExtResource("1_4qvvf")
 [node name="Text" type="Node3D" parent="."]
 
 [node name="Front" type="Label3D" parent="Text"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.515)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.55)
 pixel_size = 0.008
 modulate = Color(0, 0, 1, 1)
 text = "Front
 Z+"
 
-[node name="ViewCubeButton" parent="Text/Front" instance=ExtResource("2_w5ryy")]
+[node name="ViewCubeButtonText" parent="Text/Front" instance=ExtResource("2_812jq")]
 
 [node name="Top" type="Label3D" parent="Text"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.515, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.55, 0)
 pixel_size = 0.008
 modulate = Color(0, 100, 0, 1)
 text = "Top
 Y+"
 
-[node name="ViewCubeButton" parent="Text/Top" instance=ExtResource("2_w5ryy")]
+[node name="ViewCubeButtonText" parent="Text/Top" instance=ExtResource("2_812jq")]
 
 [node name="Bot" type="Label3D" parent="Text"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.515, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.55, 0)
 pixel_size = 0.008
 modulate = Color(0, 100, 0, 1)
 text = "Bot
 Y-"
 
-[node name="ViewCubeButton" parent="Text/Bot" instance=ExtResource("2_w5ryy")]
+[node name="ViewCubeButtonText" parent="Text/Bot" instance=ExtResource("2_812jq")]
 
 [node name="Back" type="Label3D" parent="Text"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -0.515)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -0.55)
 pixel_size = 0.008
 modulate = Color(0, 0, 1, 1)
 text = "Back
 Z-"
 
-[node name="ViewCubeButton" parent="Text/Back" instance=ExtResource("2_w5ryy")]
+[node name="ViewCubeButtonText" parent="Text/Back" instance=ExtResource("2_812jq")]
 
 [node name="Right" type="Label3D" parent="Text"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.515077, 0, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.55, 0, 0)
 pixel_size = 0.008
 modulate = Color(1, 0.08, 0.08, 1)
 text = "Right
 X+"
 
-[node name="ViewCubeButton" parent="Text/Right" instance=ExtResource("2_w5ryy")]
+[node name="ViewCubeButtonText" parent="Text/Right" instance=ExtResource("2_812jq")]
 
 [node name="Left" type="Label3D" parent="Text"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.515, 0, 0)
@@ -69,7 +70,7 @@ modulate = Color(1, 0.08, 0.08, 1)
 text = "Left
 X-"
 
-[node name="ViewCubeButton" parent="Text/Left" instance=ExtResource("2_w5ryy")]
+[node name="ViewCubeButtonText" parent="Text/Left" instance=ExtResource("2_812jq")]
 
 [node name="Edges" type="Node3D" parent="."]
 

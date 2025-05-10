@@ -7,6 +7,7 @@ signal transformation_changed(trans : Transform3D)
 var is_dragging: bool = false
 var last_mouse_pos: Vector2
 var there_was_motion : bool = false
+var hover_button : view_cube_button = null
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -18,8 +19,10 @@ func _input(event):
 			else:
 				is_dragging = false
 				if (!there_was_motion):
-					var col := pick(event.position)
-					print(col)
+					var col : view_cube_button = pick(event.position)
+					if(col):
+						transform = col.trans
+						transformation_changed.emit(transform)
 	if event is InputEventMouseMotion and is_dragging:
 		there_was_motion = true
 		var current_mouse_pos = event.position
@@ -29,8 +32,17 @@ func _input(event):
 		rotate_x(delta.y * sensitivity)
 		if(delta.length_squared()>0):
 			transformation_changed.emit(transform)
+	if (event is InputEventMouseMotion):
+		var col := pick(event.position)
+		if (hover_button != col and hover_button):
+			hover_button.unhover()
+			hover_button = null
+		if (col):
+			hover_button = col;
+			hover_button.hover()
+
 		
-func pick(pos : Vector2) -> Node:
+func pick(pos : Vector2) -> view_cube_button:
 	var viewport = get_viewport()
 	var mouse_position = pos
 	var ray_origin = viewport.get_camera_3d().project_ray_origin(mouse_position)
@@ -40,6 +52,6 @@ func pick(pos : Vector2) -> Node:
 	query_parameters.from = ray_origin
 	query_parameters.to = ray_origin + ray_direction * 1000 # Raycast 1000 Einheiten weit
 	var result = space_state.intersect_ray(query_parameters)
-	if result and result.collider:
+	if result and result.collider and result.collider is view_cube_button:
 		return result.collider
 	return null

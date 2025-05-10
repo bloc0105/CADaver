@@ -2,6 +2,7 @@ class_name DrawingScene extends Control
 
 @onready var camera : Camera3D = $SubViewportContainer/Viewport/Camera
 @onready var child_pool : Node = $SubViewportContainer/Viewport/ChildPool
+@onready var viewport : Viewport = $SubViewportContainer/Viewport
 
 var cad_vis : PackedScene = preload("res://3D/CADObject/CADVisualization.tscn")
 

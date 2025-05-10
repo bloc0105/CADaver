@@ -10,10 +10,11 @@ config_version=5
 
 [application]
 
-config/name="godotProject"
+config/name="CADaver"
+config/description="STEP Viewer. Maybe more one day"
 run/main_scene="res://UI/MainWindow/MainWindow.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://Beissi.png"
 
 [autoload]
 

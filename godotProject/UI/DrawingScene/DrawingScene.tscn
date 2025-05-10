@@ -1,11 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://bsabpw4agcisv"]
+[gd_scene load_steps=8 format=3 uid="uid://bsabpw4agcisv"]
 
 [ext_resource type="Script" path="res://UI/DrawingScene/DrawingScene.gd" id="1_esesk"]
 [ext_resource type="PackedScene" uid="uid://b4y8g54udjjdq" path="res://3D/Camera/free_look_camera.tscn" id="2_ybpe5"]
 [ext_resource type="PackedScene" uid="uid://c2rokc52ag5sx" path="res://3D/light.tscn" id="3_0bqdw"]
 [ext_resource type="PackedScene" uid="uid://cj2haut1mwxe4" path="res://3D/ViewCube/view_cube_control.tscn" id="4_1biwo"]
 
+[sub_resource type="Environment" id="Environment_w46db"]
+
+[sub_resource type="Environment" id="Environment_h8pws"]
+
 [sub_resource type="World3D" id="World3D_4yx81"]
+environment = SubResource("Environment_w46db")
+fallback_environment = SubResource("Environment_h8pws")
 
 [node name="DrawingScene" type="Control"]
 custom_minimum_size = Vector2(200, 200)
@@ -45,6 +51,7 @@ start_rotation = Transform3D(0.71, 0, -0.71, -0.5, 0.71, -0.5, 0.5, 0.71, 0.5, 0
 [node name="Light" parent="SubViewportContainer/Viewport" instance=ExtResource("3_0bqdw")]
 
 [node name="dirtymaker" type="Button" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0

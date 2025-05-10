@@ -10,7 +10,8 @@ func set_drawing(d : Drawing)->void:
 	if (drawing != d):
 		drawing = d;
 		reset_children()
-		build_children()
+		if (drawing.shape):
+			build_children()
 
 func reset_drawing()-> void:
 	drawing = null

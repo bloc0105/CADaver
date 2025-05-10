@@ -64,15 +64,20 @@ func on_load_drawing() -> void:
 func invokeSaveFileDialog(drawing : Drawing):
 	var dlg = SaveFileDialog.new()
 	dlg.add_filter("Step File", ["stp","step"])
+	#dlg.add_filter("STL File", ["stl"])
 	dlg.set_save_file_name(drawing.draw_name + ".step");
 	dlg.set_path(path_util.get_path_without_filename(drawing.save_path));
 	dlg.execute();
 	
 	if (!dlg.is_canceled()):
-		drawing.shape.save_cad_to_file(dlg.get_result_path())
-		drawing.dirty = false
-		drawing.name = path_util.get_file_name_without_extension(dlg.get_result_path());
-		Hub.file.dirty_changed.emit()
+		var extension := path_util.get_extension(dlg.get_result_path())
+		if (extension == ".stl"):
+			pass
+		else:
+			drawing.shape.save_cad_to_file(dlg.get_result_path())
+			drawing.dirty = false
+			drawing.name = path_util.get_file_name_without_extension(dlg.get_result_path());
+			Hub.file.dirty_changed.emit()
 
 func quit_pressed():
 	if (continue_closing):

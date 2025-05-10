@@ -20,7 +20,6 @@ var pan_origin: Vector2
 
 func _ready() -> void:
 	size = zoom
-#	near = 0.00001
 
 func _process(_delta: float) -> void:
 	pass

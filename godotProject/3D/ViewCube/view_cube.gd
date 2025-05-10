@@ -4,6 +4,8 @@ signal transformation_changed(trans : Transform3D)
 
 @export var sensitivity: float = 0.01
 
+@export var trans: Transform3D
+
 var is_dragging: bool = false
 var last_mouse_pos: Vector2
 var there_was_motion : bool = false
@@ -18,6 +20,7 @@ func _input(event):
 				there_was_motion = false
 			else:
 				is_dragging = false
+				print(transform)
 				if (!there_was_motion):
 					var col : view_cube_button = pick(event.position)
 					if(col):
@@ -41,6 +44,8 @@ func _input(event):
 			hover_button = col;
 			hover_button.hover()
 
+func _process(delta: float) -> void:
+	trans = transform
 		
 func pick(pos : Vector2) -> view_cube_button:
 	var viewport = get_viewport()

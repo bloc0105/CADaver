@@ -15,3 +15,7 @@ func _on_editor_fullscreen_mode_changed(val:bool) -> void:
 
 func _on_main_window_quit_requested() -> void:
 	menu.close_request()
+
+
+func _on_tree_entered() -> void:
+	pass # Replace with function body.

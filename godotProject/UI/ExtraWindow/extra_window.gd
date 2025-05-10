@@ -16,6 +16,7 @@ func _notification(what : int):
 
 func _on_tree_entered() -> void:
 	Hub.extra_windows.append(self)
+	
 
 func _on_tree_exited() -> void:
 	Hub.extra_windows.erase(self)

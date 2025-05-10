@@ -9,7 +9,8 @@ var cad_vis : PackedScene = preload("res://3D/CADObject/CADVisualization.tscn")
 var drawing : Drawing = null;
 
 func _ready()->void:
-	pass
+	if (Hub.file.drawings.size() > 0):
+		_on_tab_bar_drawing_changed(0)
 
 func _on_dirtymaker_pressed() -> void:
 	if (drawing and not drawing.dirty):

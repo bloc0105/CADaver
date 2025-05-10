@@ -28,6 +28,7 @@ func _on_index_pressed(index: int) -> void:
 func add_extra_window()->void:
 	var window := extra_window_scene.instantiate()
 	Hub.root_node.add_child(window);
+	
 
 func toggle_fullscreen() -> void:		
 	bar.window.toggle_fullscreen.emit()

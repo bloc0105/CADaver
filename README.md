@@ -13,7 +13,16 @@ Due to godots accesibility it will be easy to improve UX/UI for ~everyone.
 
 I get easily distracted by new projects, so lets see how it goes.
 
-# Compilation
+# Controls
+
+| Move | Description |
+|---|---|
+| Left Click Drag | Rotate camera around center |
+| Double Click | Change center to picked position |
+| Right Click Draw | Panning |
+| Mouse Wheel | Zoom |
+
+# How to Build
 
 It is writen Cross Platform compatible, so it should work on your machine.
 

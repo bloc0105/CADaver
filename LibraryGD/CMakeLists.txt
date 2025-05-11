@@ -36,6 +36,8 @@ set(Util_Files
     "Source/Util/SaveFileDialog.cpp"
     "Source/Util/LoadFileDialog.h"
     "Source/Util/LoadFileDialog.cpp"
+    "Source/Util/CADOperation.h"
+    "Source/Util/CADOperation.cpp"
 )
 source_group("Source/Util" FILES ${Util_Files})
 
@@ -53,6 +55,7 @@ set_property(TARGET LibraryGD PROPERTY CXX_STANDARD 20)
 target_include_directories(LibraryGD PRIVATE 
 "${CMAKE_CURRENT_SOURCE_DIR}/src"
 ./../Library/Source
+./Source/
 )
 
 target_link_libraries(LibraryGD PUBLIC 

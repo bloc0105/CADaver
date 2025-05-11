@@ -45,17 +45,7 @@ set(CADShapes_Files
 )
 source_group("Source/CADShape" FILES ${CADShapes_Files})
 
-set(Experiment_Files
-    "Source/Library/Experiments/HelloBottle.cpp"
-    "Source/Library/Experiments/HelloBottle.h"
-    "Source/Library/Experiments/BoxTriangulate.cpp"
-    "Source/Library/Experiments/BoxTriangulate.h"
-    "Source/Library/Experiments/IterateShapes.cpp"
-    "Source/Library/Experiments/IterateShapes.h"
-)
-source_group("Source/Experiments" FILES ${Experiment_Files})
-
-set(Experiment_Files
+set(Util_Files
     "Source/Library/Util/STLWriter.cpp"
     "Source/Library/Util/STLWriter.h"
     "Source/Library/Util/SaveFileDialog.cpp"
@@ -63,11 +53,18 @@ set(Experiment_Files
     "Source/Library/Util/LoadFileDialog.cpp"
     "Source/Library/Util/LoadFileDialog.h"
 )
-source_group("Source/Util" FILES ${Experiment_Files})
+source_group("Source/Util" FILES ${Util_Files})
+
+set(Operation_Files
+    "Source/Library/Operation/ExtrudeOperation.cpp"
+    "Source/Library/Operation/ExtrudeOperation.h"
+)
+source_group("Source/Operation" FILES ${Operation_Files})
 
 set(ALL_FILES
     ${Source_Files}
-    ${Experiment_Files}
+    ${Util_Files}
+    ${Operation_Files}
     ${CADShapes_Files}
 )
 
@@ -95,8 +92,14 @@ nfd::nfd
 target_include_directories(Library PUBLIC 
 ./Source/
 )
+target_include_directories(Library PRIVATE 
+./Source/Library/
+)
 target_include_directories(LibraryTest PUBLIC 
 ./Source/
+)
+target_include_directories(LibraryTest PRIVATE 
+./Source/Library/
 )
 
 #https://www.youtube.com/watch?v=SfRFG_Pk9pk

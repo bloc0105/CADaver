@@ -8,4 +8,5 @@ var index_extrude : int = 0
 func _on_index_pressed(index: int) -> void:
 		match index:
 			index_extrude:
-				pass
+				for x in selected:
+					CADOperation.extrude(x.get_shape(),Vector3(1,0,0))

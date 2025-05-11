@@ -16,3 +16,5 @@ func reset_object()->void:
 func select_object()->void:
 	get_parent().material_override = face_material_select
 	
+func get_shape()  -> CADShape:
+	return get_parent().get_parent().face as CADShape

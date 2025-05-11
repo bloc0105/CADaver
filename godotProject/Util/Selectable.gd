@@ -8,3 +8,6 @@ func unhover_object():
 	
 func select_object():
 	pass
+
+func get_shape()  -> CADShape:
+	return null

@@ -17,15 +17,16 @@ func _on_dirtymaker_pressed() -> void:
 		drawing.dirty = true;
 		Hub.file.dirty_changed.emit();
 	
-func reset_children()->void:
+func reset()->void:
 	for n in child_pool.get_children():
 		child_pool.remove_child(n)
 		n.queue_free()
+	camera.reset()
 		
 func _on_tab_bar_drawing_changed(index: Variant) -> void:
 	if (!child_pool):
 		return;
-	reset_children()
+	reset()
 	if (index != -1):
 		var d := Hub.file.drawings[index]
 		var vis := cad_vis.instantiate() as CADVisualization

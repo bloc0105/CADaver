@@ -12,7 +12,7 @@ namespace Library
     {
         BRepPrimAPI_MakePrism prismMaker(input.getData(), gp_Vec(direction.x, direction.y, direction.z));
         TopoDS_Shape          extrudedShape = prismMaker.Shape();
-        if (!extrudedShape.IsNull())
+        if (extrudedShape.IsNull())
             return nullptr;
 
         return CADShapeFactory::make(extrudedShape);

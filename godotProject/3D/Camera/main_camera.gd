@@ -109,3 +109,5 @@ func pick(pos : Vector2) -> Dictionary:
 	var query = PhysicsRayQueryParameters3D.create(ray, to)
 	return space_state.intersect_ray(query)
 	
+func reset()->void:
+	selection.reset()

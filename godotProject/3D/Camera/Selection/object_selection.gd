@@ -45,3 +45,6 @@ func clear_selection()->void:
 		x.reset_object()
 	current_selected = []
 	
+func reset()->void:
+	current_selected = []
+	current_hover = null

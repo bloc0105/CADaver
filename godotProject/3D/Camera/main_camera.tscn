@@ -7,10 +7,6 @@
 [node name="MainCamera" type="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.71266)
 script = ExtResource("1_4liwp")
-sensitivity = null
-zoom_speed = null
-pan_speed = null
-start_rotation = null
 
 [node name="Selection" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("2_oemhu")]
 camera = NodePath("..")

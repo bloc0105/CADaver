@@ -18,6 +18,7 @@ Goals for the next version:
 * Extrusion
 * Sketches (line only)
 * Remember Settings
+* Linux releasebuild
 
 
 # Controls

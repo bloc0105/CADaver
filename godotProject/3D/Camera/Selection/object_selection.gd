@@ -5,8 +5,8 @@ class_name object_selection extends Node3D
 var current_hover : Selectable = null
 var current_selected : Array[Selectable] = []
 
-func hover_object(position : Vector2):
-	var result = camera.pick(position)
+func hover_object(pos : Vector2):
+	var result = camera.pick(pos)
 	var success : bool = false
 	if result and result.has("collider"):
 		var col : Node = result["collider"]
@@ -22,7 +22,7 @@ func hover_object(position : Vector2):
 			current_hover.reset_object()
 		current_hover = null
 
-func select_object(position : Vector2, modifier : KeyModifierMask):
+func select_object(_pos : Vector2, modifier : KeyModifierMask):
 	var ctrl : bool = modifier & KEY_MASK_CTRL;
 	var shift : bool = modifier & KEY_MASK_SHIFT;
 	

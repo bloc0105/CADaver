@@ -1,6 +1,7 @@
 extends Camera3D
 
 @onready var selection : object_selection = $Selection
+@onready var context_menu : main_context_menu = $ContextMenu
 
 @export var sensitivity: float = 0.005
 @export var zoom_speed: float = 0.05
@@ -56,7 +57,9 @@ func _input(event):
 			else:
 				is_panning = false
 				if (!there_was_motion):
-					pass
+					context_menu.selected = selection.current_selected 
+					context_menu.position = DisplayServer.mouse_get_position()
+					context_menu.show()
 
 	if event is InputEventMouseMotion and is_dragging:
 		there_was_motion = true

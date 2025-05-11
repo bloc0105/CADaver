@@ -13,6 +13,14 @@ Due to godots accesibility it will be easy to improve UX/UI for ~everyone.
 
 I get easily distracted by new projects, so lets see how it goes.
 
+Goals for the next version:
+
+* Extrusion
+* Sketches (line only)
+* Remember Settings
+* Linux releasebuild
+
+
 # Controls
 
 | Move | Description |

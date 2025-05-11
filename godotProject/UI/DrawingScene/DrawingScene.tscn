@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bsabpw4agcisv"]
 
 [ext_resource type="Script" path="res://UI/DrawingScene/DrawingScene.gd" id="1_esesk"]
-[ext_resource type="PackedScene" uid="uid://b4y8g54udjjdq" path="res://3D/Camera/free_look_camera.tscn" id="2_ybpe5"]
+[ext_resource type="PackedScene" uid="uid://b4y8g54udjjdq" path="res://3D/Camera/main_camera.tscn" id="2_ybpe5"]
 [ext_resource type="PackedScene" uid="uid://c2rokc52ag5sx" path="res://3D/light.tscn" id="3_0bqdw"]
 [ext_resource type="PackedScene" uid="uid://cj2haut1mwxe4" path="res://3D/ViewCube/view_cube_control.tscn" id="4_1biwo"]
 

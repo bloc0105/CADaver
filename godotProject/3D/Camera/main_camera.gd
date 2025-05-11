@@ -17,6 +17,9 @@ var is_dragging: bool = false
 var last_mouse_pos: Vector2
 var is_panning: bool = false
 var pan_origin: Vector2
+var current_hover : Selectable = null
+var current_selected : Selectable = null
+var there_was_motion : bool = false
 
 func _ready() -> void:
 	size = zoom
@@ -41,13 +44,25 @@ func _input(event):
 			if event.pressed:
 				is_dragging = true
 				last_mouse_pos = event.position
+				there_was_motion = false
 			else:
 				is_dragging = false
+				if (!there_was_motion):
+					if (current_hover):
+						if (current_selected != current_hover):
+							if (current_selected):
+								current_selected.reset_object()
+							current_selected = current_hover;
+							current_selected.select_object()
+					elif (current_selected and !current_hover):
+						current_selected.reset_object()
+						current_selected = null
 		elif event.button_index == MOUSE_BUTTON_RIGHT:
 			is_panning = event.pressed
 			pan_origin = event.position
 
 	if event is InputEventMouseMotion and is_dragging:
+		there_was_motion = true
 		var current_mouse_pos = event.position
 		var delta : Vector2 = current_mouse_pos - last_mouse_pos
 		last_mouse_pos = current_mouse_pos
@@ -60,6 +75,21 @@ func _input(event):
 		offset = offset + (transform.basis.x * -delta.x) * zoom
 		offset = offset + (transform.basis.y * delta.y) * zoom
 		update_camera()
+	elif event is InputEventMouseMotion:
+		var result = pick(event.position)
+		var success : bool = false
+		if result and result.has("collider"):
+			var col : Node = result["collider"]
+			if (col is Selectable and col != current_selected):
+				if (current_hover and current_hover != current_selected):
+					current_hover.reset_object()
+				col.hover_object()
+				success = true
+				current_hover = col
+		if (!success):
+			if (current_hover and current_hover != current_selected):
+				current_hover.reset_object()
+			current_hover = null
 		
 func _on_view_cube_transform_changed(trans: Transform3D) -> void:
 	camera_rotation = trans

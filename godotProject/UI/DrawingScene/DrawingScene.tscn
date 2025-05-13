@@ -70,7 +70,7 @@ cam = NodePath("../SubViewportContainer/Viewport/MainCamera")
 
 [connection signal="item_rect_changed" from="SubViewportContainer" to="SubViewportContainer" method="_on_item_rect_changed"]
 [connection signal="resized" from="SubViewportContainer" to="SubViewportContainer" method="_on_resized"]
-[connection signal="rotation_changed" from="SubViewportContainer/Viewport/MainCamera" to="ViewCube" method="_on_main_camera_rotation_changed"]
+[connection signal="rotation_changed" from="SubViewportContainer/Viewport/MainCamera" to="ViewCube" method="_on_camera_rotation_changed"]
 [connection signal="pressed" from="dirtymaker" to="." method="_on_dirtymaker_pressed"]
 [connection signal="reset_view" from="ViewCube" to="SubViewportContainer/Viewport/MainCamera" method="_on_view_cube_reset_view"]
 [connection signal="transform_changed" from="ViewCube" to="SubViewportContainer/Viewport/MainCamera" method="_on_view_cube_transform_changed"]

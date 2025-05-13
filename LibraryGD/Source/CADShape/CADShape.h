@@ -38,6 +38,7 @@ namespace godot
         godot::AABB          getAABB() const;
         godot::String        getCadType() const;
         Ref<ArrayMesh>       getTriangulation(double precision = 0.1) const;
+        void                 saveTriangulation(const godot::String& filename,double precision = 0.1) const;
 
         std::unique_ptr<Library::CADShape> shape;
     };

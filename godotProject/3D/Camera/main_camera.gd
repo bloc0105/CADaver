@@ -1,8 +1,9 @@
-extends Camera3D
+class_name main_camera extends Camera3D
 
 @onready var selection : object_selection = $Selection
 @onready var context_menu : main_context_menu = $ContextMenu
 
+@export var child_pool : Node;
 @export var sensitivity: float = 0.005
 @export var zoom_speed: float = 0.05
 @export var pan_speed: float = 0.1
@@ -23,6 +24,7 @@ var there_was_motion : bool = false
 
 func _ready() -> void:
 	size = zoom
+	context_menu.child_pool = child_pool
 
 func _process(_delta: float) -> void:
 	pass

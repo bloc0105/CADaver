@@ -19,6 +19,7 @@ namespace godot
 
         ClassDB::bind_static_method("CADShape", D_METHOD("load_cad_from_file", "filename"), &CADShape::loadCadFromFile);
         ClassDB::bind_method(D_METHOD("get_cad_triangulation", "precision"), &CADShape::getTriangulation);
+        ClassDB::bind_method(D_METHOD("save_cad_triangulation", "filename", "precision"), &CADShape::saveTriangulation);
     }
 
     CADShape::CADShape()
@@ -107,12 +108,18 @@ namespace godot
         }
         PackedInt32Array godot_indices;
         godot_indices.resize(mesh->indices.size());
-        for (size_t i = 0; i < mesh->indices.size(); ++i)
+        for (size_t i = 0; i < mesh->indices.size(); i++)
         {
             st->add_index(mesh->indices[i]);
         }
         st->generate_normals();
         Ref<ArrayMesh> result = st->commit();
         return result;
+    }
+
+    void CADShape::saveTriangulation(const godot::String& filename, double precision) const
+    {
+        auto mesh = Library::TriangulateOperation::triangulate(getData(), precision);
+        mesh->saveAsSTL(std::string(filename.utf8()));
     }
 }

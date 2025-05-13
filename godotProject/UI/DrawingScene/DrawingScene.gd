@@ -1,6 +1,6 @@
 class_name DrawingScene extends Control
 
-@onready var camera : Camera3D = $SubViewportContainer/Viewport/Camera
+@onready var camera : Camera3D = $SubViewportContainer/Viewport/MainCamera
 @onready var child_pool : Node = $SubViewportContainer/Viewport/ChildPool
 @onready var viewport : Viewport = $SubViewportContainer/Viewport
 

@@ -43,3 +43,7 @@ func _on_rotate_90_pressed() -> void:
 
 func _on_view_cube_reset_view() -> void:
 	reset_view.emit()
+
+
+func _on_main_camera_rotation_changed() -> void:
+	pass # Replace with function body.

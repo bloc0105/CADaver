@@ -23,25 +23,20 @@ namespace Library
         mesher.Perform();
         std::map<std::tuple<double, double, double>, int> vertexMap;
         auto pointToTuple = [](const gp_Pnt& p) { return std::make_tuple(p.X(), p.Y(), p.Z()); };
-
-        std::map<TopoDS_Face, Handle(Poly_Triangulation)> faceTriangulations;
-
+        
         TopExp_Explorer faceExplorer(shape.getData(), TopAbs_FACE);
         for (; faceExplorer.More(); faceExplorer.Next())
         {
             TopoDS_Face face = TopoDS::Face(faceExplorer.Current());
 
             TopAbs_Orientation o        = face.Orientation();
-            bool               reversed = o == 1;
+            bool               reversed = o == TopAbs_REVERSED;
             TopLoc_Location    loc;
             Handle(Poly_Triangulation) triangulation = BRep_Tool::Triangulation(face, loc);
             if (!triangulation.IsNull())
             {
                 size_t triangleAmount = triangulation->NbTriangles();
                 size_t verticesAmount = triangulation->NbNodes();
-                result->indices.reserve(triangleAmount * 3);
-                result->vertices.reserve(verticesAmount);
-
                 
                 for (size_t i = 0; i < verticesAmount; i++)
                 {

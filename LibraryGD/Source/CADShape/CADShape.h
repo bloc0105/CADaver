@@ -2,6 +2,7 @@
 
 #include <glm/glm.hpp>
 #include <godot_cpp/classes/node3d.hpp>
+#include <godot_cpp/classes/array_mesh.hpp>
 #include <memory>
 #include <string>
 
@@ -36,6 +37,7 @@ namespace godot
         Array                getCadChildren() const;
         godot::AABB          getAABB() const;
         godot::String        getCadType() const;
+        Ref<ArrayMesh>       getTriangulation(double precision = 0.1) const;
 
         std::unique_ptr<Library::CADShape> shape;
     };

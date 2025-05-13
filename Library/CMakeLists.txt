@@ -40,8 +40,6 @@ set(CADShapes_Files
     "Source/Library/CADShape/TopAbs2String.h"
     "Source/Library/CADShape/CADShapeFactory.cpp"
     "Source/Library/CADShape/CADShapeFactory.h"
-    "Source/Library/CADShape/Triangulation.cpp"
-    "Source/Library/CADShape/Triangulation.h"
 )
 source_group("Source/CADShape" FILES ${CADShapes_Files})
 
@@ -52,12 +50,16 @@ set(Util_Files
     "Source/Library/Util/SaveFileDialog.h"
     "Source/Library/Util/LoadFileDialog.cpp"
     "Source/Library/Util/LoadFileDialog.h"
+    "Source/Library/Util/Triangulation.cpp"
+    "Source/Library/Util/Triangulation.h"
 )
 source_group("Source/Util" FILES ${Util_Files})
 
 set(Operation_Files
     "Source/Library/Operation/ExtrudeOperation.cpp"
     "Source/Library/Operation/ExtrudeOperation.h"
+    "Source/Library/Operation/TriangulateOperation.cpp"
+    "Source/Library/Operation/TriangulateOperation.h"
 )
 source_group("Source/Operation" FILES ${Operation_Files})
 

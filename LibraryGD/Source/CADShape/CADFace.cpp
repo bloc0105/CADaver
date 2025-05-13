@@ -1,11 +1,10 @@
 #include "CADFace.h"
 
 #include <godot_cpp/core/class_db.hpp>
-#include <godot_cpp/classes/surface_tool.hpp>
 
 #include "Library/CADShape/CADFace.h"
 #include "Library/CADShape/CADWire.h"
-#include "Library/CADShape/Triangulation.h"
+#include "Library/Util/Triangulation.h"
 
 #include "CADWire.h"
 
@@ -15,7 +14,6 @@ namespace godot
     {
         ClassDB::bind_method(D_METHOD("get_cad_wires"), &CADFace::getWires);
         ClassDB::bind_method(D_METHOD("get_cad_orientation"), &CADFace::getOrientation);
-        ClassDB::bind_method(D_METHOD("get_cad_triangulation", "precision"), &CADFace::getTriangulation);
     }
 
     CADFace::CADFace() {}
@@ -49,29 +47,4 @@ namespace godot
         return godot::String(get().getOrientation().c_str());
     }
 
-    Ref<ArrayMesh> CADFace::getTriangulation(double precision) const
-    {
-        auto mesh = get().getTriangulation(precision);
-        if (!mesh)
-            return nullptr;
-
-        Ref<SurfaceTool> st;
-        st.instantiate();
-        st->begin(Mesh::PRIMITIVE_TRIANGLES);
-
-        for (size_t i = 0; i < mesh->vertices.size(); ++i)
-        {
-            auto v = Vector3((real_t)mesh->vertices[i].x, (real_t)mesh->vertices[i].y, (real_t)mesh->vertices[i].z);
-            st->add_vertex(v);
-        }
-        PackedInt32Array godot_indices;
-        godot_indices.resize(mesh->indices.size());
-        for (size_t i = 0; i < mesh->indices.size(); ++i)
-        {
-            st->add_index(mesh->indices[i]);
-        }
-        st->generate_normals();
-        Ref<ArrayMesh> result = st->commit();
-        return result;
-    }
 }

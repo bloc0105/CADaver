@@ -12,3 +12,5 @@ script = ExtResource("1_4liwp")
 camera = NodePath("..")
 
 [node name="ContextMenu" parent="." instance=ExtResource("3_fced0")]
+visible = false
+unfocusable = false

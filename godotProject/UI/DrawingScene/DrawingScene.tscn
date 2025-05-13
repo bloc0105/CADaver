@@ -46,9 +46,6 @@ render_target_update_mode = 4
 [node name="Camera" parent="SubViewportContainer/Viewport" instance=ExtResource("2_ybpe5")]
 projection = 1
 near = 0.001
-sensitivity = 0.005
-zoom_speed = 0.05
-pan_speed = 0.1
 start_rotation = Transform3D(0.71, 0, -0.71, -0.5, 0.71, -0.5, 0.5, 0.71, 0.5, 0, 0, 0)
 
 [node name="Light" parent="SubViewportContainer/Viewport" instance=ExtResource("3_0bqdw")]

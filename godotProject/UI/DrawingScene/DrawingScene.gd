@@ -3,6 +3,7 @@ class_name DrawingScene extends Control
 @onready var camera : Camera3D = $SubViewportContainer/Viewport/MainCamera
 @onready var child_pool : Node = $SubViewportContainer/Viewport/ChildPool
 @onready var viewport : Viewport = $SubViewportContainer/Viewport
+@onready var hierarchy : Hierarchy = $Hierarchy
 
 var cad_vis : PackedScene = preload("res://3D/CADObject/CADVisualization.tscn")
 
@@ -34,4 +35,5 @@ func _on_tab_bar_drawing_changed(index: Variant) -> void:
 		vis.set_drawing(d)		
 		drawing = d;
 		camera.set_aabb(vis.bounding_box)
-		
+	hierarchy.drawing = drawing;
+	hierarchy.drawing_changed()

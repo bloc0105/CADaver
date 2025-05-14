@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bsabpw4agcisv"]
+[gd_scene load_steps=9 format=3 uid="uid://bsabpw4agcisv"]
 
 [ext_resource type="Script" path="res://UI/DrawingScene/DrawingScene.gd" id="1_esesk"]
 [ext_resource type="PackedScene" uid="uid://b4y8g54udjjdq" path="res://3D/Camera/main_camera.tscn" id="2_ybpe5"]
 [ext_resource type="PackedScene" uid="uid://c2rokc52ag5sx" path="res://3D/light.tscn" id="3_0bqdw"]
 [ext_resource type="PackedScene" uid="uid://cj2haut1mwxe4" path="res://3D/ViewCube/view_cube_control.tscn" id="4_1biwo"]
+[ext_resource type="PackedScene" uid="uid://ef2wfs2posok" path="res://UI/Hierarchy/Hierarchy.tscn" id="4_2bkgr"]
 
 [sub_resource type="Environment" id="Environment_w46db"]
 
@@ -61,6 +62,12 @@ offset_left = -141.0
 offset_top = -134.0
 grow_horizontal = 0
 grow_vertical = 0
+
+[node name="Hierarchy" parent="." instance=ExtResource("4_2bkgr")]
+layout_mode = 0
+offset_top = 0.0
+offset_right = 233.0
+offset_bottom = 489.0
 
 [node name="ViewCube" parent="." node_paths=PackedStringArray("cam") instance=ExtResource("4_1biwo")]
 layout_mode = 1

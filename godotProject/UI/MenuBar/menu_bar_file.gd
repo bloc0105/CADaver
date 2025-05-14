@@ -64,7 +64,7 @@ func on_load_drawing() -> void:
 func invokeSaveFileDialog(drawing : Drawing):
 	var dlg = SaveFileDialog.new()
 	dlg.add_filter("Step File", ["stp","step"])
-	#dlg.add_filter("STL File", ["stl"])
+	dlg.add_filter("STL File", ["stl"])
 	dlg.set_save_file_name(drawing.draw_name + ".step");
 	dlg.set_path(path_util.get_path_without_filename(drawing.save_path));
 	dlg.execute();
@@ -72,7 +72,7 @@ func invokeSaveFileDialog(drawing : Drawing):
 	if (!dlg.is_canceled()):
 		var extension := path_util.get_extension(dlg.get_result_path())
 		if (extension == ".stl"):
-			pass
+			drawing.shape.save_cad_triangulation(dlg.get_result_path(),0.1)
 		else:
 			drawing.shape.save_cad_to_file(dlg.get_result_path())
 			drawing.dirty = false

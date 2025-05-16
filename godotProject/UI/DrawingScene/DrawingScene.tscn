@@ -65,9 +65,12 @@ grow_vertical = 0
 
 [node name="Hierarchy" parent="." instance=ExtResource("4_2bkgr")]
 layout_mode = 0
-offset_top = 0.0
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
 offset_right = 233.0
 offset_bottom = 489.0
+grow_vertical = 1
 
 [node name="ViewCube" parent="." node_paths=PackedStringArray("cam") instance=ExtResource("4_1biwo")]
 layout_mode = 1

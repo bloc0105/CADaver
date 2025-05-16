@@ -1,9 +1,15 @@
 class_name Hierarchy extends Control
 
-@onready var tree : Tree = $MarginContainer/VBoxContainer/MarginContainer/Hierarchy
+@onready var tree : Tree = $PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Hierarchy
+@onready var content : PanelContainer = $PanelContainer
+@onready var window : Window = $Window
+@onready var windowPanel : PanelContainer = $Window/PanelContainer
 
 @export var drawing : Drawing;
 
+var factory : CADSceneFactory = CADSceneFactory.new();
+
+var start_size : Vector2;
 
 var root : TreeItem;
 
@@ -14,4 +20,38 @@ func _ready()->void:
 	child1.set_text(0,"Kartoffel")
 
 func drawing_changed()->void:
-	pass
+	build_children()
+
+func build(shape :CADShape, t : TreeItem):
+	var current = tree.create_item(t);
+	current.set_text(0,shape.get_cad_type())
+	var childs := shape.get_cad_children()	
+	for child in childs:
+		build(child,current)
+
+func build_children()->void:
+	reset_children()
+	build(drawing.shape,root)
+	for x in root.get_children():
+		x.set_collapsed_recursive(true)
+	
+
+func reset_children()->void:
+	tree.clear()
+	root = tree.create_item()
+
+func _on_button_pressed() -> void:
+	if (content.get_parent() != self):
+		_on_window_close_requested()
+		return
+	start_size = content.size
+	remove_child(content)
+	windowPanel.add_child(content)
+	window.visible = true
+
+func _on_window_close_requested() -> void:
+	windowPanel.remove_child(content)
+	add_child(content)
+	content.size = start_size
+	window.visible = false
+	

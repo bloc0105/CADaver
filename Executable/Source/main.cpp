@@ -5,7 +5,9 @@
 #include "Library/Operation/TriangulateOperation.h"
 #include "Library/Util/Triangulation.h"
 #include "Library/CADShape/CADShape.h"
+#include "Library/CADShape/CADShapeFactory.h"
 
+#include "Library/experiment.h"
 
 int main()
 {
@@ -16,9 +18,7 @@ int main()
 
     if (!dlg.isCancled())
     {
-        auto shape = Library::CADShape::load(dlg.getResultPath());
-        auto tri = Library::TriangulateOperation::triangulate(*shape);
-        tri->saveAsSTL(dlg.getResultPath() + ".stl");
+        experiment().main(dlg.getResultPath());
     }
     std::cout << dlg.getResultPath();
 }

@@ -1,12 +1,11 @@
 #include "CADShape.h"
+#include "CADShapeFactory.h"
 #include "Library/CADShape/CADShape.h"
 #include "Library/Operation/TriangulateOperation.h"
 #include "Library/Util/Triangulation.h"
+#include <godot_cpp/classes/surface_tool.hpp>
 #include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/variant/aabb.hpp>
-#include <godot_cpp/classes/surface_tool.hpp>
-#include "CADShapeFactory.h"
-
 
 namespace godot
 {
@@ -31,11 +30,11 @@ namespace godot
 
     Ref<CADShape> CADShape::loadCadFromFile(const godot::String& str)
     {
-        std::string filename = std::string(str.utf8());
-        auto        result   = std::move(Library::CADShape::load(filename));
+        std::string                        filename = std::string(str.utf8());
+        std::shared_ptr<Library::CADShape> result   = Library::CADShape::load(filename);
         if (result)
         {
-            Ref<CADShape> resultGD = godot::CADShapeFactory::make(std::move(result));
+            Ref<CADShape> resultGD = godot::CADShapeFactory::make(result);
             return resultGD;
         }
         return Ref<CADShape>();
@@ -52,7 +51,7 @@ namespace godot
         Array result;
         for (auto& x : shape->getChildren())
         {
-            result.push_back(godot::CADShapeFactory::make(std::move(x)));
+            result.push_back(godot::CADShapeFactory::make(x));
         }
         return result;
     }
@@ -67,9 +66,9 @@ namespace godot
         return shape->getType().c_str();
     }
 
-    void CADShape::setData(std::unique_ptr<Library::CADShape> data)
+    void CADShape::setData(std::shared_ptr<Library::CADShape> data)
     {
-        shape = std::move(data);
+        shape = data;
     }
 
     Library::CADShape& CADShape::getData()
@@ -87,13 +86,13 @@ namespace godot
         auto    aabb = getData().getBoundingBox();
         // Convert the glm::dvec3 points to Godot Vector3
         Vector3 position = Vector3(aabb.first.x, aabb.first.y, aabb.first.z);
-        Vector3 size = Vector3(aabb.second.x, aabb.second.y, aabb.second.z);
+        Vector3 size     = Vector3(aabb.second.x, aabb.second.y, aabb.second.z);
         return AABB(position, size);
     }
 
     Ref<ArrayMesh> CADShape::getTriangulation(double precision) const
     {
-        auto mesh = Library::TriangulateOperation::triangulate(getData(),precision);
+        auto mesh = Library::TriangulateOperation::triangulate(getData(), precision);
         if (!mesh)
             return nullptr;
 

@@ -31,5 +31,9 @@ namespace godot
 
       private:
         TypedArray<godot::CADShell> getShells() const;
+
+        godot::String getName() const;
+        void          setName(godot::String);       
+
     };
 }

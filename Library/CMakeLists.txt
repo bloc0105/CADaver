@@ -14,8 +14,6 @@ include_directories(SYSTEM ${OpenCASCADE_INCLUDE_DIR})
 
 set(Source_Files
     "Source/Library/testMain.cpp"
-    "Source/Library/experiment.h"
-    "Source/Library/experiment.cpp"
 )
 source_group("Source" FILES ${Source_Files})
 

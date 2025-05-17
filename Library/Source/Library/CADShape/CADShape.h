@@ -19,7 +19,9 @@ namespace Library
         virtual std::string toString() const;
         virtual std::string getType() const;
 
-        std::vector<std::unique_ptr<CADShape>> getChildren() const;
+        const std::vector<std::shared_ptr<CADShape>>& getChildren() const;
+        void                                          addChild(std::unique_ptr<CADShape>);
+
         std::pair<glm::dvec3, glm::dvec3>      getBoundingBox() const;
 
         bool                             save(const std::string& filename) const;
@@ -31,5 +33,7 @@ namespace Library
 
       private:
         std::unique_ptr<TopoDS_Shape> data = nullptr;
+
+        std::vector<std::shared_ptr<CADShape>> children;
     };
 }

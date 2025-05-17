@@ -9,6 +9,8 @@ namespace godot
     void CADSolid::_bind_methods()
     {
         ClassDB::bind_method(D_METHOD("get_cad_shells"), &CADSolid::getShells);
+        ClassDB::bind_method(D_METHOD("get_cad_name"), &CADSolid::getName);
+        ClassDB::bind_method(D_METHOD("set_cad_name"), &CADSolid::setName);
     }
 
     CADSolid::CADSolid() {}
@@ -35,5 +37,15 @@ namespace godot
             result.push_back(sub);
         }
         return result;
+    }
+
+    godot::String CADSolid::getName() const
+    {
+        return get().getName().c_str();
+    }
+
+    void CADSolid::setName(godot::String name)
+    {
+        get().setName(std::string(name.utf8()));
     }
 }

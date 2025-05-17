@@ -15,7 +15,6 @@ var root : TreeItem;
 
 func _ready()->void:
 	root = tree.create_item()
-	
 	var child1 = tree.create_item(root)
 	child1.set_text(0,"Kartoffel")
 
@@ -24,7 +23,10 @@ func drawing_changed()->void:
 
 func build(shape :CADShape, t : TreeItem):
 	var current = tree.create_item(t);
-	current.set_text(0,shape.get_cad_type())
+	var n := shape.get_cad_type()
+	if (shape.get_cad_type()=="TopAbs_SOLID"):
+		n = (shape as CADSolid).get_cad_name()
+	current.set_text(0,n)
 	var childs := shape.get_cad_children()	
 	for child in childs:
 		build(child,current)
@@ -34,7 +36,6 @@ func build_children()->void:
 	build(drawing.shape,root)
 	for x in root.get_children():
 		x.set_collapsed_recursive(true)
-	
 
 func reset_children()->void:
 	tree.clear()

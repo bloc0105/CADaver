@@ -33,18 +33,14 @@ namespace Library
         return TopAbs2String(TopAbs_SHAPE);
     }
 
-    std::vector<std::unique_ptr<CADShape>> CADShape::getChildren() const
+    const std::vector<std::shared_ptr<CADShape>>& CADShape::getChildren() const
     {
-        std::vector<std::unique_ptr<CADShape>> result;
-        TopoDS_Iterator                        it(getData(), true, false);
-
-        while (it.More())
-        {
-            auto current = CADShapeFactory::make(it.Value());
-            it.Next();
-            result.push_back(std::move(current));
-        }
-        return result;
+        return children;
+    }
+    
+    void CADShape::addChild(std::unique_ptr<CADShape> child)
+    {
+        children.push_back(std::move(child));
     }
 
     TopoDS_Shape& CADShape::getData()

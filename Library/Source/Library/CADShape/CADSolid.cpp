@@ -1,7 +1,7 @@
 #include "CADSolid.h"
 
-#include "TopAbs2String.h"
 #include "CADShell.h"
+#include "TopAbs2String.h"
 
 #include <BRepGProp.hxx>
 #include <BRepTools_ShapeSet.hxx>
@@ -57,4 +57,13 @@ namespace Library
         return result;
     }
 
+    void CADSolid::setName(const std::string& name_)
+    {
+        name = name_;
+    }
+
+    std::string CADSolid::getName() const
+    {
+        return name;
+    }
 }

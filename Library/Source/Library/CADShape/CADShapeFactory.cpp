@@ -10,12 +10,84 @@
 #include "CADWire.h"
 
 #include <STEPControl_Reader.hxx>
-#include <TopoDS_Compound.hxx>
+#include <StepShape_ManifoldSolidBrep.hxx>
+#include <TCollection_HAsciiString.hxx>
 #include <TopAbs_ShapeEnum.hxx>
+#include <TopoDS_Compound.hxx>
+#include <TopoDS_Iterator.hxx>
+#include <XSControl_TransferReader.hxx>
+#include <XSControl_WorkSession.hxx>
 
 namespace Library
 {
+
+    std::vector<std::unique_ptr<CADShape>> CADShapeFactory::generateChildren(CADShape& shape)
+    {
+        std::vector<std::unique_ptr<CADShape>> result;
+        TopoDS_Iterator                        it(shape.getData(), true, false);
+
+        while (it.More())
+        {
+            auto current = CADShapeFactory::make(it.Value());
+            it.Next();
+            result.push_back(std::move(current));
+        }
+        return result;
+    }
+
+    void CADShapeFactory::fillSolidName(CADSolid& shape, XSControl_WorkSession& ws)
+    {
+        Handle(Standard_Transient) entity = ws.TransferReader()->EntityFromShapeResult(shape.getData(), 1);
+
+        if (!entity.IsNull())
+        {
+            Handle(StepShape_ManifoldSolidBrep) brep = Handle(StepShape_ManifoldSolidBrep)::DownCast(entity);
+            if (!brep.IsNull())
+            {
+                Handle(TCollection_HAsciiString) brepName = brep->Name();
+                if (!brepName.IsNull())
+                {
+                    ((CADSolid&)shape).setName(brepName->ToCString());
+                }
+            }
+        }
+    }
+
+    void CADShapeFactory::recurseFillChildShapes(CADShape& shape, XSControl_WorkSession& ws)
+    {
+        if (shape.getType() == "TopAbs_SOLID")
+            fillSolidName((CADSolid&)shape, ws);
+
+        for (auto& x : generateChildren(shape))
+        {
+            recurseFillChildShapes(*x, ws);
+            shape.addChild(std::move(x));
+        }
+    }
+
     std::unique_ptr<CADShape> CADShapeFactory::make(const std::string& filename)
+    {
+        STEPControl_Reader    reader;
+        IFSelect_ReturnStatus status = reader.ReadFile(filename.c_str());
+        if (status != IFSelect_RetDone)
+            return nullptr;
+
+        Standard_Integer nRoots = reader.NbRootsForTransfer();
+        for (Standard_Integer i = 1; i <= nRoots; i++)
+        {
+            reader.TransferRoot(i);
+        }
+        TopoDS_Shape mainShape = reader.OneShape();
+        if (mainShape.IsNull())
+            return nullptr;
+        Handle(XSControl_WorkSession) ws = reader.WS();
+
+        auto result = make(mainShape);
+        recurseFillChildShapes(*result, *ws);
+        return std::move(result);
+    }
+
+    std::unique_ptr<CADShape> CADShapeFactory::makeSimple(const std::string& filename)
     {
         STEPControl_Reader    reader;
         IFSelect_ReturnStatus status = reader.ReadFile(filename.c_str());

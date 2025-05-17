@@ -26,7 +26,7 @@ namespace godot
 
         godot::String _to_string() const;
 
-        void setData(std::unique_ptr<Library::CADShape>);
+        void setData(std::shared_ptr<Library::CADShape>);
 
         Library::CADShape&       getData();
         const Library::CADShape& getData() const;
@@ -40,6 +40,6 @@ namespace godot
         Ref<ArrayMesh>       getTriangulation(double precision = 0.1) const;
         void                 saveTriangulation(const godot::String& filename,double precision = 0.1) const;
 
-        std::unique_ptr<Library::CADShape> shape;
+        std::shared_ptr<Library::CADShape> shape;
     };
 }

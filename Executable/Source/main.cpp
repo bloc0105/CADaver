@@ -7,7 +7,6 @@
 #include "Library/Util/SaveFileDialog.h"
 #include "Library/Util/Triangulation.h"
 
-#include "Library/experiment.h"
 
 int main()
 {

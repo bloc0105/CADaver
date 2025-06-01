@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cyobboo04d278"]
 
-[ext_resource type="Script" path="res://UI/UnsavedChanges/unsaved_changes_dialog.gd" id="1_unrjt"]
+[ext_resource type="Script" uid="uid://mwrmngmmfoik" path="res://UI/UnsavedChanges/unsaved_changes_dialog.gd" id="1_unrjt"]
 
 [node name="UnsavedChangesDialog" type="Control"]
 layout_mode = 3

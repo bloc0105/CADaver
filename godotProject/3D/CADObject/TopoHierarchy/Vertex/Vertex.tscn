@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ceh7eskfkaire"]
 
-[ext_resource type="Script" path="res://3D/CADObject/TopoHierarchy/Vertex/vertex.gd" id="1_u3oyo"]
+[ext_resource type="Script" uid="uid://ditqa8rbp43kn" path="res://3D/CADObject/TopoHierarchy/Vertex/vertex.gd" id="1_u3oyo"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_icqlp"]
 

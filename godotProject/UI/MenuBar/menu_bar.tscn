@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://dfrsgfh3rcwt5"]
 
-[ext_resource type="Script" path="res://UI/MenuBar/menu_bar_file.gd" id="1_0dwda"]
-[ext_resource type="Script" path="res://UI/MenuBar/menu_bar.gd" id="1_7rkid"]
-[ext_resource type="Script" path="res://UI/MenuBar/menu_bar_view.gd" id="2_h18jj"]
+[ext_resource type="Script" uid="uid://s2cv0qqmml6x" path="res://UI/MenuBar/menu_bar_file.gd" id="1_0dwda"]
+[ext_resource type="Script" uid="uid://r1qo1ksskoye" path="res://UI/MenuBar/menu_bar.gd" id="1_7rkid"]
+[ext_resource type="Script" uid="uid://bklcdhk1bblmg" path="res://UI/MenuBar/menu_bar_view.gd" id="2_h18jj"]
 
 [node name="MenuBar" type="PanelContainer"]
 anchors_preset = 10

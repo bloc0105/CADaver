@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cj2haut1mwxe4"]
 
 [ext_resource type="PackedScene" uid="uid://b6rn8yhapkhfm" path="res://3D/ViewCube/view_cube.tscn" id="1_3q0g6"]
-[ext_resource type="Script" path="res://3D/ViewCube/view_cube_control.gd" id="1_xq5c0"]
+[ext_resource type="Script" uid="uid://dp06pbahu68cg" path="res://3D/ViewCube/view_cube_control.gd" id="1_xq5c0"]
 [ext_resource type="StyleBox" uid="uid://cbw81nhj6ret3" path="res://3D/ViewCube/perspective_button_pressed_style.tres" id="3_rvtfl"]
 
 [node name="ViewCubeControl" type="Control"]

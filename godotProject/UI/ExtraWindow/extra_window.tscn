@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://wq5hdhqq1wts"]
 
-[ext_resource type="Script" path="res://UI/ExtraWindow/extra_window.gd" id="1_6gsuf"]
+[ext_resource type="Script" uid="uid://dmy2nx0xii6k8" path="res://UI/ExtraWindow/extra_window.gd" id="1_6gsuf"]
 [ext_resource type="PackedScene" uid="uid://b8ifiy4c8cgpb" path="res://UI/WindowContent/window_content.tscn" id="1_60qra"]
 
 [node name="ExtraWindow" type="Window"]

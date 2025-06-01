@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://x5o7ug1jwd0v"]
 
-[ext_resource type="Script" path="res://UI/OKPopup/ok_popoup.gd" id="1_lxsdx"]
+[ext_resource type="Script" uid="uid://c8t0x8px3hj0s" path="res://UI/OKPopup/ok_popoup.gd" id="1_lxsdx"]
 
 [node name="OKPopup" type="Control"]
 layout_mode = 3

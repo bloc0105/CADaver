@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://b6rn8yhapkhfm"]
 
-[ext_resource type="Script" path="res://3D/ViewCube/view_cube.gd" id="1_4qvvf"]
+[ext_resource type="Script" uid="uid://bu5p2vond7j27" path="res://3D/ViewCube/view_cube.gd" id="1_4qvvf"]
 [ext_resource type="Material" uid="uid://c2qx01sya8jo7" path="res://3D/ViewCube/view_cube_edge_material.tres" id="1_gdys1"]
 [ext_resource type="PackedScene" uid="uid://dnnlnvx6epsq5" path="res://3D/ViewCube/view_cube_button_text.tscn" id="2_812jq"]
 [ext_resource type="PackedScene" uid="uid://b6a7ghrkoyfgt" path="res://3D/ViewCube/view_cube_button.tscn" id="2_w5ryy"]

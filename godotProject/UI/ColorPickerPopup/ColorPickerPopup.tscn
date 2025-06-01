@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bq0eb8dp1wa0r"]
 
-[ext_resource type="Script" path="res://UI/ColorPickerPopup/color_picker_popup.gd" id="1_wax3y"]
+[ext_resource type="Script" uid="uid://blxdvlaalgkpw" path="res://UI/ColorPickerPopup/color_picker_popup.gd" id="1_wax3y"]
 
 [node name="ColorPickerPopup" type="Control"]
 layout_mode = 3

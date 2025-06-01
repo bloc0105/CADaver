@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ef2wfs2posok"]
 
-[ext_resource type="Script" path="res://UI/Hierarchy/hierarchy.gd" id="1_l6eux"]
+[ext_resource type="Script" uid="uid://ddmm6wij1f4gi" path="res://UI/Hierarchy/hierarchy.gd" id="1_l6eux"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w7twk"]
 

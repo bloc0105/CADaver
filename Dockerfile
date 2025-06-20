@@ -1,3 +1,3 @@
-from debian:latest
+FROM debian:latest
 
-apt update && apt install git
+RUN apt update && apt install git
